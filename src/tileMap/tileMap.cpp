@@ -1,4 +1,4 @@
-#include "tilemap.h"
+#include "tileMap.h"
 #include <iostream>
 #include <algorithm> // Для std::max і std::min
 

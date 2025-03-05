@@ -1,7 +1,6 @@
 #pragma once
 #ifndef SCENE_H
 #define SCENE_H
-
 class Game;
 
 class Scene {
