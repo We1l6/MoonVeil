@@ -5,16 +5,24 @@
 #include "imgui.h"
 #include <string>
 
+#include <vector>
+#include <iostream>
+#include "../loggerManager/loggerManager.h"
+#include "loggerWindow/loggerWindow.h"
 class ImGuiManager {
-private:
-    bool showWindow;
-
 public:
     ImGuiManager();
     ~ImGuiManager();
+    void ToggleWindow();
+    void Render();
+    void ToggleLogWindow();
+    void LoadLogFile(const std::string& filePath);
 
-    void ToggleWindow(); 
-    void Render();       
+private:
+    bool m_showWindow = false;
+    bool m_showLogWindow = false;
+    std::vector<std::string> m_logLines;  
+    LoggerWindow loggerWindow;
 };
 
 #endif // IMGUIMANAGER_H

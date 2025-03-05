@@ -13,6 +13,8 @@ add_executable(moonVeilSrc
   "imGuiManager/imGuiManager.h"
   "loggerManager/loggerManager.cpp"
   "loggerManager/loggerManager.h"
+  "imGuiManager/loggerWindow/loggerWindow.cpp"
+  "imGuiManager/loggerWindow/loggerWindow.h"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)

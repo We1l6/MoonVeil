@@ -1,16 +1,17 @@
 #ifndef LOGGERMANAGER_H
-#define LOGGER_H
+#define LOGGERMANAGER_H
 
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <memory>
 #include <iostream>
 
-
-#define LOG_INFO(...) Logger::getInstance().getLogger()->info(__VA_ARGS__)
-#define LOG_WARN(...) Logger::getInstance().getLogger()->warn(__VA_ARGS__)
-#define LOG_ERROR(...) Logger::getInstance().getLogger()->error(__VA_ARGS__)
-//#define LOG_DEBUG(...) Logger::getInstance().getLogger()->debug(__VA_ARGS__)
+#define LOG_TRACE(...)    LoggerManager::getInstance().getLogger()->trace(__VA_ARGS__)
+#define LOG_DEBUG(...)    LoggerManager::getInstance().getLogger()->debug(__VA_ARGS__)
+#define LOG_INFO(...)     LoggerManager::getInstance().getLogger()->info(__VA_ARGS__)
+#define LOG_WARN(...)     LoggerManager::getInstance().getLogger()->warn(__VA_ARGS__)
+#define LOG_ERROR(...)    LoggerManager::getInstance().getLogger()->error(__VA_ARGS__)
+#define LOG_CRITICAL(...) LoggerManager::getInstance().getLogger()->critical(__VA_ARGS__)
 
 class LoggerManager {
 public:

@@ -1,8 +1,17 @@
 #include "imGuiManager.h"
+#include "imgui.h"
 
 ImGuiManager::ImGuiManager() {
     rlImGuiSetup(true); 
-    showWindow = true;  
+    //LoadLogFile("logs/logs.log");
+    LOG_TRACE("This is a trace message.");
+    LOG_DEBUG("This is a debug message.");
+    LOG_INFO("This is an info message.");
+    LOG_WARN("This is a warning message.");
+    LOG_ERROR("This is an error message.");
+    LOG_CRITICAL("This is a critical message.");
+    m_showWindow = true;  
+    m_showLogWindow = true;
 }
 
 ImGuiManager::~ImGuiManager() {
@@ -10,32 +19,19 @@ ImGuiManager::~ImGuiManager() {
 }
 
 void ImGuiManager::ToggleWindow() {
-    showWindow = !showWindow;
+    m_showWindow = !m_showWindow;
+}
+
+
+void ImGuiManager::ToggleLogWindow() {
+    m_showLogWindow = !m_showLogWindow;
 }
 
 void ImGuiManager::Render() {
     rlImGuiBegin();
 
-    if (showWindow) {
-        ImGui::ShowDemoWindow();
-        ImGui::Begin("Hello, ImGui!");
-
-        if (ImGui::Button("Click Me")) {
-            TraceLog(LOG_INFO, "Button clicked!");
-        }
-
-        if (ImGui::Button("Save")) {
-            TraceLog(LOG_INFO, "Save button clicked!");
-        }
-
-        static char buf[256] = "";
-        ImGui::InputText("string", buf, IM_ARRAYSIZE(buf));
-
-        static float f = 0.5f;
-        ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-
-        ImGui::End();
+    if (m_showWindow) {
+        loggerWindow.renderLoggerWindow();
     }
-
     rlImGuiEnd();
 }
