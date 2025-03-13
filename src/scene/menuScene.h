@@ -8,8 +8,8 @@
 class MenuScene : public Scene {
 public:
     MenuScene(Game* game) : Scene(game) {}
-    void HandleInput() override;
-    void Update() override;
+    void HandleInput(float deltaTime) override;
+    void Update(float deltaTime) override;
     void Render() override;
 };
 #endif // MENUSCENE_H

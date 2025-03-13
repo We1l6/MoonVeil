@@ -39,23 +39,58 @@ Tilemap::~Tilemap() {
 }
 
 void Tilemap::LoadTextures() {
-    tex_grass = LoadTexture("resources/grass.png");
-    tex_wall = LoadTexture("resources/wall.png");
+    // Загружаем текстуры снега (3x3 тайла)
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            Texture2D texture = ResourceManager::GetSubTexture("resources/snow.png", i, j);
+            if (texture.id == 0) {
+                TraceLog(LOG_ERROR, "Не удалось загрузить текстуру snow.png для (%d, %d)", i, j);
+            }
+            tex_snow[i * 3 + j] = texture;
+        }
+    }
+
+    // Загружаем остальные текстуры
+    tex_grass = ResourceManager::GetTexture("resources/grass.png");
+    tex_wall = ResourceManager::GetTexture("resources/wall.png");
+    tex_water = ResourceManager::GetTexture("resources/water.png");
+    tex_yellow = ResourceManager::GetTexture("resources/yellow.png");
+    tex_purple = ResourceManager::GetTexture("resources/purple.png");
+
+    // Проверяем загрузку остальных текстур
+    if (tex_grass.id == 0) TraceLog(LOG_ERROR, "Не удалось загрузить текстуру grass.png");
+    if (tex_wall.id == 0) TraceLog(LOG_ERROR, "Не удалось загрузить текстуру wall.png");
+    if (tex_water.id == 0) TraceLog(LOG_ERROR, "Не удалось загрузить текстуру water.png");
+    if (tex_yellow.id == 0) TraceLog(LOG_ERROR, "Не удалось загрузить текстуру yellow.png");
+    if (tex_purple.id == 0) TraceLog(LOG_ERROR, "Не удалось загрузить текстуру purple.png");
 }
 
 void Tilemap::Draw() {
     for (int y = 0; y < mapHeight; y++) {
         for (int x = 0; x < mapWidth; x++) {
             Vector2 pos = {(float)(x * tileSize), (float)(y * tileSize)};
-            if (map[y][x] == '#') DrawTexture(tex_wall, pos.x, pos.y, WHITE);
-            else DrawTexture(tex_grass, pos.x, pos.y, WHITE);
+            switch (map[y][x]) {
+                case '#': DrawTexture(tex_wall, pos.x, pos.y, WHITE); break;
+                case 'w': DrawTexture(tex_water, pos.x, pos.y, WHITE); break;
+                case 'y': DrawTexture(tex_yellow, pos.x, pos.y, WHITE); break;
+                case 'p': DrawTexture(tex_purple, pos.x, pos.y, WHITE); break;
+                case 's': DrawTexture(tex_snow[0], pos.x, pos.y, WHITE); break;
+                case '1': DrawTexture(tex_snow[1], pos.x, pos.y, WHITE); break;
+                case '2': DrawTexture(tex_snow[2], pos.x, pos.y, WHITE); break;
+                case '3': DrawTexture(tex_snow[3], pos.x, pos.y, WHITE); break;
+                case '4': DrawTexture(tex_snow[4], pos.x, pos.y, WHITE); break;
+                case '5': DrawTexture(tex_snow[5], pos.x, pos.y, WHITE); break;
+                case '6': DrawTexture(tex_snow[6], pos.x, pos.y, WHITE); break;
+                case '7': DrawTexture(tex_snow[7], pos.x, pos.y, WHITE); break;
+                case '8': DrawTexture(tex_snow[8], pos.x, pos.y, WHITE); break;
+                default:  DrawTexture(tex_grass, pos.x, pos.y, WHITE); break;
+            }
         }
     }
 }
-
 bool Tilemap::IsWalkable(int x, int y) const {
     if (x < 0 || x >= mapWidth || y < 0 || y >= mapHeight) return false;
-    return map[y][x] != '#';
+    return map[y][x] != '#' && map[y][x] != 'w';
 }
 
 bool Tilemap::IsColliding(float x, float y, float width, float height) const {
@@ -64,7 +99,6 @@ bool Tilemap::IsColliding(float x, float y, float width, float height) const {
     int topTile = static_cast<int>(y / tileSize);
     int bottomTile = static_cast<int>((y + height) / tileSize);
 
-    // Обмеження значень, щоб уникнути виходу за межі
     leftTile = std::max(0, leftTile);
     rightTile = std::min(mapWidth - 1, rightTile);
     topTile = std::max(0, topTile);

@@ -1,19 +1,36 @@
 #include "player.h"
+#include "raylib.h"
 
-Player::Player() {
-    position = { 400, 300 };
-    speed = 0.1f;
+
+Player::Player(const Tilemap& tilemap) : tilemap(tilemap) {
+    position = { 600, 700 };
+    speed = 155.0f;
+    david = ResourceManager::GetTexture("resources/David.png");
 }
 
-void Player::HandleInput() {
-    if (IsKeyDown(KEY_A)) position.x -= speed;
-    if (IsKeyDown(KEY_D)) position.x += speed;
-    if (IsKeyDown(KEY_W)) position.y -= speed;
-    if (IsKeyDown(KEY_S)) position.y += speed;
+void Player::HandleInput(float deltaTime) {
+    float velocity = speed * deltaTime;
+    Vector2 newPosition = position; 
+
+    if (IsKeyDown(KEY_A)) newPosition.x -= velocity;
+    if (IsKeyDown(KEY_D)) newPosition.x += velocity;
+    if (IsKeyDown(KEY_W)) newPosition.y -= velocity;
+    if (IsKeyDown(KEY_S)) newPosition.y += velocity;
+
+
+    if (!tilemap.IsColliding(newPosition.x+32, newPosition.y+40, 48, 84)) {
+        position = newPosition; 
+    }
+    
 }
 
 void Player::Update() {}
 
 void Player::Draw() {
-    DrawCircleV(position, 20, BLUE);
+    DrawTexture(david, position.x, position.y, RAYWHITE);
+    DrawRectangle(position.x+32, position.y+40, 48, 84, RED);
+}
+
+Vector2 Player::getPosition(){
+    return position;
 }

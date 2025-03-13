@@ -28,6 +28,8 @@ add_executable(moonVeilSrc
   "scene/pauseScene.cpp"
   "scene/gameScene.h"
   "scene/gameScene.cpp"
+  "resourceManager/resourceManager.h"
+  "resourceManager/resourceManager.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)

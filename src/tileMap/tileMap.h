@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "raylib.h"
+#include "../resourceManager/resourceManager.h"
 
 class Tilemap {
 public:
@@ -20,10 +21,13 @@ private:
     std::vector<std::vector<char>> map;
     Texture2D tex_grass;
     Texture2D tex_wall;
-
+    Texture2D tex_water;
+    Texture2D tex_yellow;
+    Texture2D tex_purple;
+    Texture2D tex_snow[9];
     int mapWidth;  
     int mapHeight; 
-    const int tileSize = 100; 
+    const int tileSize = 128; 
 };
 
 #endif

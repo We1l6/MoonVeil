@@ -1,7 +1,11 @@
 #include "game.h"
+#include "raylib.h"
 
 Game::Game() {
-    InitWindow(800, 600, "Raylib Game");
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+
+    InitWindow(GetScreenWidth(), GetScreenHeight(), "Raylib Game");
+    SetTargetFPS(120);
     currentScene = new MenuScene(this);
 }
 
@@ -12,11 +16,13 @@ Game::~Game() {
 
 void Game::Run() {
     while (!WindowShouldClose()) {
-        currentScene->HandleInput();
-        currentScene->Update();
+        float deltaTime = GetFrameTime();
+        currentScene->HandleInput(deltaTime);
+        currentScene->Update(deltaTime);
         BeginDrawing();
         ClearBackground(RAYWHITE);
         currentScene->Render();
+        DrawFPS(10, 10, BLACK);
         EndDrawing();
     }
 }
