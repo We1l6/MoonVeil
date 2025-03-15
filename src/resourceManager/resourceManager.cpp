@@ -17,27 +17,22 @@ Texture2D ResourceManager::GetSubTexture(const std::string& path, int row, int c
         return texture;
     }
 
-    // Загружаем изображение из текстуры
     Image image = LoadImageFromTexture(texture);
 
-    // Вычисляем координаты для вырезания
     float x = col * 128;
     float y = row * 128;
 
-    // Проверяем, что координаты находятся в пределах изображения
     if (x + 128 > image.width || y + 128 > image.height) {
         TraceLog(LOG_ERROR, "Ошибка: координаты выходят за пределы текстуры!");
         UnloadImage(image);
         return texture;
     }
 
-    // Вырезаем часть изображения
     Image subImage = ImageFromImage(image, { x, y, 128, 128 });
 
-    // Создаем текстуру из вырезанного изображения
     Texture2D subTexture = LoadTextureFromImage(subImage);
 
-    // Освобождаем ресурсы
+
     UnloadImage(image);
     UnloadImage(subImage);
 

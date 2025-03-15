@@ -28,7 +28,7 @@ void Player::Update() {}
 
 void Player::Draw() {
     DrawTexture(david, position.x, position.y, RAYWHITE);
-    DrawRectangle(position.x+32, position.y+40, 48, 84, RED);
+    //DrawRectangle(position.x+32, position.y+40, 48, 84, RED);
 }
 
 Vector2 Player::getPosition(){
