@@ -1,7 +1,8 @@
 #include "game.h"
 #include "raylib.h"
 
-Game::Game() {
+Game::Game()
+{
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 
     InitWindow(GetScreenWidth(), GetScreenHeight(), "MoonVeil");
@@ -9,27 +10,30 @@ Game::Game() {
     currentScene = new MenuScene(this);
 }
 
-Game::~Game() {
+Game::~Game()
+{
     delete currentScene;
     CloseWindow();
-    //glfwTerminate();
+    // glfwTerminate();
 }
 
-
-void Game::Run() {
-    while (!WindowShouldClose()) {
+void Game::Run() const
+{
+    while (!WindowShouldClose())
+    {
         float deltaTime = GetFrameTime();
         currentScene->HandleInput(deltaTime);
         currentScene->Update(deltaTime);
         BeginDrawing();
         ClearBackground(RAYWHITE);
         currentScene->Render();
-        //DrawFPS(10, 10, BLACK);
+        // DrawFPS(10, 10, BLACK);
         EndDrawing();
     }
 }
 
-void Game::ChangeScene(Scene* newScene) {
+void Game::ChangeScene(Scene *newScene)
+{
     delete currentScene;
     currentScene = newScene;
 }

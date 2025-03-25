@@ -1,27 +1,28 @@
 #ifndef IMGUIMANAGER_H
 #define IMGUIMANAGER_H
 
-#include "rlImGui.h"
 #include "imgui.h"
+#include "rlImGui.h"
 #include <string>
 
-#include <vector>
-#include <iostream>
 #include "../loggerManager/loggerManager.h"
 #include "loggerWindow/loggerWindow.h"
-class ImGuiManager {
-public:
+#include <iostream>
+#include <vector>
+class ImGuiManager
+{
+  public:
     ImGuiManager();
     ~ImGuiManager();
     void ToggleWindow();
     void Render();
     void ToggleLogWindow();
-    void LoadLogFile(const std::string& filePath);
+    void LoadLogFile(const std::string &filePath);
 
-private:
+  private:
     bool m_showWindow = false;
     bool m_showLogWindow = false;
-    std::vector<std::string> m_logLines;  
+    std::vector<std::string> m_logLines;
     LoggerWindow loggerWindow;
 };
 

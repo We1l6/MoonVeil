@@ -3,13 +3,13 @@
 
 #include "raylib.h"
 #include "raymath.h"
-class CameraController {
+class CameraController
+{
 
-    public:
-        
-        Camera2D camera;
-        CameraController(float screenWidth, float screenHeight);
-        void Update(float deltaTime, const Vector2& targetPosition);
+  public:
+    Camera2D camera;
+    CameraController(float screenWidth, float screenHeight);
+    void Update(float deltaTime, const Vector2 &targetPosition);
 };
 
-#endif //CAMERACONTROLLER_H
+#endif // CAMERACONTROLLER_H

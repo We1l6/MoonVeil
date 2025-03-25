@@ -1,12 +1,12 @@
 #ifndef ABILITY_H
 #define ABILITY_H
 
-#include <string>
-#include <iostream>
 #include "../gameObject/gameObject.h"
+#include <iostream>
+#include <string>
 
-
-struct AbilityAttribute{
+struct AbilityAttribute
+{
     const std::string name;
     float cooldown;
     float damage;
@@ -14,12 +14,14 @@ struct AbilityAttribute{
     bool isActive = true;
 };
 
-class Ability: public GameObject{
-protected:
+class Ability : public GameObject
+{
+  protected:
     AbilityAttribute m_abilityAttribute;
 
-public:
-    Ability(AbilityAttribute abilityAttribute, ObjectAttributes objectAttributes);
+  public:
+    Ability(AbilityAttribute abilityAttribute,
+            ObjectAttributes objectAttributes);
     virtual ~Ability() = default;
     virtual void Activate();
     void Update(float deltaTime) override;
