@@ -7,7 +7,7 @@
 #include "gameScene.h"
 class MenuScene : public Scene {
 public:
-    MenuScene(Game* game) : Scene(game) {}
+    explicit MenuScene(Game* game) : Scene(game) {}
     void HandleInput(float deltaTime) override;
     void Update(float deltaTime) override;
     void Render() override;

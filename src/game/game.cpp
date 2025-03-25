@@ -4,7 +4,7 @@
 Game::Game() {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 
-    InitWindow(GetScreenWidth(), GetScreenHeight(), "Raylib Game");
+    InitWindow(GetScreenWidth(), GetScreenHeight(), "MoonVeil");
     SetTargetFPS(120);
     currentScene = new MenuScene(this);
 }
@@ -12,7 +12,9 @@ Game::Game() {
 Game::~Game() {
     delete currentScene;
     CloseWindow();
+    //glfwTerminate();
 }
+
 
 void Game::Run() {
     while (!WindowShouldClose()) {
@@ -22,7 +24,7 @@ void Game::Run() {
         BeginDrawing();
         ClearBackground(RAYWHITE);
         currentScene->Render();
-        DrawFPS(10, 10, BLACK);
+        //DrawFPS(10, 10, BLACK);
         EndDrawing();
     }
 }

@@ -6,10 +6,10 @@
 #include "raylib.h"
 #include "../resourceManager/resourceManager.h"
 
-class Tilemap {
+class TileMap {
 public:
-    Tilemap(const std::string& asciiMap);
-    ~Tilemap();
+    explicit TileMap(const std::string& asciiMap);
+    ~TileMap();
 
     void LoadTextures();
     void Draw();

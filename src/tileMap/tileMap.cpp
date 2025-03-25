@@ -2,7 +2,7 @@
 #include <iostream>
 #include <algorithm> // Для std::max і std::min
 
-Tilemap::Tilemap(const std::string& asciiMap) {
+TileMap::TileMap(const std::string& asciiMap) {
     size_t start = 0;
     size_t end = asciiMap.find('\n');
     while (end != std::string::npos) {
@@ -34,11 +34,11 @@ Tilemap::Tilemap(const std::string& asciiMap) {
     }
 }
 
-Tilemap::~Tilemap() {
+TileMap::~TileMap() {
     UnloadTextures();
 }
 
-void Tilemap::LoadTextures() {
+void TileMap::LoadTextures() {
     // Загружаем текстуры снега (3x3 тайла)
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
@@ -65,7 +65,7 @@ void Tilemap::LoadTextures() {
     if (tex_purple.id == 0) TraceLog(LOG_ERROR, "Не удалось загрузить текстуру purple.png");
 }
 
-void Tilemap::Draw() {
+void TileMap::Draw() {
     for (int y = 0; y < mapHeight; y++) {
         for (int x = 0; x < mapWidth; x++) {
             Vector2 pos = {(float)(x * tileSize), (float)(y * tileSize)};
@@ -88,12 +88,12 @@ void Tilemap::Draw() {
         }
     }
 }
-bool Tilemap::IsWalkable(int x, int y) const {
+bool TileMap::IsWalkable(int x, int y) const {
     if (x < 0 || x >= mapWidth || y < 0 || y >= mapHeight) return false;
     return map[y][x] != '#' && map[y][x] != 'w';
 }
 
-bool Tilemap::IsColliding(float x, float y, float width, float height) const {
+bool TileMap::IsColliding(float x, float y, float width, float height) const {
     int leftTile = static_cast<int>(x / tileSize);
     int rightTile = static_cast<int>((x + width) / tileSize);
     int topTile = static_cast<int>(y / tileSize);
@@ -115,7 +115,7 @@ bool Tilemap::IsColliding(float x, float y, float width, float height) const {
     return false;
 }
 
-void Tilemap::UnloadTextures() {
+void TileMap::UnloadTextures() {
     UnloadTexture(tex_grass);
     UnloadTexture(tex_wall);
 }

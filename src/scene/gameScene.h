@@ -6,25 +6,28 @@
 #include "menuScene.h"
 #include "raylib.h"
 #include "../tileMap/tileMap.h"
+#include "../characters/david/david.h"
+#include "../cameraController/cameraController.h"
+#include "../collisionSystem/collisionSystem.h"
+#include "../interface/HUD/hud.h"
+#include <memory>
 
 class GameScene : public Scene {
-private:
-    Player player;
+    private:
+        TileMap tileMap;
+        std::unique_ptr<CameraController> cameraController;
+        std::shared_ptr<Player> player;
+        std::vector<std::shared_ptr<Entity>> gameEntities;
+        std::vector<std::shared_ptr<Ability>> gameObjects;
 
-public:
-    GameScene(Game* game) : Scene(game), player(tileMap), tileMap(ResourceManager::GetTileMap("resources/maps/first.txt")) {
-        tileMap.LoadTextures();
-        camera = { 0, 0};
-        camera.target = (Vector2){ player.getPosition().x, player.getPosition().y};
-        camera.offset = (Vector2){ GetScreenWidth()/2.0f-64, GetScreenHeight()/2.0f-64 };
-        camera.rotation = 0.0f;
+        void HandleInput(float deltaTime) override;
+        void UpdateEntities(float deltaTime);
+        void RenderEntities() const;
+    
+    public:
+    explicit GameScene(Game* game);
+        void Update(float deltaTime) override;
+        void Render() override;
+    };
 
-        camera.zoom = 1.0f;
-    }
-    void HandleInput(float deltaTime) override;
-    void Update(float deltaTime) override;
-    void Render() override;
-    Tilemap tileMap;
-    Camera2D camera;
-};
 #endif // GAMESCENE_H

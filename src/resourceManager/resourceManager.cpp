@@ -13,7 +13,7 @@ Texture2D ResourceManager::GetSubTexture(const std::string& path, int row, int c
     Texture2D texture = GetTexture(path);
 
     if (texture.id == 0) {
-        TraceLog(LOG_ERROR, "Ошибка: текстура не загружена!");
+        TraceLog(LOG_ERROR, "Error: Texture not loaded!");
         return texture;
     }
 
@@ -23,7 +23,7 @@ Texture2D ResourceManager::GetSubTexture(const std::string& path, int row, int c
     float y = row * 128;
 
     if (x + 128 > image.width || y + 128 > image.height) {
-        TraceLog(LOG_ERROR, "Ошибка: координаты выходят за пределы текстуры!");
+        TraceLog(LOG_ERROR, "Error: coordinates are outside the texture!");
         UnloadImage(image);
         return texture;
     }
@@ -54,5 +54,8 @@ std::string ResourceManager::GetTileMap(const std::string& path) {
 
         return buffer.str(); 
     } 
+    else{
+        
+    }
     return "";
 }
