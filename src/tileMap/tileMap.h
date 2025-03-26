@@ -1,10 +1,12 @@
 #ifndef TILEMAP_H
 #define TILEMAP_H
 
+
 #include "../resourceManager/resourceManager.h"
 #include "raylib.h"
 #include <string>
 #include <vector>
+
 
 class TileMap
 {
@@ -30,5 +32,6 @@ class TileMap
     int mapHeight;
     const int tileSize = 128;
 };
+
 
 #endif

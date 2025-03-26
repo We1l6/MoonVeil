@@ -1,6 +1,8 @@
 #include "resourceManager.h"
 
+
 std::unordered_map<std::string, Texture2D> ResourceManager::textures;
+
 
 Texture2D ResourceManager::GetTexture(const std::string &path)
 {
@@ -10,6 +12,7 @@ Texture2D ResourceManager::GetTexture(const std::string &path)
     }
     return textures[path];
 }
+
 
 Texture2D
 ResourceManager::GetSubTexture(const std::string &path, int row, int col)
@@ -44,6 +47,7 @@ ResourceManager::GetSubTexture(const std::string &path, int row, int col)
     return subTexture;
 }
 
+
 std::string ResourceManager::GetTileMap(const std::string &path)
 {
     std::ifstream file(path);
@@ -62,8 +66,6 @@ std::string ResourceManager::GetTileMap(const std::string &path)
 
         return buffer.str();
     }
-    else
-    {
-    }
+
     return "";
 }

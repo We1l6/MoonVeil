@@ -1,10 +1,12 @@
 #ifndef LOGGERMANAGER_H
 #define LOGGERMANAGER_H
 
+
 #include <iostream>
 #include <memory>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/spdlog.h>
+
 
 #define LOG_TRACE(...)                                                         \
     LoggerManager::getInstance().getLogger()->trace(__VA_ARGS__)
@@ -18,6 +20,7 @@
     LoggerManager::getInstance().getLogger()->error(__VA_ARGS__)
 #define LOG_CRITICAL(...)                                                      \
     LoggerManager::getInstance().getLogger()->critical(__VA_ARGS__)
+
 
 class LoggerManager
 {
@@ -34,5 +37,6 @@ class LoggerManager
     LoggerManager(const LoggerManager &) = delete;
     LoggerManager &operator=(const LoggerManager &) = delete;
 };
+
 
 #endif // LOGGERMANAGER_H

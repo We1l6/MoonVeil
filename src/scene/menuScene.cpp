@@ -1,5 +1,6 @@
 #include "menuScene.h"
 
+
 void MenuScene::HandleInput(float deltaTime)
 {
     if (IsKeyPressed(KEY_ENTER))
@@ -8,8 +9,11 @@ void MenuScene::HandleInput(float deltaTime)
     }
 }
 
+
 void MenuScene::Render()
 {
     DrawText("MENU: Press ENTER to Start", 200, 250, 20, BLACK);
 }
+
+
 void MenuScene::Update(float deltaTime) {}

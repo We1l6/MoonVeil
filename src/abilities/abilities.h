@@ -1,9 +1,12 @@
 #ifndef ABILITY_H
 #define ABILITY_H
 
+
 #include "../gameObject/gameObject.h"
 #include <iostream>
 #include <string>
+#include <utility>
+
 
 struct AbilityAttribute
 {
@@ -13,6 +16,7 @@ struct AbilityAttribute
     float currentCooldown;
     bool isActive = true;
 };
+
 
 class Ability : public GameObject
 {
@@ -29,4 +33,5 @@ class Ability : public GameObject
     bool IsReady() const;
 };
 
-#endif
+
+#endif // ABILITY_H

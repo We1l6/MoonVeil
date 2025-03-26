@@ -1,5 +1,6 @@
 #include "loggerManager.h"
 
+
 LoggerManager::LoggerManager()
 {
     try
@@ -15,13 +16,17 @@ LoggerManager::LoggerManager()
         std::cout << "Logger initialization failed: " << ex.what();
     }
 }
+
+
 LoggerManager &LoggerManager::getInstance()
 {
     static LoggerManager instance;
     return instance;
 }
 
+
 std::shared_ptr<spdlog::logger> LoggerManager::getLogger() { return logger; }
+
 
 void LoggerManager::setLogLevel(spdlog::level::level_enum level)
 {

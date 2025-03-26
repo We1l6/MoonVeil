@@ -1,6 +1,8 @@
 #pragma once
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
+
+
 #include "../cameraController/cameraController.h"
 #include "../characters/david/david.h"
 #include "../collisionSystem/collisionSystem.h"
@@ -11,6 +13,7 @@
 #include "raylib.h"
 #include "scene.h"
 #include <memory>
+
 
 class GameScene : public Scene
 {
@@ -30,5 +33,6 @@ class GameScene : public Scene
     void Update(float deltaTime) override;
     void Render() override;
 };
+
 
 #endif // GAMESCENE_H

@@ -6,3 +6,6 @@ ConstructorInitializerAllOnOneLineOrOnePerLine: true
 AllowAllConstructorInitializersOnNextLine: false
 BinPackParameters: false        
 AlwaysBreakAfterReturnType: None   
+
+MaxEmptyLinesToKeep: 2   
+KeepEmptyLinesAtTheStartOfBlocks: false

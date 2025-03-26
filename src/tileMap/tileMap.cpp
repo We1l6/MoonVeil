@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 
+
 TileMap::TileMap(const std::string &asciiMap)
 {
     size_t start = 0;
@@ -39,7 +40,9 @@ TileMap::TileMap(const std::string &asciiMap)
     }
 }
 
+
 TileMap::~TileMap() { UnloadTextures(); }
+
 
 void TileMap::LoadTextures()
 {
@@ -52,8 +55,8 @@ void TileMap::LoadTextures()
             if (texture.id == 0)
             {
                 TraceLog(LOG_ERROR,
-                         "Не удалось загрузить текстуру snow.png для (%d, %d)",
-                         i, j);
+                         "Failed to load snow.png texture for (% d, % d) ", i,
+                         j);
             }
             tex_snow[i * 3 + j] = texture;
         }
@@ -66,16 +69,17 @@ void TileMap::LoadTextures()
     tex_purple = ResourceManager::GetTexture("resources/purple.png");
 
     if (tex_grass.id == 0)
-        TraceLog(LOG_ERROR, "Не удалось загрузить текстуру grass.png");
+        TraceLog(LOG_ERROR, "Failed to load texture grass.png");
     if (tex_wall.id == 0)
-        TraceLog(LOG_ERROR, "Не удалось загрузить текстуру wall.png");
+        TraceLog(LOG_ERROR, "Failed to load texture wall.png");
     if (tex_water.id == 0)
-        TraceLog(LOG_ERROR, "Не удалось загрузить текстуру water.png");
+        TraceLog(LOG_ERROR, "Failed to load texture water.png");
     if (tex_yellow.id == 0)
-        TraceLog(LOG_ERROR, "Не удалось загрузить текстуру yellow.png");
+        TraceLog(LOG_ERROR, "Failed to load texture yellow.png");
     if (tex_purple.id == 0)
-        TraceLog(LOG_ERROR, "Не удалось загрузить текстуру purple.png");
+        TraceLog(LOG_ERROR, "Failed to load texture purple.png");
 }
+
 
 void TileMap::Draw()
 {
@@ -132,12 +136,15 @@ void TileMap::Draw()
         }
     }
 }
+
+
 bool TileMap::IsWalkable(int x, int y) const
 {
     if (x < 0 || x >= mapWidth || y < 0 || y >= mapHeight)
         return false;
     return map[y][x] != '#' && map[y][x] != 'w';
 }
+
 
 bool TileMap::IsColliding(float x, float y, float width, float height) const
 {
@@ -164,6 +171,7 @@ bool TileMap::IsColliding(float x, float y, float width, float height) const
 
     return false;
 }
+
 
 void TileMap::UnloadTextures()
 {

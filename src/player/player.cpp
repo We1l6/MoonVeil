@@ -1,6 +1,7 @@
 #include "player.h"
 #include "raylib.h"
 
+
 Player::Player(TileMap &tilemap,
                ObjectAttributes objectAttributes,
                float hitPoints,
@@ -8,6 +9,7 @@ Player::Player(TileMap &tilemap,
     : Entity(objectAttributes, hitPoints, tilemap, gameObjects)
 {
 }
+
 
 void Player::HandleInput(float deltaTime)
 {
@@ -42,6 +44,8 @@ void Player::HandleInput(float deltaTime)
     }
 }
 
+
 void Player::Update(float deltaTime) { Entity::Update(deltaTime); }
+
 
 void Player::Draw() const { Entity::Draw(); }

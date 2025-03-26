@@ -1,12 +1,13 @@
-
 #include "abilities.h"
+
 
 Ability::Ability(AbilityAttribute abilityAttribute,
                  ObjectAttributes objectAttributes)
     : GameObject(objectAttributes),
-      m_abilityAttribute(abilityAttribute)
+      m_abilityAttribute(std::move(abilityAttribute))
 {
 }
+
 
 void Ability::Activate()
 {
@@ -23,6 +24,7 @@ void Ability::Activate()
     }
 }
 
+
 void Ability::Update(float deltaTime)
 {
     if (m_abilityAttribute.currentCooldown > 0.0f)
@@ -30,6 +32,7 @@ void Ability::Update(float deltaTime)
         m_abilityAttribute.currentCooldown -= deltaTime;
     }
 }
+
 
 bool Ability::IsReady() const
 {

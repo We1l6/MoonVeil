@@ -1,6 +1,7 @@
 #ifndef LOGGERWINDOW_H
 #define LOGGERWINDOW_H
 
+
 #include "imgui.h"
 #include "rlImGui.h"
 #include <fstream>
@@ -8,6 +9,7 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+
 
 class LoggerWindow
 {
@@ -22,5 +24,6 @@ class LoggerWindow
     bool m_showLogWindow = true;
     std::vector<std::string> logLines;
 };
+
 
 #endif // LOGGERWINDOW_H

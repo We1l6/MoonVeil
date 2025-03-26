@@ -1,15 +1,15 @@
 #include "gameScene.h"
 
+
 GameScene::GameScene(Game *game)
     : Scene(game),
       tileMap(ResourceManager::GetTileMap("resources/maps/first.txt")),
       cameraController(std::make_unique<CameraController>(GetScreenWidth(),
                                                           GetScreenHeight()))
-
 {
     tileMap.LoadTextures();
     player = std::make_shared<David>(tileMap, gameObjects);
-    ObjectAttributes attributes1 = {
+    const ObjectAttributes attributes1 = {
         {0.0f, 0.0f},
         ResourceManager::GetTexture("resources/David.png"),
         {200.0f, 600.0f, 128.0f, 128.0f}};
@@ -18,7 +18,9 @@ GameScene::GameScene(Game *game)
         std::make_shared<Entity>(attributes1, 100, tileMap, gameObjects));
 }
 
+
 void GameScene::HandleInput(float deltaTime) { player->HandleInput(deltaTime); }
+
 
 void GameScene::UpdateEntities(float deltaTime)
 {
@@ -33,6 +35,7 @@ void GameScene::UpdateEntities(float deltaTime)
     }
 }
 
+
 void GameScene::RenderEntities() const
 {
     player->Draw();
@@ -46,12 +49,14 @@ void GameScene::RenderEntities() const
     }
 }
 
+
 void GameScene::Update(float deltaTime)
 {
     cameraController->Update(deltaTime, player->GetPosition());
     CollisionSystem::CheckCollisions(gameEntities, gameObjects);
     UpdateEntities(deltaTime);
 }
+
 
 void GameScene::Render()
 {

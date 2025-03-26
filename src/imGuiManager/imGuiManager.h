@@ -1,14 +1,17 @@
 #ifndef IMGUIMANAGER_H
 #define IMGUIMANAGER_H
 
+
 #include "imgui.h"
 #include "rlImGui.h"
 #include <string>
+
 
 #include "../loggerManager/loggerManager.h"
 #include "loggerWindow/loggerWindow.h"
 #include <iostream>
 #include <vector>
+
 class ImGuiManager
 {
   public:
@@ -25,5 +28,6 @@ class ImGuiManager
     std::vector<std::string> m_logLines;
     LoggerWindow loggerWindow;
 };
+
 
 #endif // IMGUIMANAGER_H

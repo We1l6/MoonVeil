@@ -1,7 +1,10 @@
 #pragma once
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
+
+
 #include "raylib.h"
+
 
 struct ObjectAttributes
 {
@@ -9,6 +12,7 @@ struct ObjectAttributes
     Texture2D texture;
     Rectangle hitbox;
 };
+
 
 class GameObject
 {
@@ -32,5 +36,6 @@ class GameObject
 
     static bool CheckCollision(const GameObject &obj1, const GameObject &obj2);
 };
+
 
 #endif // GAMEOBJECT_H

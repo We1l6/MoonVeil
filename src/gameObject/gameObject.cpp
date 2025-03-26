@@ -2,9 +2,9 @@
 #include "raylib.h"
 
 GameObject::GameObject(ObjectAttributes objectAttributes)
-    : m_objectAttributes(objectAttributes)
+    : m_objectAttributes(objectAttributes),
+      m_markedForDeletion(false)
 {
-    m_markedForDeletion = false;
 }
 
 Rectangle GameObject::GetHitbox() const { return m_objectAttributes.hitbox; }
