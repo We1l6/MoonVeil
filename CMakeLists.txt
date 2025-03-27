@@ -1,7 +1,8 @@
 ﻿cmake_minimum_required(VERSION 3.15...3.31)
 
 project(moonVeil VERSION 1.0 LANGUAGES CXX)
-
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_CLANG_TIDY "clang-tidy;--config-file=${CMAKE_SOURCE_DIR}/.clang-tidy")
 option(ENABLE_WARNINGS "Enable warnings" ON)
 option(ENABLE_WARNINGS_AS_ERRORS "Enable warnings as errors" OFF)
 
