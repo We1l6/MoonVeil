@@ -4,7 +4,7 @@
 #include "../abilities/abilities.h"
 #include "../tileMap/tileMap.h"
 #include "raylib.h"
-#include <math.h>
+#include <cmath>
 #include <memory>
 #include <string>
 #include <vector>
@@ -12,14 +12,14 @@
 class Entity : public GameObject
 {
   protected:
-    float m_hitPoints;
-    bool m_isFacingLeft;
+    float m_hitPoints = 0.0f;
+    bool m_isFacingLeft = 0.0f;
     std::vector<std::shared_ptr<Ability>> &m_gameObjects;
     TileMap &m_tilemap;
 
   private:
     bool m_isHit = false;
-    float m_hitTimer;
+    float m_hitTimer = 0.0f;
     const float m_hitEffectDuration = 0.2f;
 
   public:

@@ -6,7 +6,7 @@ class Game;
 class Scene
 {
   protected:
-    Game *m_game;
+    Game *m_game = nullptr;
 
   public:
     Scene(Game *game) : m_game(game) {}

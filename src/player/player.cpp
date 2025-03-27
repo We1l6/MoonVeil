@@ -13,20 +13,17 @@ Player::Player(TileMap &tilemap,
 
 void Player::HandleInput(float deltaTime)
 {
-    Vector2 newPosition;
-    newPosition.x = m_objectAttributes.hitbox.x;
-    newPosition.y = m_objectAttributes.hitbox.y;
+    Vector2 newPosition = {m_objectAttributes.hitbox.x,
+                           m_objectAttributes.hitbox.y};
 
     if (IsKeyDown(KEY_A))
     {
         newPosition.x -= m_objectAttributes.velocity.x * deltaTime;
-        ;
         m_isFacingLeft = true;
     }
     if (IsKeyDown(KEY_D))
     {
         newPosition.x += m_objectAttributes.velocity.x * deltaTime;
-        ;
         m_isFacingLeft = false;
     }
     if (IsKeyDown(KEY_W))

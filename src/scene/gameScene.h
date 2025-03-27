@@ -15,12 +15,12 @@
 #include <memory>
 
 
-class GameScene : public Scene
+class GameScene final : public Scene
 {
   private:
     TileMap tileMap;
-    std::unique_ptr<CameraController> cameraController;
-    std::shared_ptr<Player> player;
+    std::unique_ptr<CameraController> cameraController = nullptr;
+    std::shared_ptr<Player> player = nullptr;
     std::vector<std::shared_ptr<Entity>> gameEntities;
     std::vector<std::shared_ptr<Ability>> gameObjects;
 

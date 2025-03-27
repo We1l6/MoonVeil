@@ -21,11 +21,11 @@ constexpr int INITIAL_HEALTH = 100;
 } // namespace DavidConstants
 
 
-class David : public Player
+class David final : public Player
 {
   public:
     David(TileMap &tilemap, std::vector<std::shared_ptr<Ability>> &gameObjects);
-    virtual ~David() = default;
+    ~David() = default;
     void HandleInput(float deltaTime) override;
 
   private:

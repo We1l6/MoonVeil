@@ -20,7 +20,7 @@ class GameObject
     ObjectAttributes m_objectAttributes;
 
   private:
-    bool m_markedForDeletion;
+    bool m_markedForDeletion = false;
 
   public:
     GameObject(ObjectAttributes objectAttributes);

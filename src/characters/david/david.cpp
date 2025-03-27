@@ -26,7 +26,7 @@ void David::HandleInput(float deltaTime)
         std::cout << "abilities[0].Activate()\n";
     if (IsKeyPressed(KEY_J))
     {
-        constexpr Vector2 FIREBALL_OFFSET{64.0f, 44.0f};
+        constexpr Vector2 FIREBALL_OFFSET{0.0f, 0.0f};
         constexpr float VELOCITY_BOOST = 60.0f;
         const Vector2 fireballPosition = {GetPosition().x + FIREBALL_OFFSET.x,
                                           GetPosition().y + FIREBALL_OFFSET.y};

@@ -27,17 +27,17 @@ ResourceManager::GetSubTexture(const std::string &path, int row, int col)
 
     Image image = LoadImageFromTexture(texture);
 
-    float x = col * 128;
-    float y = row * 128;
+    float x = col * 128.0f;
+    float y = row * 128.0f;
 
-    if (x + 128 > image.width || y + 128 > image.height)
+    if (x + 128.0f > image.width || y + 128.0f > image.height)
     {
         TraceLog(LOG_ERROR, "Error: coordinates are outside the texture!");
         UnloadImage(image);
         return texture;
     }
 
-    Image subImage = ImageFromImage(image, {x, y, 128, 128});
+    Image subImage = ImageFromImage(image, {x, y, 128.0f, 128.0f});
 
     Texture2D subTexture = LoadTextureFromImage(subImage);
 

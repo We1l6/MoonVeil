@@ -9,9 +9,9 @@ Entity::Entity(ObjectAttributes objectAttributes,
       m_hitPoints(hitPoints),
       m_tilemap(tileMap),
       m_isFacingLeft(false),
-      m_gameObjects(gameObjects)
+      m_gameObjects(gameObjects),
+      m_hitTimer(0.0f)
 {
-    m_hitTimer = 0.0f;
 }
 
 Entity::~Entity() {}
@@ -80,9 +80,7 @@ void Entity::TakeDamage(int amount)
     m_hitPoints -= amount;
 
     if (m_hitPoints < 0)
-    {
         m_hitPoints = 0;
-    }
 
     m_isHit = true;
     m_hitTimer = m_hitEffectDuration;

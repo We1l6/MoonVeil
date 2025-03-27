@@ -11,7 +11,7 @@
 #include "scene.h"
 
 
-class MenuScene : public Scene
+class MenuScene final : public Scene
 {
   public:
     explicit MenuScene(Game *game) : Scene(game) {}
