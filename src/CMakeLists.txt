@@ -48,6 +48,8 @@ add_executable(moonVeilSrc
   "collisionSystem/collisionSystem.cpp"
   "interface/HUD/hud.h"
   "interface/HUD/hud.cpp"
+  "enemy/enemy.h"
+  "enemy/enemy.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)
