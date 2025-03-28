@@ -1,20 +1,19 @@
 #include "david.h"
+#include <iterator>
 
 
 David::David(TileMap &tilemap,
              std::vector<std::shared_ptr<Ability>> &gameObjects)
-    : Player(tilemap,
-             ObjectAttributes{
-                 .velocity = {DavidConstants::INITIAL_POSITION_X,
-                              DavidConstants::INITIAL_POSITION_Y},
-                 .texture =
-                     ResourceManager::GetTexture(DavidConstants::TEXTURE_PATH),
-                 .hitbox = {DavidConstants::COLLIDER_WIDTH,
-                            DavidConstants::COLLIDER_HEIGHT,
-                            .width = DavidConstants::COLLIDER_OFFSET_X,
-                            .height = DavidConstants::COLLIDER_OFFSET_Y}},
-             DavidConstants::INITIAL_HEALTH,
-             gameObjects)
+    : Player(
+          tilemap,
+          ObjectAttributes{.velocity = {INITIAL_POSITION_X, INITIAL_POSITION_Y},
+                           .texture = ResourceManager::GetTexture(
+                               std::data(TEXTURE_PATH)), //!!!!!!!!
+                           .hitbox = {COLLIDER_WIDTH, COLLIDER_HEIGHT,
+                                      .width = COLLIDER_OFFSET_X,
+                                      .height = COLLIDER_OFFSET_Y}},
+          INITIAL_HEALTH,
+          gameObjects)
 {
 }
 

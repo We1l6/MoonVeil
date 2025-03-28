@@ -1,6 +1,7 @@
 #include "entity.h"
 #include "raylib.h"
 
+
 Entity::Entity(ObjectAttributes objectAttributes,
                float hitPoints,
                TileMap &tileMap,
@@ -14,7 +15,9 @@ Entity::Entity(ObjectAttributes objectAttributes,
 {
 }
 
+
 Entity::~Entity() {}
+
 
 void Entity::Update(float deltaTime)
 {
@@ -27,6 +30,7 @@ void Entity::Update(float deltaTime)
         }
     }
 }
+
 
 void Entity::Draw() const
 {
@@ -75,8 +79,16 @@ void Entity::Draw() const
     DrawText(TextFormat("HP: %.1f / 100", m_hitPoints), x + 5, y, 16, WHITE);
 }
 
+
 void Entity::TakeDamage(int amount)
 {
+    // if (CanMoveTo(m_objectAttributes.hitbox.x - 10,
+    // m_objectAttributes.hitbox.y,
+    //               50, 50))
+    // {
+    //     m_objectAttributes.hitbox.x -= 10;
+    // }
+
     m_hitPoints -= amount;
 
     if (m_hitPoints < 0)
@@ -86,13 +98,23 @@ void Entity::TakeDamage(int amount)
     m_hitTimer = m_hitEffectDuration;
 }
 
+
 Vector2 Entity::GetPosition() const
 {
     return {m_objectAttributes.hitbox.x, m_objectAttributes.hitbox.y};
 }
 
+
 float Entity::GetHitPoint() const { return m_hitPoints; }
+
 
 bool Entity::GetIsFacingLeft() const { return m_isFacingLeft; }
 
+
 float Entity::GetHitEffectDuration() const { return m_hitEffectDuration; }
+
+
+bool Entity::CanMoveTo(float x, float y, float width, float height) const
+{
+    return !m_tilemap.IsColliding(x, y, width, height);
+}

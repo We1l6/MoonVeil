@@ -34,7 +34,7 @@ void Player::HandleInput(float deltaTime)
     if (IsKeyPressed(KEY_SPACE))
         TakeDamage(10);
 
-    if (!m_tilemap.IsColliding(newPosition.x + 32, newPosition.y + 40, 48, 84))
+    if (CanMoveTo(newPosition.x + 32, newPosition.y + 40, 48, 84))
     {
         m_objectAttributes.hitbox.x = newPosition.x;
         m_objectAttributes.hitbox.y = newPosition.y;

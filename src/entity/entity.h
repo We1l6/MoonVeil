@@ -12,6 +12,7 @@
 class Entity : public GameObject
 {
   protected:
+    bool CanMoveTo(float x, float y, float width, float height) const;
     float m_hitPoints = 0.0f;
     bool m_isFacingLeft = 0.0f;
     std::vector<std::shared_ptr<Ability>> &m_gameObjects;
