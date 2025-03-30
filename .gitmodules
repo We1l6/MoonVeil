@@ -19,9 +19,6 @@
 [submodule "external/rlImGui"]
 	path = external/rlImGui
 	url = https://github.com/raylib-extras/rlImGui.git
-[submodule "external/tmxparser"]
-	path = external/tmxparser
-	url = https://github.com/sainteos/tmxparser.git
-[submodule "external/tmxlite"]
-	path = external/tmxlite
-	url = https://github.com/fallahn/tmxlite.git
+[submodule "external/raylib-tmx"]
+	path = external/raylib-tmx
+	url = https://github.com/RobLoach/raylib-tmx.git

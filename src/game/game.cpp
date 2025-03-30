@@ -36,7 +36,7 @@ void Game::Run() const
         currentScene->HandleInput(deltaTime);
         currentScene->Update(deltaTime);
         BeginDrawing();
-        ClearBackground(RAYWHITE);
+        ClearBackground(BLACK);
         currentScene->Render();
         EndDrawing();
     }

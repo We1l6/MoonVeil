@@ -114,7 +114,9 @@ bool Entity::GetIsFacingLeft() const { return m_isFacingLeft; }
 float Entity::GetHitEffectDuration() const { return m_hitEffectDuration; }
 
 
-bool Entity::CanMoveTo(float x, float y, float width, float height) const
+bool Entity::CanMoveTo(float x, float y) const
 {
-    return !m_tilemap.IsColliding(x, y, width, height);
+    return !m_tilemap.CheckCollisionWithObjects(
+        "Слой объектов 1", {x, y, m_objectAttributes.hitbox.width,
+                            m_objectAttributes.hitbox.height});
 }

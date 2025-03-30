@@ -50,12 +50,14 @@ add_executable(moonVeilSrc
   "interface/HUD/hud.cpp"
   "enemy/enemy.h"
   "enemy/enemy.cpp"
+  "tileMap/tileMap.h"
+  "tileMap/tileMap.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)
 target_link_libraries(moonVeilSrc PRIVATE raylib imgui )
 target_link_libraries(moonVeilSrc PRIVATE rlImGui)
-
+target_link_libraries(moonVeilSrc PRIVATE raylib-tmx)
 if(ENABLE_SANITIZE_ADDR OR ENABLE_SANITIZE_UNDEF)
     include(Sanitizers)
     #add_sanitizer_flags()
