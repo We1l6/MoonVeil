@@ -22,9 +22,7 @@ David::David(TileMap &tilemap,
                                     ResourceManager::GetSubTexture(
                                         "resources/RunSprite.png", 0, 4),
                                     ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 5),
-                                    ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 6)}},
+                                        "resources/RunSprite.png", 0, 5)}},
              INITIAL_HEALTH,
              gameObjects)
 {

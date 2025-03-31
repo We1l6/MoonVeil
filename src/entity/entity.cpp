@@ -38,7 +38,7 @@ void Entity::Update(float deltaTime)
             m_frameCounter = 0;
             m_currentFrame++;
 
-            if (m_currentFrame >= 6)
+            if (m_currentFrame >= m_objectAttributes.m_moveTextures.size())
                 m_currentFrame = 0;
         }
     }
