@@ -117,6 +117,6 @@ float Entity::GetHitEffectDuration() const { return m_hitEffectDuration; }
 bool Entity::CanMoveTo(float x, float y) const
 {
     return !m_tilemap.CheckCollisionWithObjects(
-        "Слой объектов 1", {x, y, m_objectAttributes.hitbox.width,
-                            m_objectAttributes.hitbox.height});
+        "BlockingLayer", {x, y, m_objectAttributes.hitbox.width,
+                          m_objectAttributes.hitbox.height});
 }

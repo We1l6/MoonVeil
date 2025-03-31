@@ -3,10 +3,10 @@
 
 TileMap::TileMap()
 {
-    map = LoadTMX("resources/testWorld.tmx");
+    map = LoadTMX("resources/dangeon.tmx");
     if (!map)
     {
-        throw std::runtime_error("Failed to load TMX map");
+        throw std::runtime_error("Failed to loadz TMX map");
     }
 }
 
