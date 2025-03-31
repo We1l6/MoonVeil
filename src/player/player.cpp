@@ -13,26 +13,38 @@ Player::Player(TileMap &tilemap,
 
 void Player::HandleInput(float deltaTime)
 {
+    m_isMoving = false;
     Vector2 newPosition = {m_objectAttributes.hitbox.x,
                            m_objectAttributes.hitbox.y};
 
     if (IsKeyDown(KEY_A))
     {
         newPosition.x -= m_objectAttributes.velocity.x * deltaTime;
+        m_isMoving = true;
         m_isFacingLeft = true;
     }
     if (IsKeyDown(KEY_D))
     {
         newPosition.x += m_objectAttributes.velocity.x * deltaTime;
+        m_isMoving = true;
         m_isFacingLeft = false;
     }
     if (IsKeyDown(KEY_W))
+    {
+        m_isMoving = true;
         newPosition.y -= m_objectAttributes.velocity.y * deltaTime;
+    }
     if (IsKeyDown(KEY_S))
+    {
+        m_isMoving = true;
         newPosition.y += m_objectAttributes.velocity.y * deltaTime;
+    }
 
     if (IsKeyPressed(KEY_SPACE))
+    {
+        m_isMoving = true;
         TakeDamage(10);
+    }
 
     if (CanMoveTo(newPosition.x, newPosition.y))
     {

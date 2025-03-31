@@ -14,10 +14,14 @@ class David final : public Player
   private:
     constexpr static float INITIAL_POSITION_X = 155.0f;
     constexpr static float INITIAL_POSITION_Y = 155.0f;
-    constexpr static std::string_view TEXTURE_PATH =
+    constexpr static std::string_view TEXTURE_DAVID_PATH =
         "resources/David.png"; //!!!!!
-    constexpr static int COLLIDER_WIDTH = 600;
-    constexpr static int COLLIDER_HEIGHT = 700;
+    constexpr static std::string_view TEXTURE_DAVID_RUN_PATH =
+        "resources/RunSprite.png";
+    constexpr static int DAVID_WIDTH = 80;
+    constexpr static int DAVID_HEIGHT = 128;
+    constexpr static int DAVID_SPAWN_X = 600;
+    constexpr static int DAVID_SPAWN_Y = 200;
     constexpr static int COLLIDER_OFFSET_X = 10;
     constexpr static int COLLIDER_OFFSET_Y = 10;
     constexpr static int INITIAL_HEALTH = 100;
