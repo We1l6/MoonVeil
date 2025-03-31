@@ -4,13 +4,14 @@
 
 
 #include "raylib.h"
-
+#include <vector>
 
 struct ObjectAttributes
 {
     Vector2 velocity;
     Texture2D texture;
     Rectangle hitbox;
+    std::vector<Texture2D> m_moveTextures;
 };
 
 
@@ -18,6 +19,8 @@ class GameObject
 {
   protected:
     ObjectAttributes m_objectAttributes;
+    bool m_isMoving = false;
+
 
   private:
     bool m_markedForDeletion = false;

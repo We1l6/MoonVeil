@@ -1,13 +1,13 @@
 #include "gameScene.h"
+#include "raylib.h"
 
 
 GameScene::GameScene(Game *game)
     : Scene(game),
-      tileMap(ResourceManager::GetTileMap("resources/maps/first.txt")),
+      tileMap(),
       cameraController(std::make_unique<CameraController>(GetScreenWidth(),
                                                           GetScreenHeight()))
 {
-    tileMap.LoadTextures();
     player = std::make_shared<David>(tileMap, gameObjects);
     const ObjectAttributes attributes1 = {
         {0.0f, 0.0f},
@@ -20,10 +20,10 @@ GameScene::GameScene(Game *game)
         {200.0f, 800.0f, 128.0f, 128.0f}};
 
 
-    gameEntities.emplace_back(
-        std::make_shared<Entity>(attributes1, 100, tileMap, gameObjects));
-    gameEntities.emplace_back(
-        std::make_shared<Entity>(attributes2, 100, tileMap, gameObjects));
+    // gameEntities.emplace_back(
+    //     std::make_shared<Entity>(attributes1, 100, tileMap, gameObjects));
+    // gameEntities.emplace_back(
+    //     std::make_shared<Entity>(attributes2, 100, tileMap, gameObjects));
 }
 
 
@@ -70,6 +70,7 @@ void GameScene::Render()
 {
     BeginMode2D(cameraController->camera);
     tileMap.Draw();
+
     RenderEntities();
     EndMode2D();
     HUD::Draw(player);

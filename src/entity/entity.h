@@ -12,15 +12,25 @@
 class Entity : public GameObject
 {
   protected:
+    bool CanMoveTo(float x, float y) const;
     float m_hitPoints = 0.0f;
+
     bool m_isFacingLeft = 0.0f;
+
     std::vector<std::shared_ptr<Ability>> &m_gameObjects;
     TileMap &m_tilemap;
+
 
   private:
     bool m_isHit = false;
     float m_hitTimer = 0.0f;
     const float m_hitEffectDuration = 0.2f;
+
+
+    int m_currentFrame = 0;
+    int m_frameCounter = 0;
+    float m_frameSpeed = 2.3f;
+
 
   public:
     Entity(ObjectAttributes objectAttributes,

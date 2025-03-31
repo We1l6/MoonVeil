@@ -12,9 +12,10 @@ include(AddGitSubmodule)
 add_git_submodule("${PROJECT_SOURCE_DIR}/external/Catch2")
 add_git_submodule("${PROJECT_SOURCE_DIR}/external/spdlog")
 
+
 set(RAYLIB_DIR "${CMAKE_SOURCE_DIR}/external/raylib")
 add_subdirectory(${RAYLIB_DIR})
-
+add_git_submodule("${PROJECT_SOURCE_DIR}/external/raylib-tmx")
 set(IMGUI_DIR "${CMAKE_SOURCE_DIR}/external/imgui")
 add_subdirectory(${IMGUI_DIR})
 

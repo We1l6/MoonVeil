@@ -10,7 +10,6 @@
 
 class Player : public Entity
 {
-  protected:
   public:
     Player(TileMap &tilemap,
            ObjectAttributes objectAttributes,

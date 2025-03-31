@@ -1,19 +1,29 @@
 #include "david.h"
+#include <iterator>
 
 
 David::David(TileMap &tilemap,
              std::vector<std::shared_ptr<Ability>> &gameObjects)
     : Player(tilemap,
              ObjectAttributes{
-                 .velocity = {DavidConstants::INITIAL_POSITION_X,
-                              DavidConstants::INITIAL_POSITION_Y},
-                 .texture =
-                     ResourceManager::GetTexture(DavidConstants::TEXTURE_PATH),
-                 .hitbox = {DavidConstants::COLLIDER_WIDTH,
-                            DavidConstants::COLLIDER_HEIGHT,
-                            .width = DavidConstants::COLLIDER_OFFSET_X,
-                            .height = DavidConstants::COLLIDER_OFFSET_Y}},
-             DavidConstants::INITIAL_HEALTH,
+                 .velocity = {INITIAL_POSITION_X, INITIAL_POSITION_Y},
+                 .texture = ResourceManager::GetTexture(
+                     std::data(TEXTURE_DAVID_PATH)), //!!!!!!!!
+                 .hitbox = {DAVID_SPAWN_X, DAVID_SPAWN_Y, .width = DAVID_WIDTH,
+                            .height = DAVID_HEIGHT},
+                 .m_moveTextures = {ResourceManager::GetSubTexture(
+                                        "resources/RunSprite.png", 0, 0),
+                                    ResourceManager::GetSubTexture(
+                                        "resources/RunSprite.png", 0, 1),
+                                    ResourceManager::GetSubTexture(
+                                        "resources/RunSprite.png", 0, 2),
+                                    ResourceManager::GetSubTexture(
+                                        "resources/RunSprite.png", 0, 3),
+                                    ResourceManager::GetSubTexture(
+                                        "resources/RunSprite.png", 0, 4),
+                                    ResourceManager::GetSubTexture(
+                                        "resources/RunSprite.png", 0, 5)}},
+             INITIAL_HEALTH,
              gameObjects)
 {
 }
