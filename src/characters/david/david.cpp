@@ -2,28 +2,31 @@
 #include <iterator>
 
 
-David::David(TileMap &tilemap,
+David::David(TileMap &&tilemap,
              std::vector<std::shared_ptr<Ability>> &gameObjects)
-    : Player(tilemap,
+    : Player(std::move(tilemap),
              ObjectAttributes{
-                 .velocity = {INITIAL_POSITION_X, INITIAL_POSITION_Y},
+                 .velocity = {DavidConstants::INITIAL_POSITION_X,
+                              DavidConstants::INITIAL_POSITION_Y},
                  .texture = ResourceManager::GetTexture(
-                     std::data(TEXTURE_DAVID_PATH)), //!!!!!!!!
-                 .hitbox = {DAVID_SPAWN_X, DAVID_SPAWN_Y, .width = DAVID_WIDTH,
-                            .height = DAVID_HEIGHT},
-                 .m_moveTextures = {ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 0),
-                                    ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 1),
-                                    ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 2),
-                                    ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 3),
-                                    ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 4),
-                                    ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 5)}},
-             INITIAL_HEALTH,
+                     std::data(DavidConstants::TEXTURE_DAVID_PATH)), //!!!!!!!!
+                 .hitbox = {DavidConstants::DAVID_SPAWN_X,
+                            DavidConstants::DAVID_SPAWN_Y,
+                            .width = DavidConstants::DAVID_WIDTH,
+                            .height = DavidConstants::DAVID_HEIGHT},
+                 .moveTextures = {ResourceManager::GetSubTexture(
+                                      "resources/RunSprite.png", 0, 0),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/RunSprite.png", 0, 1),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/RunSprite.png", 0, 2),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/RunSprite.png", 0, 3),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/RunSprite.png", 0, 4),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/RunSprite.png", 0, 5)}},
+             DavidConstants::INITIAL_HEALTH,
              gameObjects)
 {
 }

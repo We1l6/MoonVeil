@@ -10,7 +10,7 @@
 
 struct AbilityAttribute
 {
-    const std::string name;
+    std::string name;
     float cooldown;
     float damage;
     float currentCooldown;
@@ -24,8 +24,8 @@ class Ability : public GameObject
     AbilityAttribute m_abilityAttribute;
 
   public:
-    Ability(AbilityAttribute abilityAttribute,
-            ObjectAttributes objectAttributes);
+    Ability(AbilityAttribute &&abilityAttribute,
+            ObjectAttributes &&objectAttributes);
     virtual ~Ability() = default;
     virtual void Activate();
     void Update(float deltaTime) override;

@@ -33,9 +33,9 @@ class Entity : public GameObject
 
 
   public:
-    Entity(ObjectAttributes objectAttributes,
+    Entity(ObjectAttributes &&objectAttributes,
            float hitPoints,
-           TileMap &tileMap,
+           TileMap &&tileMap,
            std::vector<std::shared_ptr<Ability>> &gameObjects);
     ~Entity();
 

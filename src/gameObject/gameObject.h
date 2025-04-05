@@ -11,7 +11,7 @@ struct ObjectAttributes
     Vector2 velocity;
     Texture2D texture;
     Rectangle hitbox;
-    std::vector<Texture2D> m_moveTextures;
+    std::vector<Texture2D> moveTextures;
 };
 
 
@@ -26,7 +26,7 @@ class GameObject
     bool m_markedForDeletion = false;
 
   public:
-    GameObject(ObjectAttributes objectAttributes);
+    GameObject(ObjectAttributes &&objectAttributes);
     virtual ~GameObject() = default;
 
     virtual void Update(float deltaTime) = 0;

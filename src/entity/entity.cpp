@@ -2,11 +2,11 @@
 #include "raylib.h"
 
 
-Entity::Entity(ObjectAttributes objectAttributes,
+Entity::Entity(ObjectAttributes &&objectAttributes,
                float hitPoints,
-               TileMap &tileMap,
+               TileMap &&tileMap,
                std::vector<std::shared_ptr<Ability>> &gameObjects)
-    : GameObject(objectAttributes),
+    : GameObject(std::move(objectAttributes)),
       m_hitPoints(hitPoints),
       m_tilemap(tileMap),
       m_isFacingLeft(false),
@@ -38,7 +38,7 @@ void Entity::Update(float deltaTime)
             m_frameCounter = 0;
             m_currentFrame++;
 
-            if (m_currentFrame >= m_objectAttributes.m_moveTextures.size())
+            if (m_currentFrame >= m_objectAttributes.moveTextures.size())
                 m_currentFrame = 0;
         }
     }
@@ -52,8 +52,7 @@ void Entity::Update(float deltaTime)
 
 void Entity::Draw() const
 {
-    Texture2D currentTexture =
-        m_objectAttributes.m_moveTextures[m_currentFrame];
+    Texture2D currentTexture = m_objectAttributes.moveTextures[m_currentFrame];
 
     Rectangle sourceRec = {
         m_isFacingLeft ? (float)m_objectAttributes.texture.width : 0, 0,

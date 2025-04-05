@@ -2,11 +2,14 @@
 #include "raylib.h"
 
 
-Player::Player(TileMap &tilemap,
-               ObjectAttributes objectAttributes,
+Player::Player(TileMap &&tilemap,
+               ObjectAttributes &&objectAttributes,
                float hitPoints,
                std::vector<std::shared_ptr<Ability>> &gameObjects)
-    : Entity(objectAttributes, hitPoints, tilemap, gameObjects)
+    : Entity(std::move(objectAttributes),
+             hitPoints,
+             std::move(tilemap),
+             gameObjects)
 {
 }
 

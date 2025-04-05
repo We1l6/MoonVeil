@@ -4,26 +4,10 @@
 
 GameScene::GameScene(Game *game)
     : Scene(game),
-      tileMap(),
       cameraController(std::make_unique<CameraController>(GetScreenWidth(),
                                                           GetScreenHeight()))
 {
-    player = std::make_shared<David>(tileMap, gameObjects);
-    const ObjectAttributes attributes1 = {
-        {0.0f, 0.0f},
-        ResourceManager::GetTexture("resources/crabMonster.png"),
-        {200.0f, 600.0f, 128.0f, 128.0f}};
-
-    const ObjectAttributes attributes2 = {
-        {0.0f, 0.0f},
-        ResourceManager::GetTexture("resources/monster.png"),
-        {200.0f, 800.0f, 128.0f, 128.0f}};
-
-
-    // gameEntities.emplace_back(
-    //     std::make_shared<Entity>(attributes1, 100, tileMap, gameObjects));
-    // gameEntities.emplace_back(
-    //     std::make_shared<Entity>(attributes2, 100, tileMap, gameObjects));
+    player = std::make_shared<David>(std::move(tileMap), gameObjects);
 }
 
 

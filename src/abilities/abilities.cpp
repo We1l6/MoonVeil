@@ -1,9 +1,9 @@
 #include "abilities.h"
 
 
-Ability::Ability(AbilityAttribute abilityAttribute,
-                 ObjectAttributes objectAttributes)
-    : GameObject(objectAttributes),
+Ability::Ability(AbilityAttribute &&abilityAttribute,
+                 ObjectAttributes &&objectAttributes)
+    : GameObject(std::move(objectAttributes)),
       m_abilityAttribute(std::move(abilityAttribute))
 {
 }
