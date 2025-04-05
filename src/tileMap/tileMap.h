@@ -12,8 +12,8 @@ class TileMap
   public:
     TileMap();
     ~TileMap();
-    bool CheckCollisionWithObjects(const std::string &layer_name,
-                                   const Rectangle &object) const;
+    [[nodiscard]] bool CheckCollisionWithObjects(const std::string &layer_name,
+                                                 const Rectangle &object) const;
     tmx_layer *GetLayerByName(tmx_map *map, const std::string &name) const;
     void LoadTextures() const;
     void Draw() const;

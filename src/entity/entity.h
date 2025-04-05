@@ -12,7 +12,7 @@
 class Entity : public GameObject
 {
   protected:
-    bool CanMoveTo(float x, float y) const;
+    [[nodiscard]] bool CanMoveTo(float x, float y) const;
     float m_hitPoints = 0.0f;
 
     bool m_isFacingLeft = 0.0f;
@@ -43,10 +43,10 @@ class Entity : public GameObject
     virtual void Draw() const override;
     void TakeDamage(int amount);
 
-    Vector2 GetPosition() const;
-    float GetHitPoint() const;
-    bool GetIsFacingLeft() const;
-    float GetHitEffectDuration() const;
+    [[nodiscard]] Vector2 GetPosition() const;
+    [[nodiscard]] float GetHitPoint() const;
+    [[nodiscard]] bool GetIsFacingLeft() const;
+    [[nodiscard]] float GetHitEffectDuration() const;
 };
 
 #endif

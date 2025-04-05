@@ -4,14 +4,16 @@
 
 #include "raylib.h"
 #include "raymath.h"
-
+#include <algorithm>
 
 class CameraController
 {
-  public:
     Camera2D camera;
-    CameraController(float screenWidth, float screenHeight);
-    void Update(float deltaTime, const Vector2 &targetPosition);
+
+  public:
+    [[nodiscard]] Camera2D GetCamera() const { return camera; }
+    CameraController(const float screenWidth, const float screenHeight);
+    void Update(const float deltaTime, const Vector2 &targetPosition);
 };
 
 

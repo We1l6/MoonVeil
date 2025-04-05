@@ -1,5 +1,5 @@
 ﻿project(moonVeilSrc LANGUAGES CXX)
-
+set(CMAKE_CXX_STANDARD 20)
 set(MAIN_SOURCES
     "main.cpp")
 

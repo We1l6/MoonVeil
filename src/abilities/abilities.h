@@ -5,12 +5,13 @@
 #include "../gameObject/gameObject.h"
 #include <iostream>
 #include <string>
+#include <string_view>
 #include <utility>
 
 
 struct AbilityAttribute
 {
-    std::string name;
+    std::string_view name;
     float cooldown;
     float damage;
     float currentCooldown;
@@ -21,7 +22,7 @@ struct AbilityAttribute
 class Ability : public GameObject
 {
   protected:
-    AbilityAttribute m_abilityAttribute;
+    AbilityAttribute &&m_abilityAttribute;
 
   public:
     Ability(AbilityAttribute &&abilityAttribute,

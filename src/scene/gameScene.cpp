@@ -17,28 +17,29 @@ void GameScene::HandleInput(float deltaTime) { player->HandleInput(deltaTime); }
 void GameScene::UpdateEntities(float deltaTime)
 {
     player->Update(deltaTime);
-    for (const auto &entity : gameEntities)
-    {
-        entity->Update(deltaTime);
-    }
-    for (const auto &object : gameObjects)
-    {
-        object->Update(deltaTime);
-    }
-}
 
+    auto update = [deltaTime](const auto &entity)
+    {
+        if (entity)
+            entity->Update(deltaTime);
+    };
+
+    std::for_each(std::execution::par, gameEntities.begin(), gameEntities.end(),
+                  update);
+    std::for_each(std::execution::par, gameObjects.begin(), gameObjects.end(),
+                  update);
+}
 
 void GameScene::RenderEntities() const
 {
     player->Draw();
-    for (const auto &object : gameObjects)
-    {
-        object->Draw();
-    }
-    for (const auto &entity : gameEntities)
-    {
-        entity->Draw();
-    }
+
+    auto draw = [](const auto &renderable) { renderable->Draw(); };
+
+    std::for_each(std::execution::par, gameObjects.begin(), gameObjects.end(),
+                  draw);
+    std::for_each(std::execution::par, gameObjects.begin(), gameObjects.end(),
+                  draw);
 }
 
 
@@ -52,7 +53,7 @@ void GameScene::Update(float deltaTime)
 
 void GameScene::Render()
 {
-    BeginMode2D(cameraController->camera);
+    BeginMode2D(cameraController->GetCamera());
     tileMap.Draw();
 
     RenderEntities();

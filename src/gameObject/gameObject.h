@@ -33,11 +33,12 @@ class GameObject
     virtual void Draw() const = 0;
 
     void MarkForDeletion();
-    Vector2 GetPosition() const;
-    Rectangle GetHitbox() const;
-    bool IsMarkedForDeletion() const;
+    [[nodiscard]] Vector2 GetPosition() const;
+    [[nodiscard]] Rectangle GetHitbox() const;
+    [[nodiscard]] bool IsMarkedForDeletion() const;
 
-    static bool CheckCollision(const GameObject &obj1, const GameObject &obj2);
+    [[nodiscard]] static bool CheckCollision(const GameObject &obj1,
+                                             const GameObject &obj2);
 };
 
 

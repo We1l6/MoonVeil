@@ -52,23 +52,23 @@ void Entity::Update(float deltaTime)
 
 void Entity::Draw() const
 {
-    Texture2D currentTexture = m_objectAttributes.moveTextures[m_currentFrame];
+    const Texture2D currentTexture =
+        m_objectAttributes.moveTextures[m_currentFrame];
 
-    Rectangle sourceRec = {
+    const Rectangle sourceRec = {
         m_isFacingLeft ? (float)m_objectAttributes.texture.width : 0, 0,
         m_isFacingLeft ? -(float)m_objectAttributes.texture.width
                        : (float)m_objectAttributes.texture.width,
         (float)m_objectAttributes.texture.height};
 
-    Rectangle destRec = {m_objectAttributes.hitbox.x,
-                         m_objectAttributes.hitbox.y,
-                         (float)m_objectAttributes.texture.width,
-                         (float)m_objectAttributes.texture.height};
+    const Rectangle destRec = {m_objectAttributes.hitbox.x,
+                               m_objectAttributes.hitbox.y,
+                               (float)m_objectAttributes.texture.width,
+                               (float)m_objectAttributes.texture.height};
 
     Vector2 origin = {0, 0};
 
-
-    if (m_isHit)
+    if (m_isHit) [[unlikely]]
     {
         float redIntensity = 0.5f + 0.5f * sin(m_hitTimer * 10.0f);
         Color tintColor =
@@ -79,7 +79,7 @@ void Entity::Draw() const
         DrawTexturePro(currentTexture, sourceRec, destRec, origin, 0.0f,
                        tintColor);
     }
-    else
+    else [[likely]]
     {
         DrawTexturePro(currentTexture, sourceRec, destRec, origin, 0.0f,
                        RAYWHITE);
@@ -105,8 +105,8 @@ void Entity::TakeDamage(int amount)
 {
     m_hitPoints -= amount;
 
-    if (m_hitPoints < 0)
-        m_hitPoints = 0;
+    if (m_hitPoints < 0.0f)
+        m_hitPoints = 0.0f;
 
     m_isHit = true;
     m_hitTimer = m_hitEffectDuration;
