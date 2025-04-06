@@ -34,10 +34,11 @@ ResourceManager::GetSubTexture(std::string_view path, int row, int col)
     }
 
     constexpr float TILE_SIZE = 128.0f;
-    const float x = col * TILE_SIZE;
-    const float y = row * TILE_SIZE;
+    const float x = static_cast<float>(col) * TILE_SIZE;
+    const float y = static_cast<float>(row) * TILE_SIZE;
 
-    if (x + TILE_SIZE > image.width || y + TILE_SIZE > image.height)
+    if (x + TILE_SIZE > static_cast<float>(image.width) ||
+        y + TILE_SIZE > static_cast<float>(image.height))
     {
         LOG_ERROR("Error: Coordinates");
         UnloadImage(image);

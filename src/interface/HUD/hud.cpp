@@ -12,7 +12,7 @@ constexpr int HITPOINT_Y = 20;
 
 void HUD::Draw(const std::shared_ptr<Player> &player)
 {
-    float hpPercent = player->GetHitPoint() / 100.0f;
+    const float hpPercent = player->GetHitPoint() / 100.0f;
     int currentWidth =
         static_cast<int>(HUDConstants::HITPOINT_BAR_WIDTH * hpPercent);
 

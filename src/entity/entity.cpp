@@ -1,5 +1,7 @@
 #include "entity.h"
+
 #include "raylib.h"
+#include <algorithm>
 
 
 Entity::Entity(ObjectAttributes &&objectAttributes,
@@ -33,7 +35,7 @@ void Entity::Update(float deltaTime)
     {
         m_frameCounter++;
 
-        if (m_frameCounter >= (60 / m_frameSpeed))
+        if (m_frameCounter >= (60.0f / m_frameSpeed))
         {
             m_frameCounter = 0;
             m_currentFrame++;
@@ -56,22 +58,24 @@ void Entity::Draw() const
         m_objectAttributes.moveTextures[m_currentFrame];
 
     const Rectangle sourceRec = {
-        m_isFacingLeft ? (float)m_objectAttributes.texture.width : 0, 0,
-        m_isFacingLeft ? -(float)m_objectAttributes.texture.width
-                       : (float)m_objectAttributes.texture.width,
-        (float)m_objectAttributes.texture.height};
+        static_cast<float>(m_isFacingLeft ? m_objectAttributes.texture.width
+                                          : 0.0f),
+        0.0f,
+        static_cast<float>(m_isFacingLeft ? -m_objectAttributes.texture.width
+                                          : m_objectAttributes.texture.width),
+        static_cast<float>(m_objectAttributes.texture.height)};
 
-    const Rectangle destRec = {m_objectAttributes.hitbox.x,
-                               m_objectAttributes.hitbox.y,
-                               (float)m_objectAttributes.texture.width,
-                               (float)m_objectAttributes.texture.height};
+    const Rectangle destRec = {
+        m_objectAttributes.hitbox.x, m_objectAttributes.hitbox.y,
+        static_cast<float>(m_objectAttributes.texture.width),
+        static_cast<float>(m_objectAttributes.texture.height)};
 
     Vector2 origin = {0, 0};
 
     if (m_isHit) [[unlikely]]
     {
-        float redIntensity = 0.5f + 0.5f * sin(m_hitTimer * 10.0f);
-        Color tintColor =
+        const float redIntensity = 0.5f + 0.5f * sin(m_hitTimer * 10.0f);
+        const Color tintColor =
             m_isHit ? Color{255, (unsigned char)(255 * (1 - redIntensity)),
                             (unsigned char)(255 * (1 - redIntensity)), 255}
                     : RAYWHITE;
@@ -101,13 +105,11 @@ void Entity::Draw() const
 }
 
 
-void Entity::TakeDamage(int amount)
+void Entity::TakeDamage(float amount)
 {
     m_hitPoints -= amount;
 
-    if (m_hitPoints < 0.0f)
-        m_hitPoints = 0.0f;
-
+    m_hitPoints = std::max(m_hitPoints, 0.0f);
     m_isHit = true;
     m_hitTimer = m_hitEffectDuration;
 }
@@ -132,6 +134,6 @@ bool Entity::CanMoveTo(float x, float y) const
 {
     return !m_tilemap.CheckCollisionWithObjects(
         "BarrierLayer",
-        {x + m_objectAttributes.hitbox.width / 4, y,
+        {x + (m_objectAttributes.hitbox.width / 4.0f), y,
          m_objectAttributes.hitbox.width, m_objectAttributes.hitbox.height});
 }

@@ -21,7 +21,9 @@ void GameScene::UpdateEntities(float deltaTime)
     auto update = [deltaTime](const auto &entity)
     {
         if (entity)
+        {
             entity->Update(deltaTime);
+        }
     };
 
     std::for_each(std::execution::par, gameEntities.begin(), gameEntities.end(),
@@ -30,12 +32,11 @@ void GameScene::UpdateEntities(float deltaTime)
                   update);
 }
 
+
 void GameScene::RenderEntities() const
 {
     player->Draw();
-
     auto draw = [](const auto &renderable) { renderable->Draw(); };
-
     std::for_each(std::execution::par, gameObjects.begin(), gameObjects.end(),
                   draw);
     std::for_each(std::execution::par, gameObjects.begin(), gameObjects.end(),

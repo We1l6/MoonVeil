@@ -43,7 +43,7 @@ void FireBall::Draw() const
                          m_objectAttributes.hitbox.y, 128.0f, 128.0f};
 
 
-    DrawTexturePro(ResourceManager::GetTexture("resources/greenFireBall.png"),
+    DrawTexturePro(ResourceManager::GetTexture("resources/David.png"),
 
                    {0.0f, 128.0f, 128.0f, 128.0f}, destRec, {0.0f, 0.0f}, 0.0f,
                    WHITE);

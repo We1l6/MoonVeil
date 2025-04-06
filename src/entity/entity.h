@@ -41,7 +41,7 @@ class Entity : public GameObject
 
     virtual void Update(float deltaTime) override;
     virtual void Draw() const override;
-    void TakeDamage(int amount);
+    void TakeDamage(float amount);
 
     [[nodiscard]] Vector2 GetPosition() const;
     [[nodiscard]] float GetHitPoint() const;
