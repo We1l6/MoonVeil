@@ -3,7 +3,7 @@
 #include "raylib.h"
 #include <utility>
 
-GameObject::GameObject(ObjectAttributes &&objectAttributes)
+GameObject::GameObject(ObjectAttributes objectAttributes)
     : m_objectAttributes(std::move(objectAttributes)),
       m_markedForDeletion(false)
 {

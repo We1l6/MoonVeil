@@ -22,11 +22,11 @@ struct AbilityAttribute
 class Ability : public GameObject
 {
   protected:
-    AbilityAttribute &&m_abilityAttribute;
+    AbilityAttribute m_abilityAttribute;
 
   public:
-    Ability(AbilityAttribute &&abilityAttribute,
-            ObjectAttributes &&objectAttributes);
+    Ability(AbilityAttribute abilityAttribute,
+            ObjectAttributes objectAttributes);
     virtual ~Ability() = default;
     virtual void Activate();
     void Update(float deltaTime) override;

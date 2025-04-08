@@ -26,7 +26,7 @@ class GameObject
     bool m_markedForDeletion = false;
 
   public:
-    GameObject(ObjectAttributes &&objectAttributes);
+    GameObject(ObjectAttributes objectAttributes);
     virtual ~GameObject() = default;
 
     virtual void Update(float deltaTime) = 0;

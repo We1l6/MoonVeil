@@ -107,6 +107,7 @@ void Entity::Draw() const
 
 void Entity::TakeDamage(float amount)
 {
+    LOG_INFO("TakeDamage");
     m_hitPoints -= amount;
 
     m_hitPoints = std::max(m_hitPoints, 0.0f);

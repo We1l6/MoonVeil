@@ -11,23 +11,17 @@ ImGuiManager::ImGuiManager()
     LOG_WARN("This is a warning message.");
     LOG_ERROR("This is an error message.");
     LOG_CRITICAL("This is a critical message.");
-    m_showWindow = true;
-    m_showLogWindow = true;
 }
 
 ImGuiManager::~ImGuiManager() { rlImGuiShutdown(); }
 
-void ImGuiManager::ToggleWindow() { m_showWindow = !m_showWindow; }
+void ImGuiManager::ToggleWindow() {}
 
-void ImGuiManager::ToggleLogWindow() { m_showLogWindow = !m_showLogWindow; }
+void ImGuiManager::ToggleLogWindow() {}
 
-void ImGuiManager::Render()
+void ImGuiManager::RenderLoggerWindow()
 {
     rlImGuiBegin();
-
-    if (m_showWindow)
-    {
-        loggerWindow.renderLoggerWindow();
-    }
+    loggerWindow.renderLoggerWindow();
     rlImGuiEnd();
 }

@@ -19,7 +19,7 @@ class Player : public Entity
     virtual ~Player() = default;
     virtual void HandleInput(float deltaTime);
     void Update(float deltaTime) override;
-    void Draw() const override;
+    void Draw(const Camera2D &camera) const;
 };
 
 

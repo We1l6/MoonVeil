@@ -1,6 +1,4 @@
 #include "game.h"
-#include "raylib.h"
-#include <string_view>
 
 
 namespace GameConstants
@@ -29,7 +27,7 @@ Game::~Game()
 }
 
 
-void Game::Run() const
+void Game::Run()
 {
     while (!WindowShouldClose())
     {

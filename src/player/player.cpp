@@ -1,5 +1,7 @@
 #include "player.h"
 #include "raylib.h"
+#include "raymath.h"
+#include <cmath>
 
 
 Player::Player(TileMap &&tilemap,
@@ -60,4 +62,31 @@ void Player::HandleInput(float deltaTime)
 void Player::Update(float deltaTime) { Entity::Update(deltaTime); }
 
 
-void Player::Draw() const { Entity::Draw(); }
+void Player::Draw(const Camera2D &camera) const
+{
+    Entity::Draw();
+
+    Vector2 playerCenter = {
+        m_objectAttributes.hitbox.x + m_objectAttributes.hitbox.width / 2 + 20,
+        m_objectAttributes.hitbox.y + m_objectAttributes.hitbox.height / 2};
+
+
+    Vector2 mouseScreenPos = GetMousePosition();
+    Vector2 mouseWorldPos;
+    mouseWorldPos.x =
+        (mouseScreenPos.x - camera.offset.x) / camera.zoom + camera.target.x;
+    mouseWorldPos.y =
+        (mouseScreenPos.y - camera.offset.y) / camera.zoom + camera.target.y;
+
+    Vector2 dirToMouse = Vector2Subtract(mouseWorldPos, playerCenter);
+    float distance = Vector2Length(dirToMouse);
+
+    if (distance > 0.0f)
+    {
+        Vector2 normalizedDir = Vector2Normalize(dirToMouse);
+        Vector2 targetPos =
+            Vector2Add(playerCenter, Vector2Scale(normalizedDir, 100.0f));
+
+        DrawCircleV(targetPos, 10, RED);
+    }
+}

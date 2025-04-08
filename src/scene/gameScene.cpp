@@ -1,5 +1,4 @@
 #include "gameScene.h"
-#include "raylib.h"
 
 
 GameScene::GameScene(Game *game)
@@ -35,9 +34,9 @@ void GameScene::UpdateEntities(float deltaTime)
 
 void GameScene::RenderEntities() const
 {
-    player->Draw();
+    player->Draw(cameraController->GetCamera());
     auto draw = [](const auto &renderable) { renderable->Draw(); };
-    std::for_each(std::execution::par, gameObjects.begin(), gameObjects.end(),
+    std::for_each(std::execution::par, gameEntities.begin(), gameEntities.end(),
                   draw);
     std::for_each(std::execution::par, gameObjects.begin(), gameObjects.end(),
                   draw);
