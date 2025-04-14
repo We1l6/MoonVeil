@@ -26,7 +26,8 @@ class Ability : public GameObject
 
   public:
     Ability(AbilityAttribute abilityAttribute,
-            ObjectAttributes objectAttributes);
+            ObjectAttributes objectAttributes,
+            FrameAtributes frameAtributes);
     virtual ~Ability() = default;
     virtual void Activate();
     void Update(float deltaTime) override;

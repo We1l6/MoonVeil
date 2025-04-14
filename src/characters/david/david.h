@@ -38,8 +38,7 @@ class David final : public Player
 {
   private:
   public:
-    David(TileMap &&tilemap,
-          std::vector<std::shared_ptr<Ability>> &gameObjects);
+    David(TileMap &tilemap, std::vector<std::shared_ptr<Ability>> &gameObjects);
     ~David() = default;
     void HandleInput(float deltaTime) override;
 

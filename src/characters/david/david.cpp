@@ -2,30 +2,32 @@
 #include <iterator>
 
 
-David::David(TileMap &&tilemap,
+David::David(TileMap &tilemap,
              std::vector<std::shared_ptr<Ability>> &gameObjects)
-    : Player(std::move(tilemap),
+    : Player(tilemap,
              ObjectAttributes{
                  .velocity = {DavidConstants::INITIAL_POSITION_X,
                               DavidConstants::INITIAL_POSITION_Y},
                  .texture = ResourceManager::GetTexture(
-                     std::data(DavidConstants::TEXTURE_DAVID_PATH)), //!!!!!!!!
+                     std::data(DavidConstants::TEXTURE_DAVID_PATH)),
                  .hitbox = {DavidConstants::DAVID_SPAWN_X,
                             DavidConstants::DAVID_SPAWN_Y,
                             .width = DavidConstants::DAVID_WIDTH,
                             .height = DavidConstants::DAVID_HEIGHT},
                  .moveTextures = {ResourceManager::GetSubTexture(
-                                      "resources/RunSprite.png", 0, 0),
+                                      "resources/DavideRUN.png", 0, 0),
                                   ResourceManager::GetSubTexture(
-                                      "resources/RunSprite.png", 0, 1),
+                                      "resources/DavideRUN.png", 0, 1),
                                   ResourceManager::GetSubTexture(
-                                      "resources/RunSprite.png", 0, 2),
+                                      "resources/DavideRUN.png", 0, 2),
                                   ResourceManager::GetSubTexture(
-                                      "resources/RunSprite.png", 0, 3),
+                                      "resources/DavideRUN.png", 0, 3),
                                   ResourceManager::GetSubTexture(
-                                      "resources/RunSprite.png", 0, 4),
+                                      "resources/DavideRUN.png", 0, 4),
                                   ResourceManager::GetSubTexture(
-                                      "resources/RunSprite.png", 0, 5)}},
+                                      "resources/DavideRUN.png", 0, 5)}},
+             FrameAtributes{
+                 .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
              DavidConstants::INITIAL_HEALTH,
              gameObjects)
 {

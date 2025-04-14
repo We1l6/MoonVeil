@@ -27,15 +27,11 @@ class Entity : public GameObject
     const float m_hitEffectDuration = 0.2f;
 
 
-    int m_currentFrame = 0;
-    int m_frameCounter = 0;
-    float m_frameSpeed = 2.3f;
-
-
   public:
     Entity(ObjectAttributes &&objectAttributes,
+           FrameAtributes &&frameAtributes,
            float hitPoints,
-           TileMap &&tileMap,
+           TileMap &tileMap,
            std::vector<std::shared_ptr<Ability>> &gameObjects);
     ~Entity();
 

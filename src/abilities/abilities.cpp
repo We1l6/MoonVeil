@@ -2,8 +2,9 @@
 
 
 Ability::Ability(AbilityAttribute abilityAttribute,
-                 ObjectAttributes objectAttributes)
-    : GameObject(std::move(objectAttributes)),
+                 ObjectAttributes objectAttributes,
+                 FrameAtributes frameAtributes)
+    : GameObject(objectAttributes, frameAtributes),
       m_abilityAttribute(std::move(abilityAttribute))
 {
 }

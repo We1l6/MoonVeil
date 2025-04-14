@@ -15,10 +15,19 @@ struct ObjectAttributes
 };
 
 
+struct FrameAtributes
+{
+    int currentFrame = 0;
+    int frameCounter = 0;
+    float frameSpeed = 2.0f;
+};
+
+
 class GameObject
 {
   protected:
     ObjectAttributes m_objectAttributes;
+    FrameAtributes m_frameAtributes;
     bool m_isMoving = false;
 
 
@@ -26,7 +35,8 @@ class GameObject
     bool m_markedForDeletion = false;
 
   public:
-    GameObject(ObjectAttributes objectAttributes);
+    GameObject(ObjectAttributes objectAttributes,
+               FrameAtributes frameAtributes);
     virtual ~GameObject() = default;
 
     virtual void Update(float deltaTime) = 0;

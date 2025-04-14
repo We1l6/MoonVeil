@@ -4,13 +4,15 @@
 #include <cmath>
 
 
-Player::Player(TileMap &&tilemap,
+Player::Player(TileMap &tilemap,
                ObjectAttributes &&objectAttributes,
+               FrameAtributes &&frameAtributes,
                float hitPoints,
                std::vector<std::shared_ptr<Ability>> &gameObjects)
     : Entity(std::move(objectAttributes),
+             std::move(frameAtributes),
              hitPoints,
-             std::move(tilemap),
+             tilemap,
              gameObjects)
 {
 }

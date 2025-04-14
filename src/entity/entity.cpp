@@ -5,10 +5,11 @@
 
 
 Entity::Entity(ObjectAttributes &&objectAttributes,
+               FrameAtributes &&frameAtributes,
                float hitPoints,
-               TileMap &&tileMap,
+               TileMap &tileMap,
                std::vector<std::shared_ptr<Ability>> &gameObjects)
-    : GameObject(std::move(objectAttributes)),
+    : GameObject(std::move(objectAttributes), std::move(frameAtributes)),
       m_hitPoints(hitPoints),
       m_tilemap(tileMap),
       m_isFacingLeft(false),
@@ -33,21 +34,23 @@ void Entity::Update(float deltaTime)
     }
     if (m_isMoving)
     {
-        m_frameCounter++;
+        m_frameAtributes.frameCounter++;
 
-        if (m_frameCounter >= (60.0f / m_frameSpeed))
+        if (m_frameAtributes.frameCounter >=
+            (60.0f / m_frameAtributes.frameSpeed))
         {
-            m_frameCounter = 0;
-            m_currentFrame++;
+            m_frameAtributes.frameCounter = 0;
+            m_frameAtributes.currentFrame++;
 
-            if (m_currentFrame >= m_objectAttributes.moveTextures.size())
-                m_currentFrame = 0;
+            if (m_frameAtributes.currentFrame >=
+                m_objectAttributes.moveTextures.size())
+                m_frameAtributes.currentFrame = 0;
         }
     }
     else
     {
-        m_currentFrame = 0;
-        m_frameCounter = 0;
+        m_frameAtributes.currentFrame = 0;
+        m_frameAtributes.frameCounter = 0;
     }
 }
 
@@ -55,14 +58,14 @@ void Entity::Update(float deltaTime)
 void Entity::Draw() const
 {
     const Texture2D currentTexture =
-        m_objectAttributes.moveTextures[m_currentFrame];
+        m_objectAttributes.moveTextures[m_frameAtributes.currentFrame];
 
     const Rectangle sourceRec = {
         static_cast<float>(m_isFacingLeft ? m_objectAttributes.texture.width
                                           : 0.0f),
         0.0f,
-        static_cast<float>(m_isFacingLeft ? -m_objectAttributes.texture.width
-                                          : m_objectAttributes.texture.width),
+        static_cast<float>(m_isFacingLeft ? m_objectAttributes.texture.width
+                                          : -m_objectAttributes.texture.width),
         static_cast<float>(m_objectAttributes.texture.height)};
 
     const Rectangle destRec = {
@@ -89,19 +92,20 @@ void Entity::Draw() const
                        RAYWHITE);
     }
 
-    const int barWidth = 120;
-    const int barHeight = 20;
-    const int x = m_objectAttributes.hitbox.x - 0;
+    const int barWidth = 109;
+    const int barHeight = 5;
+    const int x = m_objectAttributes.hitbox.x;
     const int y = m_objectAttributes.hitbox.y + 148;
 
     const float hpPercent = m_hitPoints / 100.0f;
     const int currentWidth = static_cast<int>(barWidth * hpPercent);
 
-    DrawRectangle(x, y, barWidth, barHeight, GRAY);
-    DrawRectangle(x, y, currentWidth, barHeight, RED);
-    DrawRectangleLines(x, y, barWidth, barHeight, BLACK);
+    DrawRectangle(x + 16, y + 3, barWidth, barHeight, GRAY);
+    DrawRectangle(x + 16, y + 3, currentWidth, barHeight, RED);
+    DrawRectangleLines(x + 16, y + 3, barWidth, barHeight, BLACK);
 
-    DrawText(TextFormat("HP: %.1f / 100", m_hitPoints), x + 5, y, 16, WHITE);
+    DrawTexture(ResourceManager::GetTexture("resources/HPBAR.png"), x, y - 54,
+                WHITE);
 }
 
 

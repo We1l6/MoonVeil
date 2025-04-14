@@ -14,7 +14,9 @@ FireBall::FireBall(Vector2 position, Vector2 velocity)
                   .hitbox = {FireBallConstants::POSITION_X,
                              FireBallConstants::POSITION_Y,
                              FireBallConstants::HITBOX_WIDTH,
-                             FireBallConstants::HITBOX_HEIGHT}})
+                             FireBallConstants::HITBOX_HEIGHT}},
+              FrameAtributes{
+                  .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f})
 {
     m_objectAttributes = {.hitbox = {.x = position.x, .y = position.y},
                           .velocity = velocity};

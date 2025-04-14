@@ -11,8 +11,9 @@
 class Player : public Entity
 {
   public:
-    Player(TileMap &&tilemap,
+    Player(TileMap &tilemap,
            ObjectAttributes &&objectAttributes,
+           FrameAtributes &&frameAtributes,
            float hitPoints,
            std::vector<std::shared_ptr<Ability>> &gameObjects);
 
