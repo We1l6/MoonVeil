@@ -3,35 +3,24 @@
 
 
 #include "../resourceManager/resourceManager.h"
+#include "raylib-tmx.h"
 #include "raylib.h"
-#include <string>
-#include <vector>
-
+#include <cstring>
 
 class TileMap
 {
   public:
-    explicit TileMap(const std::string &asciiMap);
+    TileMap();
     ~TileMap();
+    [[nodiscard]] bool CheckCollisionWithObjects(const std::string &layer_name,
+                                                 const Rectangle &object) const;
+    tmx_layer *GetLayerByName(tmx_map *map, const std::string &name) const;
+    void LoadTextures() const;
+    void Draw() const;
 
-    void LoadTextures();
-    void Draw();
-    bool IsWalkable(int x, int y) const;
-    bool IsColliding(float x, float y, float width, float height) const;
-    void UnloadTextures();
 
   private:
-    std::vector<std::vector<char>> map;
-    Texture2D tex_grass;
-    Texture2D tex_wall;
-    Texture2D tex_water;
-    Texture2D tex_yellow;
-    Texture2D tex_purple;
-    Texture2D tex_snow[9];
-    int mapWidth;
-    int mapHeight;
-    const int tileSize = 128;
+    tmx_map *map = nullptr;
 };
-
 
 #endif

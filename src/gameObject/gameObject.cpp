@@ -1,8 +1,12 @@
 #include "gameObject.h"
-#include "raylib.h"
 
-GameObject::GameObject(ObjectAttributes objectAttributes)
-    : m_objectAttributes(objectAttributes),
+#include "raylib.h"
+#include <utility>
+
+GameObject::GameObject(ObjectAttributes objectAttributes,
+                       FrameAtributes frameAtributes)
+    : m_objectAttributes(std::move(objectAttributes)),
+      m_frameAtributes(std::move(frameAtributes)),
       m_markedForDeletion(false)
 {
 }

@@ -8,17 +8,16 @@
 #include "../collisionSystem/collisionSystem.h"
 #include "../interface/HUD/hud.h"
 #include "../player/player.h"
-#include "../tileMap/tileMap.h"
 #include "menuScene.h"
 #include "raylib.h"
 #include "scene.h"
+#include <execution>
 #include <memory>
-
-
 class GameScene final : public Scene
 {
   private:
     TileMap tileMap;
+
     std::unique_ptr<CameraController> cameraController = nullptr;
     std::shared_ptr<Player> player = nullptr;
     std::vector<std::shared_ptr<Entity>> gameEntities;

@@ -32,7 +32,7 @@ class FireBall final : public Ability
 
     void Update(float deltaTime) override;
     void Draw() const override;
-    bool IsActive() const;
+    [[nodiscard]] bool IsActive() const;
     void Deactivate();
 };
 

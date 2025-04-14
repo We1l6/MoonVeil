@@ -1,4 +1,5 @@
 #include "david.h"
+#include <iterator>
 
 
 David::David(TileMap &tilemap,
@@ -7,12 +8,26 @@ David::David(TileMap &tilemap,
              ObjectAttributes{
                  .velocity = {DavidConstants::INITIAL_POSITION_X,
                               DavidConstants::INITIAL_POSITION_Y},
-                 .texture =
-                     ResourceManager::GetTexture(DavidConstants::TEXTURE_PATH),
-                 .hitbox = {DavidConstants::COLLIDER_WIDTH,
-                            DavidConstants::COLLIDER_HEIGHT,
-                            .width = DavidConstants::COLLIDER_OFFSET_X,
-                            .height = DavidConstants::COLLIDER_OFFSET_Y}},
+                 .texture = ResourceManager::GetTexture(
+                     std::data(DavidConstants::TEXTURE_DAVID_PATH)),
+                 .hitbox = {DavidConstants::DAVID_SPAWN_X,
+                            DavidConstants::DAVID_SPAWN_Y,
+                            .width = DavidConstants::DAVID_WIDTH,
+                            .height = DavidConstants::DAVID_HEIGHT},
+                 .moveTextures = {ResourceManager::GetSubTexture(
+                                      "resources/DavideRUN.png", 0, 0),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/DavideRUN.png", 0, 1),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/DavideRUN.png", 0, 2),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/DavideRUN.png", 0, 3),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/DavideRUN.png", 0, 4),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/DavideRUN.png", 0, 5)}},
+             FrameAtributes{
+                 .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
              DavidConstants::INITIAL_HEALTH,
              gameObjects)
 {

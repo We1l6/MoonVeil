@@ -12,18 +12,24 @@
 class Entity : public GameObject
 {
   protected:
+    [[nodiscard]] bool CanMoveTo(float x, float y) const;
     float m_hitPoints = 0.0f;
+
     bool m_isFacingLeft = 0.0f;
+
     std::vector<std::shared_ptr<Ability>> &m_gameObjects;
     TileMap &m_tilemap;
+
 
   private:
     bool m_isHit = false;
     float m_hitTimer = 0.0f;
     const float m_hitEffectDuration = 0.2f;
 
+
   public:
-    Entity(ObjectAttributes objectAttributes,
+    Entity(ObjectAttributes &&objectAttributes,
+           FrameAtributes &&frameAtributes,
            float hitPoints,
            TileMap &tileMap,
            std::vector<std::shared_ptr<Ability>> &gameObjects);
@@ -31,12 +37,12 @@ class Entity : public GameObject
 
     virtual void Update(float deltaTime) override;
     virtual void Draw() const override;
-    void TakeDamage(int amount);
+    void TakeDamage(float amount);
 
-    Vector2 GetPosition() const;
-    float GetHitPoint() const;
-    bool GetIsFacingLeft() const;
-    float GetHitEffectDuration() const;
+    [[nodiscard]] Vector2 GetPosition() const;
+    [[nodiscard]] float GetHitPoint() const;
+    [[nodiscard]] bool GetIsFacingLeft() const;
+    [[nodiscard]] float GetHitEffectDuration() const;
 };
 
 #endif

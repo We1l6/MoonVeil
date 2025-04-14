@@ -16,8 +16,6 @@ void CollisionSystem::CheckCollisions(
         }
     }
 
-    objects.erase(std::remove_if(objects.begin(), objects.end(),
-                                 [](const std::shared_ptr<Ability> &obj)
-                                 { return obj->IsMarkedForDeletion(); }),
-                  objects.end());
+    std::erase_if(objects,
+                  [](const auto &obj) { return obj->IsMarkedForDeletion(); });
 }

@@ -12,14 +12,15 @@ class Player : public Entity
 {
   public:
     Player(TileMap &tilemap,
-           ObjectAttributes objectAttributes,
+           ObjectAttributes &&objectAttributes,
+           FrameAtributes &&frameAtributes,
            float hitPoints,
            std::vector<std::shared_ptr<Ability>> &gameObjects);
 
     virtual ~Player() = default;
     virtual void HandleInput(float deltaTime);
     void Update(float deltaTime) override;
-    void Draw() const override;
+    void Draw(const Camera2D &camera) const;
 };
 
 
