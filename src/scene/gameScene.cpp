@@ -1,7 +1,14 @@
 #include "gameScene.h"
+#include "../characters/bloodClaws/bloodClaws.h"
+#include "../characters/eyeGore/eyeGore.h"
+#include "../characters/floralWretch/floralWretch.h"
+#include "../characters/maidenMaw/maidenMaw.h"
+#include "../characters/slug/slug.h"
+#include "../characters/steelBound/steelBound.h"
 #include <memory>
 
 #include "../enemy/enemy.h"
+#include "raylib.h"
 GameScene::GameScene(Game *game)
     : Scene(game),
       cameraController(std::make_unique<CameraController>(GetScreenWidth(),
@@ -9,66 +16,21 @@ GameScene::GameScene(Game *game)
 {
     player = std::make_shared<David>(tileMap, gameObjects);
     gameEntities.push_back(player);
-    gameEntities
-        .push_back(
-            std::make_shared<Enemy>(
-                tileMap,
-                ObjectAttributes{
-                    .objectType = ObjectType::Enemy,
-                    .hitbox = {.height = 128, .width = 128, .x = 600, .y = 600},
+    gameEntities.push_back(std::make_shared<BloodClaws>(
+        tileMap, Vector2{100.0f, 100.0f}, gameObjects, player));
+    gameEntities.push_back(std::make_shared<FloralWretch>(
+        tileMap, Vector2{200.0f, 100.0f}, gameObjects, player));
 
-                    .idleTexture =
-                        {
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 0),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 1),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 2),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 3),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 4),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 5),
-                        },
+    gameEntities.push_back(std::make_shared<MaidenMaw>(
+        tileMap, Vector2{200.0f, 500.0f}, gameObjects, player));
 
-                    .moveTextures =
-                        {
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 0),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 1),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 2),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 3),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 4),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 5),
-                        },
+    gameEntities.push_back(std::make_shared<Slug>(
+        tileMap, Vector2{500.0f, 500.0f}, gameObjects, player));
 
-                    .attackTextures =
-                        {
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 0),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 1),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 2),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 3),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 4),
-                            ResourceManager::GetSubTexture(
-                                "resources/BloodclawsRUN.png", 0, 5),
-                        },
-
-                    .velocity = {0.0f, 0.0f}},
-                FrameAtributes{
-                    .currentFrame = 0, .frameCounter = 0, .frameSpeed = 3},
-                100, gameObjects, player));
+    gameEntities.push_back(std::make_shared<EyeGore>(
+        tileMap, Vector2{800.0f, 500.0f}, gameObjects, player));
+    gameEntities.push_back(std::make_shared<SteelBound>(
+        tileMap, Vector2{800.0f, 800.0f}, gameObjects, player));
 }
 
 

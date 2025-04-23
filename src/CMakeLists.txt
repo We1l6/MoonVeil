@@ -53,7 +53,19 @@ add_executable(moonVeilSrc
   "tileMap/tileMap.h"
   "tileMap/tileMap.cpp"
   "abilities/defaultAttack/defaultAttack.h"
-    "abilities/defaultAttack/defaultAttack.cpp"
+  "abilities/defaultAttack/defaultAttack.cpp"
+  "characters/bloodClaws/bloodClaws.h"
+  "characters/bloodClaws/bloodClaws.cpp"
+  "characters/floralWretch/floralWretch.h"
+  "characters/floralWretch/floralWretch.cpp"
+  "characters/maidenMaw/maidenMaw.h"
+  "characters/maidenMaw/maidenMaw.cpp"
+  "characters/slug/slug.h"
+  "characters/slug/slug.cpp"
+  "characters/eyeGore/eyeGore.h"
+  "characters/eyeGore/eyeGore.cpp"
+  "characters/steelBound/steelBound.h"
+  "characters/steelBound/steelBound.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)
