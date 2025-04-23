@@ -1,5 +1,5 @@
 #include "tileMap.h"
-#include <string> // Для использования std::string
+#include <string>
 
 TileMap::TileMap()
 {

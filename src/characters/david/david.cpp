@@ -6,24 +6,60 @@ David::David(TileMap &tilemap,
              std::vector<std::shared_ptr<Ability>> &gameObjects)
     : Player(tilemap,
              ObjectAttributes{
-                 .velocity = {INITIAL_POSITION_X, INITIAL_POSITION_Y},
-                 .texture = ResourceManager::GetTexture(
-                     std::data(TEXTURE_DAVID_PATH)), //!!!!!!!!
-                 .hitbox = {DAVID_SPAWN_X, DAVID_SPAWN_Y, .width = DAVID_WIDTH,
-                            .height = DAVID_HEIGHT},
-                 .m_moveTextures = {ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 0),
+                 .objectType = ObjectType::Player,
+                 .velocity = {DavidConstants::INITIAL_POSITION_X,
+                              DavidConstants::INITIAL_POSITION_Y},
+                 .hitbox = {DavidConstants::DAVID_SPAWN_X,
+                            DavidConstants::DAVID_SPAWN_Y,
+                            .width = DavidConstants::DAVID_WIDTH,
+                            .height = DavidConstants::DAVID_HEIGHT},
+                 .idleAnimationSpeed = 4.0f,
+                 .runAnimationSpeed = 6.0f,
+                 .attackAnimationSpeed = 6.0f,
+                 .idleTexture = {ResourceManager::GetSubTexture(
+                                     "resources/DavidIDLE.png", 0, 0),
+                                 ResourceManager::GetSubTexture(
+                                     "resources/DavidIDLE.png", 0, 1),
+                                 ResourceManager::GetSubTexture(
+                                     "resources/DavidIDLE.png", 0, 2),
+                                 ResourceManager::GetSubTexture(
+                                     "resources/DavidIDLE.png", 0, 3),
+                                 ResourceManager::GetSubTexture(
+                                     "resources/DavidIDLE.png", 0, 4),
+                                 ResourceManager::GetSubTexture(
+                                     "resources/DavidIDLE.png", 0, 5)},
+
+                 .moveTextures = {ResourceManager::GetSubTexture(
+                                      "resources/DavidRUN.png", 0, 0),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/DavidRUN.png", 0, 1),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/DavidRUN.png", 0, 2),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/DavidRUN.png", 0, 3),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/DavidRUN.png", 0, 4),
+                                  ResourceManager::GetSubTexture(
+                                      "resources/DavidRUN.png", 0, 5)},
+
+                 .attackTextures = {ResourceManager::GetSubTexture(
+                                        "resources/DavidATTACK.png", 0, 0),
                                     ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 1),
+                                        "resources/DavidATTACK.png", 0, 1),
                                     ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 2),
+                                        "resources/DavidATTACK.png", 0, 2),
                                     ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 3),
+                                        "resources/DavidATTACK.png", 0, 3),
                                     ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 4),
+                                        "resources/DavidATTACK.png", 0, 4),
                                     ResourceManager::GetSubTexture(
-                                        "resources/RunSprite.png", 0, 5)}},
-             INITIAL_HEALTH,
+                                        "resources/DavidATTACK.png", 0, 5)},
+
+                 .damageTexture =
+                     ResourceManager::GetTexture("resources/demon1.png")},
+             FrameAtributes{
+                 .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
+             DavidConstants::INITIAL_HEALTH,
              gameObjects)
 {
 }

@@ -12,7 +12,7 @@ constexpr int HITPOINT_Y = 20;
 
 void HUD::Draw(const std::shared_ptr<Player> &player)
 {
-    float hpPercent = player->GetHitPoint() / 100.0f;
+    const float hpPercent = player->GetHitPoint() / 100.0f;
     int currentWidth =
         static_cast<int>(HUDConstants::HITPOINT_BAR_WIDTH * hpPercent);
 
@@ -28,4 +28,7 @@ void HUD::Draw(const std::shared_ptr<Player> &player)
     DrawText(TextFormat("HP: %.1f / 100", player->GetHitPoint()),
              HUDConstants::HITPOINT_X + 5, HUDConstants::HITPOINT_Y + 2, 16,
              WHITE);
+
+    DrawTexture(ResourceManager::GetTexture("resources/gargoyle.png"),
+                HUDConstants::HITPOINT_X, HUDConstants::HITPOINT_Y - 54, WHITE);
 }

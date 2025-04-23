@@ -18,7 +18,7 @@ class ImGuiManager
     ImGuiManager();
     ~ImGuiManager();
     void ToggleWindow();
-    void Render();
+    void RenderLoggerWindow();
     void ToggleLogWindow();
     void LoadLogFile(const std::string &filePath);
 

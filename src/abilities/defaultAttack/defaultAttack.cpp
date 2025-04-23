@@ -1,11 +1,11 @@
-#include "fireBall.h"
-#include <iostream>
+#include "defaultAttack.h"
 
-FireBall::FireBall(Vector2 position, Vector2 velocity)
+
+DefaultAttack::DefaultAttack(Vector2 position, Vector2 velocity)
     : Ability(
           AbilityAttribute{.name = "FireBall",
-                           .cooldown = FireBallConstants::COOLDOWN,
-                           .damage = FireBallConstants::DAMAGE,
+                           .cooldown = DefaultAttackConstants::COOLDOWN,
+                           .damage = DefaultAttackConstants::DAMAGE,
                            .currentCooldown = 0.0,
                            .isActive = true},
           ObjectAttributes{.objectType = ObjectType::PlayerAttack,
@@ -22,33 +22,30 @@ FireBall::FireBall(Vector2 position, Vector2 velocity)
 {
 }
 
+bool DefaultAttack::IsActive() const { return m_abilityAttribute.isActive; }
 
-void FireBall::Update(float deltaTime)
+
+void DefaultAttack::Deactivate() { m_abilityAttribute.isActive = false; }
+
+
+void DefaultAttack::Update(float deltaTime)
 {
-    // if (!m_abilityAttribute.isActive)
-    //     return;
-
-    m_objectAttributes.hitbox = {.x = m_objectAttributes.hitbox.x +
-                                      m_objectAttributes.velocity.x * deltaTime,
-                                 .y =
-                                     m_objectAttributes.hitbox.y +
-                                     m_objectAttributes.velocity.y * deltaTime};
+    m_currentLifetime += deltaTime;
+    if (m_currentLifetime >= m_lifetime)
+    {
+        m_markedForDeletion = true;
+    }
 }
 
 
-void FireBall::Draw() const
+void DefaultAttack::Draw() const
 {
     Rectangle destRec = {m_objectAttributes.hitbox.x,
                          m_objectAttributes.hitbox.y, 128.0f, 128.0f};
 
 
-    DrawTexturePro(ResourceManager::GetTexture("resources/David.png"),
+    DrawTexturePro(ResourceManager::GetTexture("resources/Daviddsf.png"),
 
                    {0.0f, 128.0f, 128.0f, 128.0f}, destRec, {0.0f, 0.0f}, 0.0f,
                    WHITE);
 }
-
-bool FireBall::IsActive() const { return m_abilityAttribute.isActive; }
-
-
-void FireBall::Deactivate() { m_abilityAttribute.isActive = false; }

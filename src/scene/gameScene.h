@@ -11,8 +11,8 @@
 #include "menuScene.h"
 #include "raylib.h"
 #include "scene.h"
+#include <execution>
 #include <memory>
-
 class GameScene final : public Scene
 {
   private:

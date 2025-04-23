@@ -9,10 +9,20 @@
 #include <string>
 #include <vector>
 
+
+enum class State
+{
+    IDLE,
+    RUNNING,
+    ATTACKING,
+    TAKING_DAMAGE
+};
+
 class Entity : public GameObject
 {
   protected:
-    bool CanMoveTo(float x, float y) const;
+    State m_state = State::IDLE;
+    [[nodiscard]] bool CanMoveTo(float x, float y) const;
     float m_hitPoints = 0.0f;
 
     bool m_isFacingLeft = 0.0f;
@@ -20,6 +30,10 @@ class Entity : public GameObject
     std::vector<std::shared_ptr<Ability>> &m_gameObjects;
     TileMap &m_tilemap;
 
+    float m_attackAnimationTime = 0.0f;
+    bool m_isAttacking = false;
+    const float ATTACK_ANIMATION_DURATION = 1.0f;
+    const int ATTACK_ANIMATION_FRAMES = 6;
 
   private:
     bool m_isHit = false;
@@ -27,13 +41,9 @@ class Entity : public GameObject
     const float m_hitEffectDuration = 0.2f;
 
 
-    int m_currentFrame = 0;
-    int m_frameCounter = 0;
-    float m_frameSpeed = 2.3f;
-
-
   public:
-    Entity(ObjectAttributes objectAttributes,
+    Entity(ObjectAttributes &&objectAttributes,
+           FrameAtributes &&frameAtributes,
            float hitPoints,
            TileMap &tileMap,
            std::vector<std::shared_ptr<Ability>> &gameObjects);
@@ -41,12 +51,12 @@ class Entity : public GameObject
 
     virtual void Update(float deltaTime) override;
     virtual void Draw() const override;
-    void TakeDamage(int amount);
+    void TakeDamage(float amount);
 
-    Vector2 GetPosition() const;
-    float GetHitPoint() const;
-    bool GetIsFacingLeft() const;
-    float GetHitEffectDuration() const;
+    [[nodiscard]] Vector2 GetPosition() const;
+    [[nodiscard]] float GetHitPoint() const;
+    [[nodiscard]] bool GetIsFacingLeft() const;
+    [[nodiscard]] float GetHitEffectDuration() const;
 };
 
 #endif

@@ -1,20 +1,19 @@
 #include "game.h"
-#include "raylib.h"
 
 
 namespace GameConstants
 {
 constexpr int TARGET_FPS = 120;
-constexpr char WINDOW_TITLE[] = "MoonVeil";
+constexpr std::string_view WINDOW_TITLE = "MoonVeil";
 } // namespace GameConstants
 
 
-Game::Game()
+Game::Game() : currentScene(nullptr)
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 
     InitWindow(GetScreenWidth(), GetScreenHeight(),
-               GameConstants::WINDOW_TITLE);
+               std::data(GameConstants::WINDOW_TITLE));
     SetTargetFPS(GameConstants::TARGET_FPS);
     currentScene = new MenuScene(this);
 }
@@ -28,7 +27,7 @@ Game::~Game()
 }
 
 
-void Game::Run() const
+void Game::Run()
 {
     while (!WindowShouldClose())
     {

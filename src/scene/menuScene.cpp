@@ -1,4 +1,5 @@
 #include "menuScene.h"
+#include "raylib.h"
 
 
 void MenuScene::HandleInput(float deltaTime)
@@ -12,7 +13,9 @@ void MenuScene::HandleInput(float deltaTime)
 
 void MenuScene::Render()
 {
-    DrawText("MENU: Press ENTER to Start", 200, 250, 20, BLACK);
+    DrawText("Start", 200, 250, 20, WHITE);
+    DrawText("Settings", 200, 270, 20, WHITE);
+    DrawText("Exit", 200, 290, 20, WHITE);
 }
 
 

@@ -1,8 +1,12 @@
 #include "gameObject.h"
-#include "raylib.h"
 
-GameObject::GameObject(ObjectAttributes objectAttributes)
-    : m_objectAttributes(objectAttributes),
+#include "raylib.h"
+#include <utility>
+
+GameObject::GameObject(ObjectAttributes objectAttributes,
+                       FrameAtributes frameAtributes)
+    : m_objectAttributes(std::move(objectAttributes)),
+      m_frameAtributes(std::move(frameAtributes)),
       m_markedForDeletion(false)
 {
 }
@@ -17,3 +21,8 @@ bool GameObject::CheckCollision(const GameObject &obj1, const GameObject &obj2)
 bool GameObject::IsMarkedForDeletion() const { return m_markedForDeletion; }
 
 void GameObject::MarkForDeletion() { m_markedForDeletion = true; }
+
+ObjectType GameObject::GetObjectType() const
+{
+    return m_objectAttributes.objectType;
+}
