@@ -64,6 +64,8 @@ add_executable(moonVeilSrc
   "characters/slug/slug.cpp"
   "characters/eyeGore/eyeGore.h"
   "characters/eyeGore/eyeGore.cpp"
+  "characters/steelBound/steelBound.h"
+  "characters/steelBound/steelBound.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)

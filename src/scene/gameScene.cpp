@@ -4,7 +4,7 @@
 #include "../characters/floralWretch/floralWretch.h"
 #include "../characters/maidenMaw/maidenMaw.h"
 #include "../characters/slug/slug.h"
-
+#include "../characters/steelBound/steelBound.h"
 #include <memory>
 
 #include "../enemy/enemy.h"
@@ -29,6 +29,8 @@ GameScene::GameScene(Game *game)
 
     gameEntities.push_back(std::make_shared<EyeGore>(
         tileMap, Vector2{800.0f, 500.0f}, gameObjects, player));
+    gameEntities.push_back(std::make_shared<SteelBound>(
+        tileMap, Vector2{800.0f, 800.0f}, gameObjects, player));
 }
 
 
