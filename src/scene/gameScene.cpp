@@ -1,9 +1,9 @@
 #include "gameScene.h"
 #include "../characters/bloodClaws/bloodClaws.h"
+#include "../characters/eyeGore/eyeGore.h"
 #include "../characters/floralWretch/floralWretch.h"
 #include "../characters/maidenMaw/maidenMaw.h"
 #include "../characters/slug/slug.h"
-
 
 #include <memory>
 
@@ -26,6 +26,9 @@ GameScene::GameScene(Game *game)
 
     gameEntities.push_back(std::make_shared<Slug>(
         tileMap, Vector2{500.0f, 500.0f}, gameObjects, player));
+
+    gameEntities.push_back(std::make_shared<EyeGore>(
+        tileMap, Vector2{800.0f, 500.0f}, gameObjects, player));
 }
 
 
