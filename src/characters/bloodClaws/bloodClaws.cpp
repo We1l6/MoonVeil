@@ -7,63 +7,64 @@ BloodClaws::BloodClaws(TileMap &tilemap,
                        std::shared_ptr<Player> &player)
     : Enemy(
           tilemap,
-          ObjectAttributes{.objectType = ObjectType::Enemy,
-                           .hitbox = {.height = 128,
-                                      .width = 128,
-                                      .x = position.x,
-                                      .y = position.y},
+          ObjectAttributes{
+              .objectType = ObjectType::Enemy,
+              .hitbox = {.height = BloodClawsConstants::HEIGHT,
+                         .width = BloodClawsConstants::WIDTH,
+                         .x = position.x,
+                         .y = position.y},
 
-                           .idleTexture =
-                               {
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 0),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 1),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 2),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 3),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 4),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 5),
-                               },
+              .idleTexture =
+                  {
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 0),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 1),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 2),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 3),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 4),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 5),
+                  },
 
-                           .moveTextures =
-                               {
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 0),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 1),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 2),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 3),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 4),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 5),
-                               },
+              .moveTextures =
+                  {
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 0),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 1),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 2),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 3),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 4),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 5),
+                  },
 
-                           .attackTextures =
-                               {
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 0),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 1),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 2),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 3),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 4),
-                                   ResourceManager::GetSubTexture(
-                                       "resources/BloodclawsRUN.png", 0, 5),
-                               },
+              .attackTextures =
+                  {
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 0),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 1),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 2),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 3),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 4),
+                      ResourceManager::GetSubTexture(
+                          BloodClawsConstants::TEXTURE_RUN_PATH, 0, 5),
+                  },
 
-                           .velocity = {0.0f, 0.0f}},
+              .velocity = {0.0f, 0.0f}},
           FrameAtributes{.currentFrame = 0, .frameCounter = 0, .frameSpeed = 3},
-          100,
+          BloodClawsConstants::INITIAL_HEALTH,
           gameObjects,
           player)
 {

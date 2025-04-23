@@ -56,7 +56,8 @@ add_executable(moonVeilSrc
   "abilities/defaultAttack/defaultAttack.cpp"
   "characters/bloodClaws/bloodClaws.h"
   "characters/bloodClaws/bloodClaws.cpp"
-
+  "characters/floralWretch/floralWretch.h"
+  "characters/floralWretch/floralWretch.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)

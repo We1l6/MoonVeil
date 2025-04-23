@@ -7,17 +7,10 @@
 
 namespace BloodClawsConstants
 {
-constexpr float INITIAL_POSITION_X = 155.0f;
-constexpr float INITIAL_POSITION_Y = 155.0f;
-constexpr std::string_view TEXTURE_PATH = "resources/David.png";
-constexpr std::string_view TEXTURE_RUN_PATH = "resources/RunSprite.png";
-constexpr int DAVID_WIDTH = 80;
-constexpr int DAVID_HEIGHT = 128;
-constexpr int DAVID_SPAWN_X = 600;
-constexpr int DAVID_SPAWN_Y = 200;
-constexpr int COLLIDER_OFFSET_X = 10;
-constexpr int COLLIDER_OFFSET_Y = 10;
-constexpr int INITIAL_HEALTH = 100;
+constexpr std::string_view TEXTURE_RUN_PATH = "resources/BloodclawsRUN.png";
+constexpr float WIDTH = 80;
+constexpr float HEIGHT = 128;
+constexpr float INITIAL_HEALTH = 100;
 } // namespace BloodClawsConstants
 
 

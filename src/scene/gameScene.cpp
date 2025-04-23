@@ -1,5 +1,6 @@
 #include "gameScene.h"
 #include "../characters/bloodClaws/bloodClaws.h"
+#include "../characters/floralWretch/floralWretch.h"
 #include <memory>
 
 #include "../enemy/enemy.h"
@@ -13,12 +14,8 @@ GameScene::GameScene(Game *game)
     gameEntities.push_back(player);
     gameEntities.push_back(std::make_shared<BloodClaws>(
         tileMap, Vector2{100.0f, 100.0f}, gameObjects, player));
-    gameEntities.push_back(std::make_shared<BloodClaws>(
+    gameEntities.push_back(std::make_shared<FloralWretch>(
         tileMap, Vector2{200.0f, 100.0f}, gameObjects, player));
-    gameEntities.push_back(std::make_shared<BloodClaws>(
-        tileMap, Vector2{300.0f, 100.0f}, gameObjects, player));
-    gameEntities.push_back(std::make_shared<BloodClaws>(
-        tileMap, Vector2{400.0f, 100.0f}, gameObjects, player));
 }
 
 
