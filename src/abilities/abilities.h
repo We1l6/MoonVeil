@@ -33,6 +33,7 @@ class Ability : public GameObject
     void Update(float deltaTime) override;
     float getDamage() const { return m_abilityAttribute.damage; }
     bool IsReady() const;
+    float TakeDamage(float damage);
 };
 
 

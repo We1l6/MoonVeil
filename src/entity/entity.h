@@ -9,9 +9,19 @@
 #include <string>
 #include <vector>
 
+
+enum class State
+{
+    IDLE,
+    RUNNING,
+    ATTACKING,
+    TAKING_DAMAGE
+};
+
 class Entity : public GameObject
 {
   protected:
+    State m_state = State::IDLE;
     [[nodiscard]] bool CanMoveTo(float x, float y) const;
     float m_hitPoints = 0.0f;
 
@@ -20,6 +30,10 @@ class Entity : public GameObject
     std::vector<std::shared_ptr<Ability>> &m_gameObjects;
     TileMap &m_tilemap;
 
+    float m_attackAnimationTime = 0.0f;
+    bool m_isAttacking = false;
+    const float ATTACK_ANIMATION_DURATION = 1.0f;
+    const int ATTACK_ANIMATION_FRAMES = 6;
 
   private:
     bool m_isHit = false;

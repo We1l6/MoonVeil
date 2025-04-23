@@ -1,37 +1,74 @@
 #include "gameScene.h"
 #include <memory>
 
-
+#include "../enemy/enemy.h"
 GameScene::GameScene(Game *game)
     : Scene(game),
       cameraController(std::make_unique<CameraController>(GetScreenWidth(),
                                                           GetScreenHeight()))
 {
     player = std::make_shared<David>(tileMap, gameObjects);
+    gameEntities.push_back(player);
+    gameEntities
+        .push_back(
+            std::make_shared<Enemy>(
+                tileMap,
+                ObjectAttributes{
+                    .objectType = ObjectType::Enemy,
+                    .hitbox = {.height = 128, .width = 128, .x = 600, .y = 600},
 
-    gameEntities.push_back(std::make_shared<Entity>(
-        ObjectAttributes{
-            .hitbox = {.height = 128, .width = 128, .x = 600, .y = 600},
-            .moveTextures =
-                {
-                    ResourceManager::GetSubTexture(
-                        "resources/BloodclawsRUN.png", 0, 0),
-                    ResourceManager::GetSubTexture(
-                        "resources/BloodclawsRUN.png", 0, 1),
-                    ResourceManager::GetSubTexture(
-                        "resources/BloodclawsRUN.png", 0, 2),
-                    ResourceManager::GetSubTexture(
-                        "resources/BloodclawsRUN.png", 0, 3),
-                    ResourceManager::GetSubTexture(
-                        "resources/BloodclawsRUN.png", 0, 4),
-                    ResourceManager::GetSubTexture(
-                        "resources/BloodclawsRUN.png", 0, 5),
-                },
-            .texture = ResourceManager::GetSubTexture(
-                "resources/BloodclawsRUN.png", 0, 0),
-            .velocity = {0.0f, 0.0f}},
-        FrameAtributes{.currentFrame = 0, .frameCounter = 0, .frameSpeed = 3},
-        100, tileMap, gameObjects));
+                    .idleTexture =
+                        {
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 0),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 1),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 2),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 3),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 4),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 5),
+                        },
+
+                    .moveTextures =
+                        {
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 0),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 1),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 2),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 3),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 4),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 5),
+                        },
+
+                    .attackTextures =
+                        {
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 0),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 1),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 2),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 3),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 4),
+                            ResourceManager::GetSubTexture(
+                                "resources/BloodclawsRUN.png", 0, 5),
+                        },
+
+                    .velocity = {0.0f, 0.0f}},
+                FrameAtributes{
+                    .currentFrame = 0, .frameCounter = 0, .frameSpeed = 3},
+                100, gameObjects, player));
 }
 
 
@@ -70,6 +107,7 @@ void GameScene::RenderEntities() const
 
 void GameScene::Update(float deltaTime)
 {
+    std::cout << gameObjects.size() << "\n";
     cameraController->Update(deltaTime, player->GetPosition());
     CollisionSystem::CheckCollisions(gameEntities, gameObjects);
     UpdateEntities(deltaTime);

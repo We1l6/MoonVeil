@@ -21,6 +21,13 @@ Player::Player(TileMap &tilemap,
 void Player::HandleInput(float deltaTime)
 {
     m_isMoving = false;
+
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    {
+        Attack();
+        return;
+    }
+
     Vector2 newPosition = {m_objectAttributes.hitbox.x,
                            m_objectAttributes.hitbox.y};
 
@@ -38,25 +45,24 @@ void Player::HandleInput(float deltaTime)
     }
     if (IsKeyDown(KEY_W))
     {
-        m_isMoving = true;
         newPosition.y -= m_objectAttributes.velocity.y * deltaTime;
+        m_isMoving = true;
     }
     if (IsKeyDown(KEY_S))
     {
-        m_isMoving = true;
         newPosition.y += m_objectAttributes.velocity.y * deltaTime;
-    }
-
-    if (IsKeyPressed(KEY_SPACE))
-    {
         m_isMoving = true;
-        TakeDamage(10);
     }
 
     if (CanMoveTo(newPosition.x, newPosition.y))
     {
         m_objectAttributes.hitbox.x = newPosition.x;
         m_objectAttributes.hitbox.y = newPosition.y;
+    }
+
+    if (m_state != State::ATTACKING)
+    {
+        m_state = m_isMoving ? State::RUNNING : State::IDLE;
     }
 }
 
@@ -91,4 +97,25 @@ void Player::Draw(const Camera2D &camera) const
 
         DrawCircleV(targetPos, 10, RED);
     }
+}
+
+void Player::Attack()
+{
+    if (m_isAttacking)
+        return;
+
+    m_state = State::ATTACKING;
+    m_isAttacking = true;
+    m_attackAnimationTime = 0.0f;
+    m_frameAtributes.currentFrame = 0;
+
+
+    const float direction = m_isFacingLeft ? -1.0f : 1.0f;
+    const Vector2 fireballPosition = {GetPosition().x + 40 * direction,
+                                      GetPosition().y};
+    const Vector2 fireballVelocity = {0.0, 0.0f};
+
+    m_gameObjects.emplace_back(
+        std::make_unique<DefaultAttack>(fireballPosition, fireballVelocity));
+    ;
 }

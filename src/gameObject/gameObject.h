@@ -6,12 +6,29 @@
 #include "raylib.h"
 #include <vector>
 
+
+enum class ObjectType
+{
+    Player,
+    Enemy,
+    PlayerAttack,
+    EnemyAttack
+};
+
 struct ObjectAttributes
 {
+    ObjectType objectType;
     Vector2 velocity;
-    Texture2D texture;
     Rectangle hitbox;
+    Texture2D damageTexture;
+
+    float idleAnimationSpeed = 5.0f;
+    float runAnimationSpeed = 10.0f;
+    float attackAnimationSpeed = 15.0f;
+
+    std::vector<Texture2D> idleTexture;
     std::vector<Texture2D> moveTextures;
+    std::vector<Texture2D> attackTextures;
 };
 
 
@@ -28,11 +45,9 @@ class GameObject
   protected:
     ObjectAttributes m_objectAttributes;
     FrameAtributes m_frameAtributes;
+    bool m_markedForDeletion = false;
     bool m_isMoving = false;
 
-
-  private:
-    bool m_markedForDeletion = false;
 
   public:
     GameObject(ObjectAttributes objectAttributes,
@@ -41,7 +56,7 @@ class GameObject
 
     virtual void Update(float deltaTime) = 0;
     virtual void Draw() const = 0;
-
+    [[nodiscard]] ObjectType GetObjectType() const;
     void MarkForDeletion();
     [[nodiscard]] Vector2 GetPosition() const;
     [[nodiscard]] Rectangle GetHitbox() const;

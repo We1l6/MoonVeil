@@ -21,3 +21,8 @@ bool GameObject::CheckCollision(const GameObject &obj1, const GameObject &obj2)
 bool GameObject::IsMarkedForDeletion() const { return m_markedForDeletion; }
 
 void GameObject::MarkForDeletion() { m_markedForDeletion = true; }
+
+ObjectType GameObject::GetObjectType() const
+{
+    return m_objectAttributes.objectType;
+}

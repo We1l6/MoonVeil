@@ -52,6 +52,8 @@ add_executable(moonVeilSrc
   "enemy/enemy.cpp"
   "tileMap/tileMap.h"
   "tileMap/tileMap.cpp"
+  "abilities/defaultAttack/defaultAttack.h"
+    "abilities/defaultAttack/defaultAttack.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)

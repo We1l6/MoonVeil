@@ -3,11 +3,14 @@
 
 
 #include "../../player/player.h"
-#include <iostream> // temp
+#include <iostream>
 #include <memory>
 #include <string_view>
 #include <vector>
 
+#include "../../abilities/fireBall/fireBall.h"
+
+#include <iterator>
 
 enum class AbilitySlot
 {

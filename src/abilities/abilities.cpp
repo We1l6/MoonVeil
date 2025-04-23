@@ -38,3 +38,4 @@ bool Ability::IsReady() const
 {
     return m_abilityAttribute.currentCooldown <= 0.0f;
 }
+float Ability::TakeDamage(float damage) { m_abilityAttribute.isActive = false; }
