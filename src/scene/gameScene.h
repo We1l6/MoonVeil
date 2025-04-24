@@ -13,6 +13,8 @@
 #include "scene.h"
 #include <execution>
 #include <memory>
+
+#include "../gameTimer/gameTimer.h"
 class GameScene final : public Scene
 {
   private:
@@ -22,7 +24,7 @@ class GameScene final : public Scene
     std::shared_ptr<Player> player = nullptr;
     std::vector<std::shared_ptr<Entity>> gameEntities;
     std::vector<std::shared_ptr<Ability>> gameObjects;
-
+    GameTimer gameTimer;
     void HandleInput(float deltaTime) override;
     void UpdateEntities(float deltaTime);
     void RenderEntities() const;
