@@ -26,3 +26,14 @@ ObjectType GameObject::GetObjectType() const
 {
     return m_objectAttributes.objectType;
 }
+
+Vector2 GameObject::getSize() const
+{
+    return {m_objectAttributes.hitbox.width, m_objectAttributes.hitbox.height};
+}
+
+void GameObject::move(float dx, float dy)
+{
+    m_objectAttributes.hitbox.x += dx;
+    m_objectAttributes.hitbox.y += dy;
+}

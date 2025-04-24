@@ -14,6 +14,8 @@ class CollisionSystem
     static void
     CheckCollisions(const std::vector<std::shared_ptr<Entity>> &entities,
                     std::vector<std::shared_ptr<Ability>> &objects);
+    static void PushEntitiesApart(const std::shared_ptr<Entity> &entityA,
+                                  const std::shared_ptr<Entity> &entityB);
 };
 
 
