@@ -14,23 +14,47 @@ GameScene::GameScene(Game *game)
       cameraController(std::make_unique<CameraController>(GetScreenWidth(),
                                                           GetScreenHeight()))
 {
+    gameTimer.Start();
     player = std::make_shared<David>(tileMap, gameObjects);
     gameEntities.push_back(player);
-    gameEntities.push_back(std::make_shared<BloodClaws>(
-        tileMap, Vector2{100.0f, 100.0f}, gameObjects, player));
-    gameEntities.push_back(std::make_shared<FloralWretch>(
-        tileMap, Vector2{200.0f, 100.0f}, gameObjects, player));
+    // gameEntities.push_back(std::make_shared<BloodClaws>(
+    //     tileMap, Vector2{100.0f, 100.0f}, gameObjects, player));
+    // gameEntities.push_back(std::make_shared<FloralWretch>(
+    //     tileMap, Vector2{200.0f, 100.0f}, gameObjects, player));
 
-    gameEntities.push_back(std::make_shared<MaidenMaw>(
-        tileMap, Vector2{200.0f, 500.0f}, gameObjects, player));
+    // gameEntities.push_back(std::make_shared<MaidenMaw>(
+    //     tileMap, Vector2{200.0f, 500.0f}, gameObjects, player));
 
-    gameEntities.push_back(std::make_shared<Slug>(
-        tileMap, Vector2{500.0f, 500.0f}, gameObjects, player));
+    // gameEntities.push_back(std::make_shared<Slug>(
+    //     tileMap, Vector2{500.0f, 500.0f}, gameObjects, player));
 
-    gameEntities.push_back(std::make_shared<EyeGore>(
-        tileMap, Vector2{800.0f, 500.0f}, gameObjects, player));
-    gameEntities.push_back(std::make_shared<SteelBound>(
-        tileMap, Vector2{800.0f, 800.0f}, gameObjects, player));
+    // gameEntities.push_back(std::make_shared<EyeGore>(
+    //     tileMap, Vector2{800.0f, 500.0f}, gameObjects, player));
+    // gameEntities.push_back(std::make_shared<SteelBound>(
+    //     tileMap, Vector2{800.0f, 800.0f}, gameObjects, player));
+
+    gameTimer.AddTimedEvent(
+        3,
+        [this]()
+        {
+            gameEntities.push_back(std::make_shared<FloralWretch>(
+                tileMap, Vector2{200.0f, 100.0f}, gameObjects, player));
+        });
+
+    gameTimer.AddTimedEvent(
+        6,
+        [this]()
+        {
+            gameEntities.push_back(std::make_shared<FloralWretch>(
+                tileMap, Vector2{200.0f, 100.0f}, gameObjects, player));
+        });
+    gameTimer.AddTimedEvent(
+        6,
+        [this]()
+        {
+            gameEntities.push_back(std::make_shared<FloralWretch>(
+                tileMap, Vector2{240.0f, 100.0f}, gameObjects, player));
+        });
 }
 
 
@@ -69,6 +93,7 @@ void GameScene::RenderEntities() const
 
 void GameScene::Update(float deltaTime)
 {
+    gameTimer.Update(deltaTime);
     std::cout << gameObjects.size() << "\n";
     cameraController->Update(deltaTime, player->GetPosition());
     CollisionSystem::CheckCollisions(gameEntities, gameObjects);
@@ -83,5 +108,6 @@ void GameScene::Render()
 
     RenderEntities();
     EndMode2D();
+    DrawText(gameTimer.GetFormattedTime().c_str(), 10, 200, 20, WHITE);
     HUD::Draw(player);
 }
