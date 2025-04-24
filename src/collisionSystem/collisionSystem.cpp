@@ -58,6 +58,7 @@ void CollisionSystem::CheckCollisions(
                             (typeA == ObjectType::Player) ? entityA : entityB;
                         player->TakeDamage(0.1);
                     }
+                    PushEntitiesApart(entityA, entityB);
                 }
             }
         }
@@ -65,4 +66,37 @@ void CollisionSystem::CheckCollisions(
 
     std::erase_if(objects,
                   [](const auto &obj) { return obj->IsMarkedForDeletion(); });
+}
+
+void CollisionSystem::PushEntitiesApart(const std::shared_ptr<Entity> &entityA,
+                                        const std::shared_ptr<Entity> &entityB)
+{
+    const auto &posA = entityA->GetPosition();
+    const auto &posB = entityB->GetPosition();
+    const auto &sizeA = entityA->getSize();
+    const auto &sizeB = entityB->getSize();
+
+    float dx = (posB.x + sizeB.x / 2) - (posA.x + sizeA.x / 2);
+    float dy = (posB.y + sizeB.y / 2) - (posA.y + sizeA.y / 2);
+
+    float distance = std::sqrt(dx * dx + dy * dy);
+    if (distance == 0)
+        distance = 0.001f;
+
+    dx /= distance;
+    dy /= distance;
+
+    float penetration = (sizeA.x / 2 + sizeB.x / 2) - distance;
+    if (penetration < 0)
+        penetration = 0;
+
+    const float pushForce = 0.5f;
+
+    float pushX = dx * penetration * pushForce;
+    float pushY = dy * penetration * pushForce;
+
+    if (entityA->CanMoveTo(posA.x - pushX, posA.y - pushY))
+        entityA->move(-pushX, -pushY);
+    if (entityB->CanMoveTo(posB.x + pushX, posB.y + pushY))
+        entityB->move(pushX, pushY);
 }

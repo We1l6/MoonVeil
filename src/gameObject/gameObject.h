@@ -61,9 +61,11 @@ class GameObject
     [[nodiscard]] Vector2 GetPosition() const;
     [[nodiscard]] Rectangle GetHitbox() const;
     [[nodiscard]] bool IsMarkedForDeletion() const;
-
+    [[nodiscard]] Vector2 getSize() const;
     [[nodiscard]] static bool CheckCollision(const GameObject &obj1,
                                              const GameObject &obj2);
+
+    void move(float dx, float dy);
 };
 
 

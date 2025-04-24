@@ -22,7 +22,6 @@ class Entity : public GameObject
 {
   protected:
     State m_state = State::IDLE;
-    [[nodiscard]] bool CanMoveTo(float x, float y) const;
     float m_hitPoints = 0.0f;
 
     bool m_isFacingLeft = 0.0f;
@@ -57,6 +56,7 @@ class Entity : public GameObject
     [[nodiscard]] float GetHitPoint() const;
     [[nodiscard]] bool GetIsFacingLeft() const;
     [[nodiscard]] float GetHitEffectDuration() const;
+    [[nodiscard]] bool CanMoveTo(float x, float y) const;
 };
 
 #endif
