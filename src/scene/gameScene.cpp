@@ -91,9 +91,6 @@ void GameScene::UpdateEntities(float deltaTime)
                   update);
     std::for_each(std::execution::par, gameObjects.begin(), gameObjects.end(),
                   update);
-
-
-    std::cout << "GameEtity: " << gameEntities.size() << "\n";
 }
 
 
@@ -111,7 +108,6 @@ void GameScene::RenderEntities() const
 void GameScene::Update(float deltaTime)
 {
     gameTimer.Update(deltaTime);
-    std::cout << gameObjects.size() << "\n";
     cameraController->Update(deltaTime, player->GetPosition());
     CollisionSystem::CheckCollisions(gameEntities, gameObjects);
     UpdateEntities(deltaTime);

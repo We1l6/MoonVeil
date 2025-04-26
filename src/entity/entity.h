@@ -24,7 +24,6 @@ class Entity : public GameObject
     State m_state = State::IDLE;
     float m_hitPoints = 0.0f;
 
-    bool m_isFacingLeft = 0.0f;
 
     std::vector<std::shared_ptr<Ability>> &m_gameObjects;
     TileMap &m_tilemap;
@@ -50,11 +49,9 @@ class Entity : public GameObject
 
     virtual void Update(float deltaTime) override;
     virtual void Draw() const override;
-    void TakeDamage(float amount);
-
+    void TakeDamage(float amount, bool isEnemyFacilingLeft);
     [[nodiscard]] Vector2 GetPosition() const;
     [[nodiscard]] float GetHitPoint() const;
-    [[nodiscard]] bool GetIsFacingLeft() const;
     [[nodiscard]] float GetHitEffectDuration() const;
     [[nodiscard]] bool CanMoveTo(float x, float y) const;
 };

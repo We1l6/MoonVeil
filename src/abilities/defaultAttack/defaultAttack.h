@@ -31,7 +31,7 @@ class DefaultAttack : public Ability
     float m_currentLifetime = 0.0f;
 
   public:
-    DefaultAttack(Vector2 position, Vector2 velocity);
+    DefaultAttack(Vector2 position, Vector2 velocity, bool isFacingLeft);
     ~DefaultAttack() = default;
 
     void Update(float deltaTime) override;
