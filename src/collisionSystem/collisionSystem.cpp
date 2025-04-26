@@ -21,13 +21,15 @@ void CollisionSystem::CheckCollisions(
                 if (entityType == ObjectType::Player &&
                     objectType == ObjectType::EnemyAttack)
                 {
-                    entity->TakeDamage(object->getDamage());
+                    entity->TakeDamage(object->getDamage(),
+                                       object->GetIsFacingLeft());
                     object->MarkForDeletion();
                 }
                 else if (entityType == ObjectType::Enemy &&
                          objectType == ObjectType::PlayerAttack)
                 {
-                    entity->TakeDamage(object->getDamage());
+                    entity->TakeDamage(object->getDamage(),
+                                       object->GetIsFacingLeft());
                     object->MarkForDeletion();
                 }
             }
@@ -56,7 +58,9 @@ void CollisionSystem::CheckCollisions(
                     {
                         auto player =
                             (typeA == ObjectType::Player) ? entityA : entityB;
-                        player->TakeDamage(0.1);
+                        auto enemy =
+                            (typeA == ObjectType::Enemy) ? entityA : entityB;
+                        player->TakeDamage(5, enemy->GetIsFacingLeft());
                     }
                     PushEntitiesApart(entityA, entityB);
                 }

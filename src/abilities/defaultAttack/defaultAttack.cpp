@@ -1,9 +1,11 @@
 #include "defaultAttack.h"
 
 
-DefaultAttack::DefaultAttack(Vector2 position, Vector2 velocity)
+DefaultAttack::DefaultAttack(Vector2 position,
+                             Vector2 velocity,
+                             bool isFacingLeft)
     : Ability(
-          AbilityAttribute{.name = "FireBall",
+          AbilityAttribute{.name = "DefaultAttack",
                            .cooldown = DefaultAttackConstants::COOLDOWN,
                            .damage = DefaultAttackConstants::DAMAGE,
                            .currentCooldown = 0.0,
@@ -20,6 +22,7 @@ DefaultAttack::DefaultAttack(Vector2 position, Vector2 velocity)
           FrameAtributes{
               .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f})
 {
+    m_isFacingLeft = isFacingLeft;
 }
 
 bool DefaultAttack::IsActive() const { return m_abilityAttribute.isActive; }

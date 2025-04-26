@@ -1,6 +1,7 @@
 #include "entity.h"
 #include "raylib.h"
 #include <algorithm>
+#include <iostream>
 
 
 Entity::Entity(ObjectAttributes &&objectAttributes,
@@ -11,7 +12,6 @@ Entity::Entity(ObjectAttributes &&objectAttributes,
     : GameObject(std::move(objectAttributes), std::move(frameAtributes)),
       m_hitPoints(hitPoints),
       m_tilemap(tileMap),
-      m_isFacingLeft(false),
       m_gameObjects(gameObjects),
       m_hitTimer(0.0f)
 {
@@ -29,6 +29,7 @@ void Entity::Update(float deltaTime)
         if (m_hitTimer <= 0.0f)
         {
             m_isHit = false;
+            m_hitTimer = 0.0f;
         }
     }
 
@@ -157,11 +158,13 @@ void Entity::Draw() const
 }
 
 
-void Entity::TakeDamage(float amount)
+void Entity::TakeDamage(float amount, bool isEnemyFacilingLeft)
 {
     LOG_INFO("TakeDamage");
-    m_hitPoints -= amount;
 
+    if (m_isHit)
+        return;
+    m_hitPoints -= amount;
     m_hitPoints = std::max(m_hitPoints, 0.0f);
     m_isHit = true;
     m_hitTimer = m_hitEffectDuration;
@@ -169,6 +172,19 @@ void Entity::TakeDamage(float amount)
     if (m_hitPoints == 0.0f)
     {
         MarkForDeletion();
+    }
+
+    if (isEnemyFacilingLeft)
+    {
+        if (CanMoveTo(m_objectAttributes.hitbox.x - 20,
+                      m_objectAttributes.hitbox.y))
+            move(-20, 0);
+    }
+    else
+    {
+        if (CanMoveTo(m_objectAttributes.hitbox.x + 20,
+                      m_objectAttributes.hitbox.y))
+            move(+20, 0);
     }
 }
 
@@ -180,9 +196,6 @@ Vector2 Entity::GetPosition() const
 
 
 float Entity::GetHitPoint() const { return m_hitPoints; }
-
-
-bool Entity::GetIsFacingLeft() const { return m_isFacingLeft; }
 
 
 float Entity::GetHitEffectDuration() const { return m_hitEffectDuration; }

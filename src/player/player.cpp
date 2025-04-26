@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include "raymath.h"
 #include <cmath>
+#include <iostream>
 
 
 Player::Player(TileMap &tilemap,
@@ -115,7 +116,6 @@ void Player::Attack()
                                       GetPosition().y};
     const Vector2 fireballVelocity = {0.0, 0.0f};
 
-    m_gameObjects.emplace_back(
-        std::make_unique<DefaultAttack>(fireballPosition, fireballVelocity));
-    ;
+    m_gameObjects.emplace_back(std::make_unique<DefaultAttack>(
+        fireballPosition, fireballVelocity, GetIsFacingLeft()));
 }

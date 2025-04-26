@@ -76,7 +76,7 @@ void David::HandleInput(float deltaTime)
         constexpr float VELOCITY_BOOST = 60.0f;
         const Vector2 fireballPosition = {GetPosition().x + FIREBALL_OFFSET.x,
                                           GetPosition().y + FIREBALL_OFFSET.y};
-        const float direction = m_isFacingLeft ? -1.0f : 1.0f;
+        const float direction = GetIsFacingLeft() ? -1.0f : 1.0f;
         const Vector2 fireballVelocity = {
             direction * (m_objectAttributes.velocity.x + VELOCITY_BOOST), 0.0f};
 

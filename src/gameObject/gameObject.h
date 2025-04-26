@@ -47,7 +47,7 @@ class GameObject
     FrameAtributes m_frameAtributes;
     bool m_markedForDeletion = false;
     bool m_isMoving = false;
-
+    bool m_isFacingLeft = false;
 
   public:
     GameObject(ObjectAttributes objectAttributes,
@@ -62,6 +62,7 @@ class GameObject
     [[nodiscard]] Rectangle GetHitbox() const;
     [[nodiscard]] bool IsMarkedForDeletion() const;
     [[nodiscard]] Vector2 getSize() const;
+    bool GetIsFacingLeft() const;
     [[nodiscard]] static bool CheckCollision(const GameObject &obj1,
                                              const GameObject &obj2);
 
