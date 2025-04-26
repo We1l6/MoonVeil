@@ -161,7 +161,6 @@ void Entity::TakeDamage(float amount, bool isEnemyFacilingLeft)
 {
     LOG_INFO("TakeDamage");
     m_hitPoints -= amount;
-    std::cout << "isEnemyFacilingLeft: " << isEnemyFacilingLeft << "\n";
     m_hitPoints = std::max(m_hitPoints, 0.0f);
     m_isHit = true;
     m_hitTimer = m_hitEffectDuration;
@@ -173,11 +172,15 @@ void Entity::TakeDamage(float amount, bool isEnemyFacilingLeft)
 
     if (isEnemyFacilingLeft)
     {
-        move(-20, 0);
+        if (CanMoveTo(m_objectAttributes.hitbox.x - 20,
+                      m_objectAttributes.hitbox.y))
+            move(-20, 0);
     }
     else
     {
-        move(+20, 0);
+        if (CanMoveTo(m_objectAttributes.hitbox.x + 20,
+                      m_objectAttributes.hitbox.y))
+            move(+20, 0);
     }
 }
 
