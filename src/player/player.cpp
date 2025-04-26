@@ -55,6 +55,18 @@ void Player::HandleInput(float deltaTime)
         m_isMoving = true;
     }
 
+    if (IsKeyDown(KEY_SPACE))
+    {
+        if (GetIsFacingLeft())
+        {
+            newPosition.x -= 15.0f;
+        }
+        else
+        {
+            newPosition.x += 15.0f;
+        }
+    }
+
     if (CanMoveTo(newPosition.x, newPosition.y))
     {
         m_objectAttributes.hitbox.x = newPosition.x;
