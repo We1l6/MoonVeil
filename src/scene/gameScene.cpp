@@ -49,10 +49,17 @@ GameScene::GameScene(Game *game)
                 tileMap, Vector2{200.0f, 100.0f}, gameObjects, player));
         });
     gameTimer.AddTimedEvent(
-        6,
+        9,
         [this]()
         {
-            gameEntities.push_back(std::make_shared<FloralWretch>(
+            gameEntities.push_back(std::make_shared<EyeGore>(
+                tileMap, Vector2{240.0f, 100.0f}, gameObjects, player));
+        });
+    gameTimer.AddTimedEvent(
+        12,
+        [this]()
+        {
+            gameEntities.push_back(std::make_shared<BloodClaws>(
                 tileMap, Vector2{240.0f, 100.0f}, gameObjects, player));
         });
 }
@@ -73,10 +80,20 @@ void GameScene::UpdateEntities(float deltaTime)
         }
     };
 
+    std::erase_if(gameObjects,
+                  [](const auto &obj) { return obj->IsMarkedForDeletion(); });
+
+    std::erase_if(gameEntities,
+                  [](const auto &obj) { return obj->IsMarkedForDeletion(); });
+
+
     std::for_each(std::execution::par, gameEntities.begin(), gameEntities.end(),
                   update);
     std::for_each(std::execution::par, gameObjects.begin(), gameObjects.end(),
                   update);
+
+
+    std::cout << "GameEtity: " << gameEntities.size() << "\n";
 }
 
 

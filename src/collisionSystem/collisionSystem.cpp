@@ -63,9 +63,6 @@ void CollisionSystem::CheckCollisions(
             }
         }
     }
-
-    std::erase_if(objects,
-                  [](const auto &obj) { return obj->IsMarkedForDeletion(); });
 }
 
 void CollisionSystem::PushEntitiesApart(const std::shared_ptr<Entity> &entityA,

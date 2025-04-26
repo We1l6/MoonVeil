@@ -165,6 +165,11 @@ void Entity::TakeDamage(float amount)
     m_hitPoints = std::max(m_hitPoints, 0.0f);
     m_isHit = true;
     m_hitTimer = m_hitEffectDuration;
+
+    if (m_hitPoints == 0.0f)
+    {
+        MarkForDeletion();
+    }
 }
 
 
