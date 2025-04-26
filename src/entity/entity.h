@@ -36,7 +36,7 @@ class Entity : public GameObject
   private:
     bool m_isHit = false;
     float m_hitTimer = 0.0f;
-    const float m_hitEffectDuration = 0.2f;
+    const float m_hitEffectDuration = 0.5f;
 
 
   public:

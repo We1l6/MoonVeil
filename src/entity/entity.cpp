@@ -29,6 +29,7 @@ void Entity::Update(float deltaTime)
         if (m_hitTimer <= 0.0f)
         {
             m_isHit = false;
+            m_hitTimer = 0.0f;
         }
     }
 
@@ -160,6 +161,9 @@ void Entity::Draw() const
 void Entity::TakeDamage(float amount, bool isEnemyFacilingLeft)
 {
     LOG_INFO("TakeDamage");
+
+    if (m_isHit)
+        return;
     m_hitPoints -= amount;
     m_hitPoints = std::max(m_hitPoints, 0.0f);
     m_isHit = true;
