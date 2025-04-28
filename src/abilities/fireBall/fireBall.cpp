@@ -4,6 +4,7 @@
 FireBall::FireBall(Vector2 position, Vector2 velocity, bool isFacilingLeft)
     : Ability(
           AbilityAttribute{.name = "FireBall",
+                           .abilityType = AbilityType::DestroyOnHit,
                            .cooldown = FireBallConstants::COOLDOWN,
                            .damage = FireBallConstants::DAMAGE,
                            .currentCooldown = 0.0,

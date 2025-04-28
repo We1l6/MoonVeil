@@ -30,7 +30,8 @@ void CollisionSystem::CheckCollisions(
                 {
                     entity->TakeDamage(object->getDamage(),
                                        object->GetIsFacingLeft());
-                    object->MarkForDeletion();
+                    if (object->getAbilityType() == AbilityType::DestroyOnHit)
+                        object->MarkForDeletion();
                 }
             }
         }

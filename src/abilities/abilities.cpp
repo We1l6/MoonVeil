@@ -3,9 +3,11 @@
 
 Ability::Ability(AbilityAttribute abilityAttribute,
                  ObjectAttributes objectAttributes,
-                 FrameAtributes frameAtributes)
+                 FrameAtributes frameAtributes,
+                 float lifetime)
     : GameObject(objectAttributes, frameAtributes),
-      m_abilityAttribute(std::move(abilityAttribute))
+      m_abilityAttribute(std::move(abilityAttribute)),
+      m_lifetime(lifetime)
 {
 }
 
@@ -27,9 +29,13 @@ void Ability::Activate()
 
 void Ability::Update(float deltaTime)
 {
-    if (m_abilityAttribute.currentCooldown > 0.0f)
+    if (m_abilityAttribute.abilityType == AbilityType::DestroyOnTimeout)
     {
-        m_abilityAttribute.currentCooldown -= deltaTime;
+        m_lifetime -= deltaTime;
+        if (m_lifetime <= 0.0f)
+        {
+            m_markedForDeletion = true;
+        }
     }
 }
 

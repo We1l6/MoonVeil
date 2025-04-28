@@ -1,4 +1,5 @@
 #include "defaultAttack.h"
+#include "raylib.h"
 
 
 DefaultAttack::DefaultAttack(Vector2 position,
@@ -9,6 +10,7 @@ DefaultAttack::DefaultAttack(Vector2 position,
                            .cooldown = DefaultAttackConstants::COOLDOWN,
                            .damage = DefaultAttackConstants::DAMAGE,
                            .currentCooldown = 0.0,
+                           .abilityType = AbilityType::DestroyOnTimeout,
                            .isActive = true},
           ObjectAttributes{.objectType = ObjectType::PlayerAttack,
                            .velocity = velocity,
@@ -21,7 +23,8 @@ DefaultAttack::DefaultAttack(Vector2 position,
                                                 "resources/demon4.png", 0, 2)},
                            .hitbox = {position.x, position.y, 128, 128}},
           FrameAtributes{
-              .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f})
+              .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
+          0.1)
 {
 }
 
@@ -31,24 +34,7 @@ bool DefaultAttack::IsActive() const { return m_abilityAttribute.isActive; }
 void DefaultAttack::Deactivate() { m_abilityAttribute.isActive = false; }
 
 
-void DefaultAttack::Update(float deltaTime)
-{
-    m_currentLifetime += deltaTime;
-    if (m_currentLifetime >= m_lifetime)
-    {
-        m_markedForDeletion = true;
-    }
-}
+void DefaultAttack::Update(float deltaTime) { Ability::Update(deltaTime); }
 
 
-void DefaultAttack::Draw() const
-{
-    Rectangle destRec = {m_objectAttributes.hitbox.x,
-                         m_objectAttributes.hitbox.y, 128.0f, 128.0f};
-
-
-    DrawTexturePro(ResourceManager::GetTexture("resources/Daviddsf.png"),
-
-                   {0.0f, 128.0f, 128.0f, 128.0f}, destRec, {0.0f, 0.0f}, 0.0f,
-                   WHITE);
-}
+void DefaultAttack::Draw() const {}

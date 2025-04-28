@@ -107,6 +107,9 @@ void GameScene::RenderEntities() const
 
 void GameScene::Update(float deltaTime)
 {
+    std::cout << "GameObjects size: " << gameObjects.size() << "\n";
+    std::cout << "GameEntities size: " << gameEntities.size() << "\n";
+
     gameTimer.Update(deltaTime);
     cameraController->Update(deltaTime, player->GetPosition());
     CollisionSystem::CheckCollisions(gameEntities, gameObjects);
