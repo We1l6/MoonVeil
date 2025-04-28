@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "../../abilities/fireBall/fireBall.h"
+#include "../../abilities/poisonousGas/poisonousGas.h"
 
 #include <iterator>
 

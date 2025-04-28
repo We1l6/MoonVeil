@@ -101,4 +101,13 @@ void David::secondSpell()
     }
 }
 
-void David::thirdSpell() {}
+void David::thirdSpell()
+{
+    const Vector2 fireballPosition = {GetPosition().x + 64,
+                                      GetPosition().y + 64};
+
+    const Vector2 fireballVelocity = {0.0f, 0.0f};
+
+    m_gameObjects.emplace_back(
+        std::make_unique<PoisonousGas>(fireballPosition, fireballVelocity));
+}
