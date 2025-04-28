@@ -12,6 +12,7 @@ DefaultAttack::DefaultAttack(Vector2 position,
                            .isActive = true},
           ObjectAttributes{.objectType = ObjectType::PlayerAttack,
                            .velocity = velocity,
+                           .isFacingLeft = isFacingLeft,
                            .moveTextures = {ResourceManager::GetSubTexture(
                                                 "resources/demon4.png", 0, 0),
                                             ResourceManager::GetSubTexture(
@@ -22,7 +23,6 @@ DefaultAttack::DefaultAttack(Vector2 position,
           FrameAtributes{
               .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f})
 {
-    m_isFacingLeft = isFacingLeft;
 }
 
 bool DefaultAttack::IsActive() const { return m_abilityAttribute.isActive; }

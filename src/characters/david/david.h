@@ -40,10 +40,17 @@ constexpr int INITIAL_HEALTH = 100;
 class David final : public Player
 {
   private:
+    void firstSpell() override;
+    void secondSpell() override;
+    void thirdSpell() override;
+    void FireballAction();
+    void DashAction();
+
+
   public:
     David(TileMap &tilemap, std::vector<std::shared_ptr<Ability>> &gameObjects);
     ~David() = default;
-    void HandleInput(float deltaTime) override;
+
 
   private:
 };

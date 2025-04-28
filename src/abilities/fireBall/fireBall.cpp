@@ -1,7 +1,7 @@
 #include "fireBall.h"
 #include <iostream>
 
-FireBall::FireBall(Vector2 position, Vector2 velocity)
+FireBall::FireBall(Vector2 position, Vector2 velocity, bool isFacilingLeft)
     : Ability(
           AbilityAttribute{.name = "FireBall",
                            .cooldown = FireBallConstants::COOLDOWN,
@@ -10,6 +10,7 @@ FireBall::FireBall(Vector2 position, Vector2 velocity)
                            .isActive = true},
           ObjectAttributes{.objectType = ObjectType::PlayerAttack,
                            .velocity = velocity,
+                           .isFacingLeft = isFacilingLeft,
                            .moveTextures = {ResourceManager::GetSubTexture(
                                                 "resources/demon4.png", 0, 0),
                                             ResourceManager::GetSubTexture(

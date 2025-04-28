@@ -20,6 +20,7 @@ struct ObjectAttributes
     ObjectType objectType;
     Vector2 velocity;
     Rectangle hitbox;
+    bool isFacingLeft = false;
     Texture2D damageTexture;
 
     float idleAnimationSpeed = 5.0f;
@@ -47,7 +48,6 @@ class GameObject
     FrameAtributes m_frameAtributes;
     bool m_markedForDeletion = false;
     bool m_isMoving = false;
-    bool m_isFacingLeft = false;
 
   public:
     GameObject(ObjectAttributes objectAttributes,
