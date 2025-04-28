@@ -29,6 +29,20 @@ void Player::HandleInput(float deltaTime)
         return;
     }
 
+    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
+    {
+        m_firstSpell.Cast();
+    }
+    if (IsKeyDown(KEY_SPACE))
+    {
+        m_secondSpell.Cast();
+    }
+    if (IsKeyPressed(KEY_E))
+    {
+        m_thirdSpell.Cast();
+    }
+
+
     Vector2 newPosition = {m_objectAttributes.hitbox.x,
                            m_objectAttributes.hitbox.y};
 
@@ -36,13 +50,13 @@ void Player::HandleInput(float deltaTime)
     {
         newPosition.x -= m_objectAttributes.velocity.x * deltaTime;
         m_isMoving = true;
-        m_isFacingLeft = true;
+        m_objectAttributes.isFacingLeft = true;
     }
     if (IsKeyDown(KEY_D))
     {
         newPosition.x += m_objectAttributes.velocity.x * deltaTime;
         m_isMoving = true;
-        m_isFacingLeft = false;
+        m_objectAttributes.isFacingLeft = false;
     }
     if (IsKeyDown(KEY_W))
     {
@@ -55,17 +69,6 @@ void Player::HandleInput(float deltaTime)
         m_isMoving = true;
     }
 
-    if (IsKeyDown(KEY_SPACE))
-    {
-        if (GetIsFacingLeft())
-        {
-            newPosition.x -= 15.0f;
-        }
-        else
-        {
-            newPosition.x += 15.0f;
-        }
-    }
 
     if (CanMoveTo(newPosition.x, newPosition.y))
     {
@@ -80,7 +83,13 @@ void Player::HandleInput(float deltaTime)
 }
 
 
-void Player::Update(float deltaTime) { Entity::Update(deltaTime); }
+void Player::Update(float deltaTime)
+{
+    Entity::Update(deltaTime);
+    m_firstSpell.Update(deltaTime);
+    m_secondSpell.Update(deltaTime);
+    m_thirdSpell.Update(deltaTime);
+}
 
 
 void Player::Draw(const Camera2D &camera) const
@@ -118,12 +127,13 @@ void Player::Attack()
         return;
 
     m_state = State::ATTACKING;
+
     m_isAttacking = true;
     m_attackAnimationTime = 0.0f;
     m_frameAtributes.currentFrame = 0;
 
 
-    const float direction = m_isFacingLeft ? -1.0f : 1.0f;
+    const float direction = m_objectAttributes.isFacingLeft ? -1.0f : 1.0f;
     const Vector2 fireballPosition = {GetPosition().x + 40 * direction,
                                       GetPosition().y};
     const Vector2 fireballVelocity = {0.0, 0.0f};

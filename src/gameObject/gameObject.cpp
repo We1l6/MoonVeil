@@ -38,4 +38,7 @@ void GameObject::move(float dx, float dy)
     m_objectAttributes.hitbox.y += dy;
 }
 
-bool GameObject::GetIsFacingLeft() const { return m_isFacingLeft; }
+bool GameObject::GetIsFacingLeft() const
+{
+    return m_objectAttributes.isFacingLeft;
+}

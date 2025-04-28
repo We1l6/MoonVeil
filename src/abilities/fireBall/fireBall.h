@@ -27,7 +27,7 @@ constexpr int RADIUS = 20;
 class FireBall final : public Ability
 {
   public:
-    FireBall(Vector2 position, Vector2 velocity);
+    FireBall(Vector2 position, Vector2 velocity, bool isFacilingLeft);
     ~FireBall() = default;
 
     void Update(float deltaTime) override;

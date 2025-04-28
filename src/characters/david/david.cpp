@@ -13,6 +13,7 @@ David::David(TileMap &tilemap,
                             DavidConstants::DAVID_SPAWN_Y,
                             .width = DavidConstants::DAVID_WIDTH,
                             .height = DavidConstants::DAVID_HEIGHT},
+                 .isFacingLeft = false,
                  .idleAnimationSpeed = 4.0f,
                  .runAnimationSpeed = 6.0f,
                  .attackAnimationSpeed = 6.0f,
@@ -62,29 +63,42 @@ David::David(TileMap &tilemap,
              DavidConstants::INITIAL_HEALTH,
              gameObjects)
 {
+    m_firstSpell = Spell{10.0f, 0.0f, false, [this]() { this->firstSpell(); }};
+    m_secondSpell = Spell{5.0f, 0.0f, false, [this]() { this->secondSpell(); }};
+    m_thirdSpell = Spell{10.0f, 0.0f, false, [this]() { this->thirdSpell(); }};
 }
 
-
-void David::HandleInput(float deltaTime)
+void David::firstSpell()
 {
-    Player::HandleInput(deltaTime);
-    if (IsKeyPressed(KEY_H))
-        std::cout << "abilities[0].Activate()\n";
-    if (IsKeyPressed(KEY_J))
-    {
-        constexpr Vector2 FIREBALL_OFFSET{0.0f, 0.0f};
-        constexpr float VELOCITY_BOOST = 60.0f;
-        const Vector2 fireballPosition = {GetPosition().x + FIREBALL_OFFSET.x,
-                                          GetPosition().y + FIREBALL_OFFSET.y};
-        const float direction = GetIsFacingLeft() ? -1.0f : 1.0f;
-        const Vector2 fireballVelocity = {
-            direction * (m_objectAttributes.velocity.x + VELOCITY_BOOST), 0.0f};
+    constexpr Vector2 FIREBALL_OFFSET{0.0f, 0.0f};
+    constexpr float VELOCITY_BOOST = 60.0f;
+    const Vector2 fireballPosition = {GetPosition().x + FIREBALL_OFFSET.x,
+                                      GetPosition().y + FIREBALL_OFFSET.y};
+    const float direction = GetIsFacingLeft() ? -1.0f : 1.0f;
+    const Vector2 fireballVelocity = {
+        direction * (m_objectAttributes.velocity.x + VELOCITY_BOOST), 0.0f};
 
-        m_gameObjects.emplace_back(
-            std::make_unique<FireBall>(fireballPosition, fireballVelocity));
-    }
-    if (IsKeyPressed(KEY_K))
-        std::cout << "abilities[2].Activate()\n";
-    if (IsKeyPressed(KEY_L))
-        std::cout << "abilities[3].Activate()\n";
+    m_gameObjects.emplace_back(std::make_unique<FireBall>(
+        fireballPosition, fireballVelocity, GetIsFacingLeft()));
 }
+void David::secondSpell()
+{
+    Vector2 newPosition = {m_objectAttributes.hitbox.x,
+                           m_objectAttributes.hitbox.y};
+
+    if (GetIsFacingLeft())
+    {
+        newPosition.x -= 75.0f;
+    }
+    else
+    {
+        newPosition.x += 75.0f;
+    }
+    if (CanMoveTo(newPosition.x, newPosition.y))
+    {
+        m_objectAttributes.hitbox.x = newPosition.x;
+        m_objectAttributes.hitbox.y = newPosition.y;
+    }
+}
+
+void David::thirdSpell() {}
