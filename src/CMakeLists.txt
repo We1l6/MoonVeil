@@ -69,6 +69,9 @@ add_executable(moonVeilSrc
 
   "gameTimer/gameTimer.h"
   "gameTimer/gameTimer.cpp"
+
+  "abilities/poisonousGas/poisonousGas.h"
+  "abilities/poisonousGas/poisonousGas.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)

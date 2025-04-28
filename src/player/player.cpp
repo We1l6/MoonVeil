@@ -127,17 +127,32 @@ void Player::Attack()
         return;
 
     m_state = State::ATTACKING;
-
     m_isAttacking = true;
     m_attackAnimationTime = 0.0f;
     m_frameAtributes.currentFrame = 0;
 
+    constexpr float ATTACK_OFFSET = 35.0f;
+    constexpr float ATTACK_HITBOX_WIDTH = 126.0f;
+    constexpr float ATTACK_HITBOX_HEIGHT = 126.0f;
 
-    const float direction = m_objectAttributes.isFacingLeft ? -1.0f : 1.0f;
-    const Vector2 fireballPosition = {GetPosition().x + 40 * direction,
-                                      GetPosition().y};
-    const Vector2 fireballVelocity = {0.0, 0.0f};
+    float direction = m_objectAttributes.isFacingLeft ? -1.0f : 1.0f;
+
+    Vector2 AttackPosition = GetPosition();
+
+    if (m_objectAttributes.isFacingLeft)
+    {
+        AttackPosition.x -= (ATTACK_HITBOX_WIDTH - ATTACK_OFFSET);
+    }
+    else
+    {
+        AttackPosition.x += (m_objectAttributes.hitbox.width);
+    }
+
+    AttackPosition.y += (m_objectAttributes.hitbox.height / 2.0f) -
+                        (ATTACK_HITBOX_HEIGHT / 2.0f);
+
+    const Vector2 AttackVelocity = {0.0f, 0.0f};
 
     m_gameObjects.emplace_back(std::make_unique<DefaultAttack>(
-        fireballPosition, fireballVelocity, GetIsFacingLeft()));
+        AttackPosition, AttackVelocity, GetIsFacingLeft()));
 }

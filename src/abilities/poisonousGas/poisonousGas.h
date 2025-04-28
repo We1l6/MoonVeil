@@ -1,5 +1,5 @@
-#ifndef DEFAULT_ATTACK_H
-#define DEFAULT_ATTACK_H
+#ifndef POISONOUS_GAS_H
+#define POISONOUS_GAS_H
 
 
 #include "../../resourceManager/resourceManager.h"
@@ -7,7 +7,7 @@
 #include "raylib.h"
 
 
-namespace DefaultAttackConstants
+namespace PoisonousGasConstants
 {
 constexpr int HITBOX_WIDTH = 10;
 constexpr int HITBOX_HEIGHT = 10;
@@ -21,19 +21,20 @@ constexpr float POSITION_Y = 0.0f;
 constexpr double VELOCITY_X = 155.0f;
 constexpr double VELOCITY_Y = 155.0f;
 constexpr int RADIUS = 20;
-} // namespace DefaultAttackConstants
+} // namespace PoisonousGasConstants
 
 
-class DefaultAttack : public Ability
+class PoisonousGas final : public Ability
 {
-  private:
   public:
-    DefaultAttack(Vector2 position, Vector2 velocity, bool isFacingLeft);
-    ~DefaultAttack() = default;
+    PoisonousGas(Vector2 position, Vector2 velocity);
+    ~PoisonousGas() = default;
 
     void Update(float deltaTime) override;
     void Draw() const override;
     [[nodiscard]] bool IsActive() const;
     void Deactivate();
 };
-#endif // DEFAULT_ATTACK_H
+
+
+#endif // POISONOUS_GAS_H
