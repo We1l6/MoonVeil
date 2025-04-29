@@ -22,3 +22,6 @@
 [submodule "external/raylib-tmx"]
 	path = external/raylib-tmx
 	url = https://github.com/RobLoach/raylib-tmx.git
+[submodule "external/raygui"]
+	path = external/raygui
+	url = https://github.com/raysan5/raygui.git
