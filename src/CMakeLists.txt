@@ -66,12 +66,12 @@ add_executable(moonVeilSrc
   "characters/eyeGore/eyeGore.cpp"
   "characters/steelBound/steelBound.h"
   "characters/steelBound/steelBound.cpp"
-
   "gameTimer/gameTimer.h"
   "gameTimer/gameTimer.cpp"
-
   "abilities/poisonousGas/poisonousGas.h"
   "abilities/poisonousGas/poisonousGas.cpp"
+  "button/button.h"
+  "button/button.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)
