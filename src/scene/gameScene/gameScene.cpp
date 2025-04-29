@@ -1,13 +1,13 @@
 #include "gameScene.h"
-#include "../characters/bloodClaws/bloodClaws.h"
-#include "../characters/eyeGore/eyeGore.h"
-#include "../characters/floralWretch/floralWretch.h"
-#include "../characters/maidenMaw/maidenMaw.h"
-#include "../characters/slug/slug.h"
-#include "../characters/steelBound/steelBound.h"
+#include "../../characters/bloodClaws/bloodClaws.h"
+#include "../../characters/eyeGore/eyeGore.h"
+#include "../../characters/floralWretch/floralWretch.h"
+#include "../../characters/maidenMaw/maidenMaw.h"
+#include "../../characters/slug/slug.h"
+#include "../../characters/steelBound/steelBound.h"
 #include <memory>
 
-#include "../enemy/enemy.h"
+#include "../../enemy/enemy.h"
 #include "raylib.h"
 GameScene::GameScene(Game *game)
     : Scene(game),

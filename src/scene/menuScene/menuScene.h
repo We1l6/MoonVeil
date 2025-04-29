@@ -5,11 +5,11 @@
 #define MENUSCENE_H
 
 
-#include "../button/button.h"
-#include "../game/game.h"
-#include "gameScene.h"
+#include "../../button/button.h"
+#include "../../game/game.h"
+#include "../gameScene/gameScene.h"
+#include "../scene.h"
 #include "raylib.h"
-#include "scene.h"
 
 class MenuScene final : public Scene
 {
