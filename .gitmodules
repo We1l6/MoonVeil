@@ -25,3 +25,6 @@
 [submodule "external/raygui"]
 	path = external/raygui
 	url = https://github.com/raysan5/raygui.git
+[submodule "external/simpleini"]
+	path = external/simpleini
+	url = https://github.com/brofield/simpleini.git
