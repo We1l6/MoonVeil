@@ -2,8 +2,9 @@
 #include "raylib.h"
 #include "raymath.h"
 #include <cmath>
+#include <iostream>
 
-
+#include "../settings/settings.h"
 Player::Player(TileMap &tilemap,
                ObjectAttributes &&objectAttributes,
                FrameAtributes &&frameAtributes,
@@ -28,31 +29,46 @@ void Player::HandleInput(float deltaTime)
         return;
     }
 
+    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
+    {
+        m_firstSpell.Cast();
+    }
+    if (IsKeyDown(SettingsGlobal::g_controls.dash))
+    {
+        m_secondSpell.Cast();
+    }
+    if (IsKeyPressed(SettingsGlobal::g_controls.thirdSpell))
+    {
+        m_thirdSpell.Cast();
+    }
+
+
     Vector2 newPosition = {m_objectAttributes.hitbox.x,
                            m_objectAttributes.hitbox.y};
 
-    if (IsKeyDown(KEY_A))
+    if (IsKeyDown(SettingsGlobal::g_controls.moveLeft))
     {
         newPosition.x -= m_objectAttributes.velocity.x * deltaTime;
         m_isMoving = true;
-        m_isFacingLeft = true;
+        m_objectAttributes.isFacingLeft = true;
     }
-    if (IsKeyDown(KEY_D))
+    if (IsKeyDown(SettingsGlobal::g_controls.moveRight))
     {
         newPosition.x += m_objectAttributes.velocity.x * deltaTime;
         m_isMoving = true;
-        m_isFacingLeft = false;
+        m_objectAttributes.isFacingLeft = false;
     }
-    if (IsKeyDown(KEY_W))
+    if (IsKeyDown(SettingsGlobal::g_controls.moveUp))
     {
         newPosition.y -= m_objectAttributes.velocity.y * deltaTime;
         m_isMoving = true;
     }
-    if (IsKeyDown(KEY_S))
+    if (IsKeyDown(SettingsGlobal::g_controls.moveDown))
     {
         newPosition.y += m_objectAttributes.velocity.y * deltaTime;
         m_isMoving = true;
     }
+
 
     if (CanMoveTo(newPosition.x, newPosition.y))
     {
@@ -67,7 +83,13 @@ void Player::HandleInput(float deltaTime)
 }
 
 
-void Player::Update(float deltaTime) { Entity::Update(deltaTime); }
+void Player::Update(float deltaTime)
+{
+    Entity::Update(deltaTime);
+    m_firstSpell.Update(deltaTime);
+    m_secondSpell.Update(deltaTime);
+    m_thirdSpell.Update(deltaTime);
+}
 
 
 void Player::Draw(const Camera2D &camera) const
@@ -109,13 +131,28 @@ void Player::Attack()
     m_attackAnimationTime = 0.0f;
     m_frameAtributes.currentFrame = 0;
 
+    constexpr float ATTACK_OFFSET = 35.0f;
+    constexpr float ATTACK_HITBOX_WIDTH = 126.0f;
+    constexpr float ATTACK_HITBOX_HEIGHT = 126.0f;
 
-    const float direction = m_isFacingLeft ? -1.0f : 1.0f;
-    const Vector2 fireballPosition = {GetPosition().x + 40 * direction,
-                                      GetPosition().y};
-    const Vector2 fireballVelocity = {0.0, 0.0f};
+    float direction = m_objectAttributes.isFacingLeft ? -1.0f : 1.0f;
 
-    m_gameObjects.emplace_back(
-        std::make_unique<DefaultAttack>(fireballPosition, fireballVelocity));
-    ;
+    Vector2 AttackPosition = GetPosition();
+
+    if (m_objectAttributes.isFacingLeft)
+    {
+        AttackPosition.x -= (ATTACK_HITBOX_WIDTH - ATTACK_OFFSET);
+    }
+    else
+    {
+        AttackPosition.x += (m_objectAttributes.hitbox.width);
+    }
+
+    AttackPosition.y += (m_objectAttributes.hitbox.height / 2.0f) -
+                        (ATTACK_HITBOX_HEIGHT / 2.0f);
+
+    const Vector2 AttackVelocity = {0.0f, 0.0f};
+
+    m_gameObjects.emplace_back(std::make_unique<DefaultAttack>(
+        AttackPosition, AttackVelocity, GetIsFacingLeft()));
 }

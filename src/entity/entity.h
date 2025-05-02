@@ -18,29 +18,30 @@ enum class State
     TAKING_DAMAGE
 };
 
+struct HitData
+{
+    bool isHit = false;
+    float hitTimer = 0.0f;
+    const float hitEffectDuration = 0.5f;
+};
+
+
 class Entity : public GameObject
 {
   protected:
     State m_state = State::IDLE;
-    [[nodiscard]] bool CanMoveTo(float x, float y) const;
     float m_hitPoints = 0.0f;
 
-    bool m_isFacingLeft = 0.0f;
 
     std::vector<std::shared_ptr<Ability>> &m_gameObjects;
     TileMap &m_tilemap;
-
+    HitData hitData;
     float m_attackAnimationTime = 0.0f;
     bool m_isAttacking = false;
     const float ATTACK_ANIMATION_DURATION = 1.0f;
     const int ATTACK_ANIMATION_FRAMES = 6;
 
   private:
-    bool m_isHit = false;
-    float m_hitTimer = 0.0f;
-    const float m_hitEffectDuration = 0.2f;
-
-
   public:
     Entity(ObjectAttributes &&objectAttributes,
            FrameAtributes &&frameAtributes,
@@ -51,12 +52,11 @@ class Entity : public GameObject
 
     virtual void Update(float deltaTime) override;
     virtual void Draw() const override;
-    void TakeDamage(float amount);
-
+    void TakeDamage(float amount, bool isEnemyFacilingLeft);
     [[nodiscard]] Vector2 GetPosition() const;
     [[nodiscard]] float GetHitPoint() const;
-    [[nodiscard]] bool GetIsFacingLeft() const;
     [[nodiscard]] float GetHitEffectDuration() const;
+    [[nodiscard]] bool CanMoveTo(float x, float y) const;
 };
 
 #endif

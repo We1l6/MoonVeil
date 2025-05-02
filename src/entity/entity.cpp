@@ -1,7 +1,7 @@
 #include "entity.h"
-
 #include "raylib.h"
 #include <algorithm>
+#include <iostream>
 
 
 Entity::Entity(ObjectAttributes &&objectAttributes,
@@ -12,9 +12,7 @@ Entity::Entity(ObjectAttributes &&objectAttributes,
     : GameObject(std::move(objectAttributes), std::move(frameAtributes)),
       m_hitPoints(hitPoints),
       m_tilemap(tileMap),
-      m_isFacingLeft(false),
-      m_gameObjects(gameObjects),
-      m_hitTimer(0.0f)
+      m_gameObjects(gameObjects)
 {
 }
 
@@ -24,12 +22,13 @@ Entity::~Entity() {}
 
 void Entity::Update(float deltaTime)
 {
-    if (m_isHit)
+    if (hitData.isHit)
     {
-        m_hitTimer -= deltaTime;
-        if (m_hitTimer <= 0.0f)
+        hitData.hitTimer -= deltaTime;
+        if (hitData.hitTimer <= 0.0f)
         {
-            m_isHit = false;
+            hitData.isHit = false;
+            hitData.hitTimer = 0.0f;
         }
     }
 
@@ -114,10 +113,11 @@ void Entity::Draw() const
         }
     }
 
-    const Rectangle sourceRec = {0.0f, 0.0f,
-                                 static_cast<float>(currentTexture.width) *
-                                     (m_isFacingLeft ? 1.0f : -1.0f),
-                                 static_cast<float>(currentTexture.height)};
+    const Rectangle sourceRec = {
+        0.0f, 0.0f,
+        static_cast<float>(currentTexture.width) *
+            (m_objectAttributes.isFacingLeft ? 1.0f : -1.0f),
+        static_cast<float>(currentTexture.height)};
 
     const Rectangle destRec = {
         m_objectAttributes.hitbox.x, m_objectAttributes.hitbox.y,
@@ -126,9 +126,9 @@ void Entity::Draw() const
 
     Vector2 origin = {0, 0};
 
-    if (m_isHit)
+    if (hitData.isHit)
     {
-        float redIntensity = 0.5f + 0.5f * sin(m_hitTimer * 10.0f);
+        float redIntensity = 0.5f + 0.5f * sin(hitData.hitTimer * 10.0f);
         Color tintColor = {
             255, static_cast<unsigned char>(255 * (1 - redIntensity)),
             static_cast<unsigned char>(255 * (1 - redIntensity)), 255};
@@ -158,14 +158,34 @@ void Entity::Draw() const
 }
 
 
-void Entity::TakeDamage(float amount)
+void Entity::TakeDamage(float amount, bool isEnemyFacilingLeft)
 {
     LOG_INFO("TakeDamage");
-    m_hitPoints -= amount;
 
+    if (hitData.isHit)
+        return;
+    m_hitPoints -= amount;
     m_hitPoints = std::max(m_hitPoints, 0.0f);
-    m_isHit = true;
-    m_hitTimer = m_hitEffectDuration;
+    hitData.isHit = true;
+    hitData.hitTimer = hitData.hitEffectDuration;
+
+    if (m_hitPoints == 0.0f)
+    {
+        MarkForDeletion();
+    }
+
+    if (isEnemyFacilingLeft)
+    {
+        if (CanMoveTo(m_objectAttributes.hitbox.x - 20,
+                      m_objectAttributes.hitbox.y))
+            move(-20, 0);
+    }
+    else
+    {
+        if (CanMoveTo(m_objectAttributes.hitbox.x + 20,
+                      m_objectAttributes.hitbox.y))
+            move(+20, 0);
+    }
 }
 
 
@@ -178,10 +198,7 @@ Vector2 Entity::GetPosition() const
 float Entity::GetHitPoint() const { return m_hitPoints; }
 
 
-bool Entity::GetIsFacingLeft() const { return m_isFacingLeft; }
-
-
-float Entity::GetHitEffectDuration() const { return m_hitEffectDuration; }
+float Entity::GetHitEffectDuration() const { return hitData.hitEffectDuration; }
 
 
 bool Entity::CanMoveTo(float x, float y) const

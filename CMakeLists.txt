@@ -21,6 +21,7 @@ add_subdirectory(${IMGUI_DIR})
 
 set(RLIMGUI_DIR "${CMAKE_SOURCE_DIR}/external/rlImGui")
 add_subdirectory(${RLIMGUI_DIR})
+
 if(ENABLE_WARNINGS)
     include(Warnings)
 endif()

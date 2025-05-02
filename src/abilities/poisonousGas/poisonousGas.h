@@ -1,5 +1,5 @@
-#ifndef FIREBALL_H
-#define FIREBALL_H
+#ifndef POISONOUS_GAS_H
+#define POISONOUS_GAS_H
 
 
 #include "../../resourceManager/resourceManager.h"
@@ -7,7 +7,7 @@
 #include "raylib.h"
 
 
-namespace FireBallConstants
+namespace PoisonousGasConstants
 {
 constexpr int HITBOX_WIDTH = 10;
 constexpr int HITBOX_HEIGHT = 10;
@@ -21,14 +21,14 @@ constexpr float POSITION_Y = 0.0f;
 constexpr double VELOCITY_X = 155.0f;
 constexpr double VELOCITY_Y = 155.0f;
 constexpr int RADIUS = 20;
-} // namespace FireBallConstants
+} // namespace PoisonousGasConstants
 
 
-class FireBall final : public Ability
+class PoisonousGas final : public Ability
 {
   public:
-    FireBall(Vector2 position, Vector2 velocity, bool isFacilingLeft);
-    ~FireBall() = default;
+    PoisonousGas(Vector2 position, Vector2 velocity);
+    ~PoisonousGas() = default;
 
     void Update(float deltaTime) override;
     void Draw() const override;
@@ -37,4 +37,4 @@ class FireBall final : public Ability
 };
 
 
-#endif // FIREBALL_H
+#endif // POISONOUS_GAS_H

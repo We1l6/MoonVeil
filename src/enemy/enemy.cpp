@@ -42,11 +42,11 @@ void Enemy::Update(float deltaTime)
 
         if (velocity.x > 0.0f)
         {
-            m_isFacingLeft = false;
+            m_objectAttributes.isFacingLeft = false;
         }
         else if (velocity.x < 0.0f)
         {
-            m_isFacingLeft = true;
+            m_objectAttributes.isFacingLeft = true;
         }
     }
     else

@@ -27,11 +27,8 @@ constexpr int RADIUS = 20;
 class DefaultAttack : public Ability
 {
   private:
-    float m_lifetime = 0.1f;
-    float m_currentLifetime = 0.0f;
-
   public:
-    DefaultAttack(Vector2 position, Vector2 velocity);
+    DefaultAttack(Vector2 position, Vector2 velocity, bool isFacingLeft);
     ~DefaultAttack() = default;
 
     void Update(float deltaTime) override;
