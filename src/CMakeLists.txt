@@ -22,12 +22,12 @@ add_executable(moonVeilSrc
   "player/player.h"
   "player/player.cpp"
   "scene/scene.h"
-  "scene/menuScene.h"
-  "scene/menuScene.cpp"
-  "scene/pauseScene.h"
-  "scene/pauseScene.cpp"
-  "scene/gameScene.h"
-  "scene/gameScene.cpp"
+  "scene/menuScene/menuScene.h"
+  "scene/menuScene/menuScene.cpp"
+  "scene/pauseScene/pauseScene.h"
+  "scene/pauseScene/pauseScene.cpp"
+  "scene/gameScene/gameScene.h"
+  "scene/gameScene/gameScene.cpp"
   "resourceManager/resourceManager.h"
   "resourceManager/resourceManager.cpp"
   "entity/entity.h"
@@ -66,12 +66,22 @@ add_executable(moonVeilSrc
   "characters/eyeGore/eyeGore.cpp"
   "characters/steelBound/steelBound.h"
   "characters/steelBound/steelBound.cpp"
-
   "gameTimer/gameTimer.h"
   "gameTimer/gameTimer.cpp"
-
   "abilities/poisonousGas/poisonousGas.h"
   "abilities/poisonousGas/poisonousGas.cpp"
+  "button/button.h"
+  "button/button.cpp"
+  "scene/settingsScene/settingsScene.cpp"
+  "scene/settingsScene/settingsScene.h"
+  "../external/raygui.h"
+  "scene/deathScene/deathScene.cpp"
+  "scene/deathScene/deathScene.h"
+
+  "../external/simpleini/SimpleIni.h"
+
+  "settings/settings.h"
+  "settings/settings.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)

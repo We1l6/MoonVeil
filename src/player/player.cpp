@@ -4,7 +4,7 @@
 #include <cmath>
 #include <iostream>
 
-
+#include "../settings/settings.h"
 Player::Player(TileMap &tilemap,
                ObjectAttributes &&objectAttributes,
                FrameAtributes &&frameAtributes,
@@ -33,11 +33,11 @@ void Player::HandleInput(float deltaTime)
     {
         m_firstSpell.Cast();
     }
-    if (IsKeyDown(KEY_SPACE))
+    if (IsKeyDown(SettingsGlobal::g_controls.dash))
     {
         m_secondSpell.Cast();
     }
-    if (IsKeyPressed(KEY_E))
+    if (IsKeyPressed(SettingsGlobal::g_controls.thirdSpell))
     {
         m_thirdSpell.Cast();
     }
@@ -46,24 +46,24 @@ void Player::HandleInput(float deltaTime)
     Vector2 newPosition = {m_objectAttributes.hitbox.x,
                            m_objectAttributes.hitbox.y};
 
-    if (IsKeyDown(KEY_A))
+    if (IsKeyDown(SettingsGlobal::g_controls.moveLeft))
     {
         newPosition.x -= m_objectAttributes.velocity.x * deltaTime;
         m_isMoving = true;
         m_objectAttributes.isFacingLeft = true;
     }
-    if (IsKeyDown(KEY_D))
+    if (IsKeyDown(SettingsGlobal::g_controls.moveRight))
     {
         newPosition.x += m_objectAttributes.velocity.x * deltaTime;
         m_isMoving = true;
         m_objectAttributes.isFacingLeft = false;
     }
-    if (IsKeyDown(KEY_W))
+    if (IsKeyDown(SettingsGlobal::g_controls.moveUp))
     {
         newPosition.y -= m_objectAttributes.velocity.y * deltaTime;
         m_isMoving = true;
     }
-    if (IsKeyDown(KEY_S))
+    if (IsKeyDown(SettingsGlobal::g_controls.moveDown))
     {
         newPosition.y += m_objectAttributes.velocity.y * deltaTime;
         m_isMoving = true;

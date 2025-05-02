@@ -1,13 +1,13 @@
 #include "gameScene.h"
-#include "../characters/bloodClaws/bloodClaws.h"
-#include "../characters/eyeGore/eyeGore.h"
-#include "../characters/floralWretch/floralWretch.h"
-#include "../characters/maidenMaw/maidenMaw.h"
-#include "../characters/slug/slug.h"
-#include "../characters/steelBound/steelBound.h"
+#include "../../characters/bloodClaws/bloodClaws.h"
+#include "../../characters/eyeGore/eyeGore.h"
+#include "../../characters/floralWretch/floralWretch.h"
+#include "../../characters/maidenMaw/maidenMaw.h"
+#include "../../characters/slug/slug.h"
+#include "../../characters/steelBound/steelBound.h"
 #include <memory>
 
-#include "../enemy/enemy.h"
+#include "../../enemy/enemy.h"
 #include "raylib.h"
 GameScene::GameScene(Game *game)
     : Scene(game),
@@ -116,6 +116,11 @@ void GameScene::Update(float deltaTime)
     std::cout << "GameObjects size: " << gameObjects.size() << "\n";
     std::cout << "GameEntities size: " << gameEntities.size() << "\n";
 
+    if (player->IsMarkedForDeletion())
+    {
+        m_game->ChangeScene(new DeathScene(m_game));
+        return;
+    }
     gameTimer.Update(deltaTime);
     cameraController->Update(deltaTime, player->GetPosition());
     CollisionSystem::CheckCollisions(gameEntities, gameObjects);

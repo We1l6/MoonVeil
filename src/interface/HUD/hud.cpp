@@ -29,6 +29,6 @@ void HUD::Draw(const std::shared_ptr<Player> &player)
              HUDConstants::HITPOINT_X + 5, HUDConstants::HITPOINT_Y + 2, 16,
              WHITE);
 
-    DrawTexture(ResourceManager::GetTexture("resources/gargoyle.png"),
+    DrawTexture(ResourceManager::GetTexture("resources/HPBAR2.png"),
                 HUDConstants::HITPOINT_X, HUDConstants::HITPOINT_Y - 54, WHITE);
 }

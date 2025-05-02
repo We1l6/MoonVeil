@@ -5,7 +5,7 @@
 class Game;
 
 
-#include "../scene/menuScene.h"
+#include "../scene/menuScene/menuScene.h"
 #include "../scene/scene.h"
 #include "raylib.h"
 #include <string_view>
