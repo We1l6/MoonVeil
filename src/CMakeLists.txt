@@ -72,6 +72,16 @@ add_executable(moonVeilSrc
   "abilities/poisonousGas/poisonousGas.cpp"
   "button/button.h"
   "button/button.cpp"
+  "scene/settingsScene/settingsScene.cpp"
+  "scene/settingsScene/settingsScene.h"
+  "../external/raygui.h"
+  "scene/deathScene/deathScene.cpp"
+  "scene/deathScene/deathScene.h"
+
+  "../external/simpleini/SimpleIni.h"
+
+  "settings/settings.h"
+  "settings/settings.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)

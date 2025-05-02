@@ -8,6 +8,7 @@
 #include "../../collisionSystem/collisionSystem.h"
 #include "../../interface/HUD/hud.h"
 #include "../../player/player.h"
+#include "../../scene/deathScene/deathScene.h"
 #include "../menuScene/menuScene.h"
 #include "../scene.h"
 #include "raylib.h"
