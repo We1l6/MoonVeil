@@ -3,7 +3,7 @@
 
 namespace GameConstants
 {
-constexpr int TARGET_FPS = 120;
+constexpr int TARGET_FPS = 60;
 constexpr std::string_view WINDOW_TITLE = "MoonVeil";
 } // namespace GameConstants
 
@@ -23,7 +23,6 @@ Game::~Game()
 {
     delete currentScene;
     CloseWindow();
-    // glfwTerminate();
 }
 
 

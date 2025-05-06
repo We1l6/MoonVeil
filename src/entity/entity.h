@@ -52,7 +52,7 @@ class Entity : public GameObject
 
     virtual void Update(float deltaTime) override;
     virtual void Draw() const override;
-    void TakeDamage(float amount, bool isEnemyFacilingLeft);
+    virtual void TakeDamage(float amount, bool isEnemyFacilingLeft);
     [[nodiscard]] Vector2 GetPosition() const;
     [[nodiscard]] float GetHitPoint() const;
     [[nodiscard]] float GetHitEffectDuration() const;

@@ -41,6 +41,7 @@ class Ability : public GameObject
     virtual ~Ability() = default;
     virtual void Activate();
     void Update(float deltaTime) override;
+    void Draw() const override;
     float getDamage() const { return m_abilityAttribute.damage; }
     AbilityType getAbilityType() const
     {

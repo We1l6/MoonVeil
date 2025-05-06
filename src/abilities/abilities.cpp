@@ -45,3 +45,25 @@ bool Ability::IsReady() const
     return m_abilityAttribute.currentCooldown <= 0.0f;
 }
 float Ability::TakeDamage(float damage) { m_abilityAttribute.isActive = false; }
+
+
+void Ability::Draw() const
+{
+    Rectangle destRec = {m_objectAttributes.hitbox.x,
+                         m_objectAttributes.hitbox.y, 128.0f, 128.0f};
+
+    Texture2D currentTexture = m_objectAttributes.moveTextures[0];
+    const std::vector<Texture2D> *textureArray =
+        &m_objectAttributes.moveTextures;
+
+    if (textureArray && !textureArray->empty())
+    {
+        float animationSpeed = 4;
+        float frameTime = GetTime() * animationSpeed;
+        int frame = static_cast<int>(frameTime) % textureArray->size();
+        currentTexture = (*textureArray)[frame];
+    }
+
+    DrawTexturePro(currentTexture, {0.0f, 128.0f, 128.0f, 128.0f}, destRec,
+                   {0.0f, 0.0f}, 0.0f, WHITE);
+}

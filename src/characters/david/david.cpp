@@ -61,7 +61,8 @@ David::David(TileMap &tilemap,
              FrameAtributes{
                  .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
              DavidConstants::INITIAL_HEALTH,
-             gameObjects)
+             gameObjects,
+             ResourceManager::GetTexture("resources/DavidSpells.png"))
 {
     m_firstSpell = Spell{10.0f, 0.0f, false, [this]() { this->firstSpell(); }};
     m_secondSpell = Spell{5.0f, 0.0f, false, [this]() { this->secondSpell(); }};
