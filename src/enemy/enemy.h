@@ -20,7 +20,7 @@ class Enemy : public Entity
           std::shared_ptr<Player> &player);
 
     ~Enemy() = default;
-
+    void TakeDamage(float amount, bool isEnemyFacilingLeft) override;
     void Update(float deltaTime);
     void Draw() const override;
 };
