@@ -102,11 +102,10 @@ void GameScene::UpdateEntities(float deltaTime)
 
 void GameScene::RenderEntities() const
 {
-    player->Draw(cameraController->GetCamera());
     auto draw = [](const auto &renderable) { renderable->Draw(); };
-    std::for_each(std::execution::par, gameEntities.begin(), gameEntities.end(),
-                  draw);
     std::for_each(std::execution::par, gameObjects.begin(), gameObjects.end(),
+                  draw);
+    std::for_each(std::execution::par, gameEntities.begin(), gameEntities.end(),
                   draw);
 }
 

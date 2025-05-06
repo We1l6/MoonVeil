@@ -5,6 +5,7 @@
 #include "../entity/entity.h"
 #include "../resourceManager/resourceManager.h"
 #include "../tileMap/tileMap.h"
+#include "raylib.h"
 #include <vector>
 
 
@@ -28,14 +29,16 @@ struct Spell
         }
     }
 
-    void Cast()
+    bool Cast()
     {
         if (!isActive && action)
         {
             action();
             currentCooldown = cooldown;
             isActive = true;
+            return true;
         }
+        return false;
     }
 };
 
@@ -62,12 +65,30 @@ class Player : public Entity
            ObjectAttributes &&objectAttributes,
            FrameAtributes &&frameAtributes,
            float hitPoints,
-           std::vector<std::shared_ptr<Ability>> &gameObjects);
+           std::vector<std::shared_ptr<Ability>> &gameObjects,
+           Texture2D spellsTexture);
 
+    Texture2D m_spellsTexture;
     virtual ~Player() = default;
     virtual void HandleInput(float deltaTime);
     void Update(float deltaTime) override;
     void Draw(const Camera2D &camera) const;
+    int m_remainingAbilitiesByArea = 3;
+    int m_level = 1;
+    int m_levelBarWidth = 0;
+    float getFirstSpellСurrCooldown() const
+    {
+        return m_firstSpell.currentCooldown;
+    }
+    float getSecondSpellСurrCooldown() const
+    {
+        return m_secondSpell.currentCooldown;
+    }
+    float getThirdSpellСurrCooldown() const
+    {
+        return m_thirdSpell.currentCooldown;
+    }
+    void addLevelBarWidth(int width);
 };
 
 
