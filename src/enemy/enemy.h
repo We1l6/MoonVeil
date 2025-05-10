@@ -9,7 +9,12 @@
 class Enemy : public Entity
 {
   private:
+    virtual void useAbilityOnDeath();
+
+  protected:
     std::shared_ptr<Player> &m_player;
+    Spell m_firstSpell;
+    virtual void firstSpell() {}
 
   public:
     Enemy(TileMap &tilemap,

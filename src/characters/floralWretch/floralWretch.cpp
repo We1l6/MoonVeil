@@ -62,7 +62,7 @@ FloralWretch::FloralWretch(TileMap &tilemap,
                           FloralWretchConstants::TEXTURE_RUN_PATH, 0, 5),
                   },
 
-              .velocity = {0.0f, 0.0f}},
+              .velocity = {155.0f, 0.0f}},
           FrameAtributes{.currentFrame = 0, .frameCounter = 0, .frameSpeed = 3},
           FloralWretchConstants::INITIAL_HEALTH,
           gameObjects,

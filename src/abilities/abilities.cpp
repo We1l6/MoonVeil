@@ -1,4 +1,5 @@
 #include "abilities.h"
+#include "raylib.h"
 
 
 Ability::Ability(AbilityAttribute abilityAttribute,
@@ -6,7 +7,7 @@ Ability::Ability(AbilityAttribute abilityAttribute,
                  FrameAtributes frameAtributes,
                  float lifetime)
     : GameObject(objectAttributes, frameAtributes),
-      m_abilityAttribute(std::move(abilityAttribute)),
+      m_abilityAttribute(abilityAttribute),
       m_lifetime(lifetime)
 {
 }
@@ -29,13 +30,10 @@ void Ability::Activate()
 
 void Ability::Update(float deltaTime)
 {
-    if (m_abilityAttribute.abilityType == AbilityType::DestroyOnTimeout)
+    m_lifetime -= deltaTime;
+    if (m_lifetime <= 0.0f)
     {
-        m_lifetime -= deltaTime;
-        if (m_lifetime <= 0.0f)
-        {
-            m_markedForDeletion = true;
-        }
+        m_markedForDeletion = true;
     }
 }
 
@@ -49,8 +47,9 @@ float Ability::TakeDamage(float damage) { m_abilityAttribute.isActive = false; }
 
 void Ability::Draw() const
 {
-    Rectangle destRec = {m_objectAttributes.hitbox.x,
-                         m_objectAttributes.hitbox.y, 128.0f, 128.0f};
+    Rectangle destRec = {
+        m_objectAttributes.hitbox.x, m_objectAttributes.hitbox.y,
+        m_objectAttributes.hitbox.width, m_objectAttributes.hitbox.height};
 
     Texture2D currentTexture = m_objectAttributes.moveTextures[0];
     const std::vector<Texture2D> *textureArray =

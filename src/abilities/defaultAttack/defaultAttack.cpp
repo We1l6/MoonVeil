@@ -6,11 +6,12 @@ DefaultAttack::DefaultAttack(Vector2 position,
                              Vector2 velocity,
                              bool isFacingLeft)
     : Ability(
-          AbilityAttribute{.name = "DefaultAttack",
+          AbilityAttribute{.abilityType = AbilityType::DestroyOnHit,
+                           .name = "DefaultAttack",
                            .cooldown = DefaultAttackConstants::COOLDOWN,
                            .damage = DefaultAttackConstants::DAMAGE,
                            .currentCooldown = 0.0,
-                           .abilityType = AbilityType::DestroyOnTimeout,
+
                            .isActive = true},
           ObjectAttributes{.objectType = ObjectType::PlayerAttack,
                            .velocity = velocity,
@@ -24,7 +25,7 @@ DefaultAttack::DefaultAttack(Vector2 position,
                            .hitbox = {position.x, position.y, 128, 128}},
           FrameAtributes{
               .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
-          0.1)
+          0.2)
 {
 }
 

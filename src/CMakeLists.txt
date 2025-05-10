@@ -82,6 +82,8 @@ add_executable(moonVeilSrc
 
   "settings/settings.h"
   "settings/settings.cpp"
+  "abilities/fireBallMonster/fireBallMonster.h"
+  "abilities/fireBallMonster/fireBallMonster.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)

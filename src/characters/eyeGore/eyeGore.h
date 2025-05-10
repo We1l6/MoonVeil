@@ -22,6 +22,7 @@ class EyeGore final : public Enemy
             std::vector<std::shared_ptr<Ability>> &gameObjects,
             std::shared_ptr<Player> &player);
     ~EyeGore() = default;
+    void firstSpell() override;
 };
 
 

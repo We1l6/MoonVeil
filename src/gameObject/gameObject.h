@@ -65,7 +65,8 @@ class GameObject
     bool GetIsFacingLeft() const;
     [[nodiscard]] static bool CheckCollision(const GameObject &obj1,
                                              const GameObject &obj2);
-
+    GameObject(const GameObject &) = delete;
+    GameObject &operator=(const GameObject &) = delete;
     void move(float dx, float dy);
 };
 
