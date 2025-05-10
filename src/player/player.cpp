@@ -3,6 +3,7 @@
 #include "raymath.h"
 #include <cmath>
 #include <iostream>
+#include <memory>
 
 #include "../settings/settings.h"
 Player::Player(TileMap &tilemap,
@@ -131,7 +132,7 @@ void Player::Attack()
 
     const Vector2 AttackVelocity = {0.0f, 0.0f};
 
-    m_gameObjects.emplace_back(std::make_unique<DefaultAttack>(
+    m_gameObjects.emplace_back(std::make_shared<DefaultAttack>(
         AttackPosition, AttackVelocity, GetIsFacingLeft()));
 }
 
@@ -142,5 +143,16 @@ void Player::addLevelBarWidth(int width)
     {
         m_levelBarWidth = 0;
         ++m_level;
+    }
+}
+
+void Player::TakeDamage(float amount, bool isEnemyFacilingLeft)
+{
+    Entity::TakeDamage(amount, isEnemyFacilingLeft);
+
+
+    if (m_hitPoints <= 0.0f)
+    {
+        m_markedForDeletion = true;
     }
 }

@@ -62,7 +62,7 @@ BloodClaws::BloodClaws(TileMap &tilemap,
                           BloodClawsConstants::TEXTURE_RUN_PATH, 0, 5),
                   },
 
-              .velocity = {0.0f, 0.0f}},
+              .velocity = {100.0f, 0.0f}},
           FrameAtributes{.currentFrame = 0, .frameCounter = 0, .frameSpeed = 3},
           BloodClawsConstants::INITIAL_HEALTH,
           gameObjects,

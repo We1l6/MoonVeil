@@ -79,7 +79,7 @@ void David::firstSpell()
     const Vector2 fireballVelocity = {
         direction * (m_objectAttributes.velocity.x + VELOCITY_BOOST), 0.0f};
 
-    m_gameObjects.emplace_back(std::make_unique<FireBall>(
+    m_gameObjects.emplace_back(std::make_shared<FireBall>(
         fireballPosition, fireballVelocity, GetIsFacingLeft()));
 }
 void David::secondSpell()
@@ -110,5 +110,5 @@ void David::thirdSpell()
     const Vector2 fireballVelocity = {0.0f, 0.0f};
 
     m_gameObjects.emplace_back(
-        std::make_unique<PoisonousGas>(fireballPosition, fireballVelocity));
+        std::make_shared<PoisonousGas>(fireballPosition, fireballVelocity));
 }

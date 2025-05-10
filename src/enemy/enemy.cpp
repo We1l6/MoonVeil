@@ -18,8 +18,9 @@ Enemy::Enemy(TileMap &tilemap,
 
 void Enemy::Update(float deltaTime)
 {
+    m_firstSpell.Cast();
+    m_firstSpell.Update(deltaTime);
     Entity::Update(deltaTime);
-
     Vector2 enemyCenter = {
         m_objectAttributes.hitbox.x + m_objectAttributes.hitbox.width / 2 + 20,
         m_objectAttributes.hitbox.y + m_objectAttributes.hitbox.height / 2};
@@ -31,7 +32,7 @@ void Enemy::Update(float deltaTime)
     {
         Vector2 normalizedDir = Vector2Normalize(dirToPlayer);
 
-        float moveSpeed = 100.0f;
+        float moveSpeed = m_objectAttributes.velocity.x;
 
         Vector2 velocity = Vector2Scale(normalizedDir, moveSpeed * deltaTime);
 
@@ -76,9 +77,12 @@ void Enemy::Draw() const
 void Enemy::TakeDamage(float amount, bool isEnemyFacilingLeft)
 {
     Entity::TakeDamage(amount, isEnemyFacilingLeft);
-    if (m_hitPoints == 0.0f)
+    if (m_hitPoints == 0.0f && !IsMarkedForDeletion())
     {
+        useAbilityOnDeath();
         MarkForDeletion();
         m_player->addLevelBarWidth(200);
     }
 }
+
+void Enemy::useAbilityOnDeath() {}

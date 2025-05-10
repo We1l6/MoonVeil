@@ -16,6 +16,9 @@ constexpr float INITIAL_HEALTH = 100;
 
 class Slug final : public Enemy
 {
+  private:
+    void useAbilityOnDeath() override;
+
   public:
     Slug(TileMap &tilemap,
          Vector2 position,

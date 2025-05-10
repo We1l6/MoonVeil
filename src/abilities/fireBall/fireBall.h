@@ -7,23 +7,6 @@
 #include "raylib.h"
 
 
-namespace FireBallConstants
-{
-constexpr int HITBOX_WIDTH = 10;
-constexpr int HITBOX_HEIGHT = 10;
-
-constexpr int DAMAGE = 10;
-constexpr double COOLDOWN = 1.0;
-
-constexpr float POSITION_X = 0.0f;
-constexpr float POSITION_Y = 0.0f;
-
-constexpr double VELOCITY_X = 155.0f;
-constexpr double VELOCITY_Y = 155.0f;
-constexpr int RADIUS = 20;
-} // namespace FireBallConstants
-
-
 class FireBall final : public Ability
 {
   public:

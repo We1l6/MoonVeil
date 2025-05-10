@@ -62,7 +62,7 @@ SteelBound::SteelBound(TileMap &tilemap,
                           SteelBoundConstants::TEXTURE_RUN_PATH, 0, 5),
                   },
 
-              .velocity = {0.0f, 0.0f}},
+              .velocity = {100.0f, 0.0f}},
           FrameAtributes{.currentFrame = 0, .frameCounter = 0, .frameSpeed = 3},
           SteelBoundConstants::INITIAL_HEALTH,
           gameObjects,

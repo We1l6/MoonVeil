@@ -6,9 +6,6 @@ void CollisionSystem::CheckCollisions(
 {
     for (const auto &entity : entities)
     {
-        if (!entity)
-            continue;
-
         for (const auto &object : objects)
         {
             if (!object || object->IsMarkedForDeletion())
@@ -28,10 +25,12 @@ void CollisionSystem::CheckCollisions(
                 else if (entityType == ObjectType::Enemy &&
                          objectType == ObjectType::PlayerAttack)
                 {
+                    if (object->getAbilityType() == AbilityType::DestroyOnHit)
+                    {
+                        object->MarkForDeletion();
+                    }
                     entity->TakeDamage(object->getDamage(),
                                        object->GetIsFacingLeft());
-                    if (object->getAbilityType() == AbilityType::DestroyOnHit)
-                        object->MarkForDeletion();
                 }
             }
         }

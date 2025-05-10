@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "../abilities/abilities.h"
 #include "../abilities/defaultAttack/defaultAttack.h"
 #include "../entity/entity.h"
 #include "../resourceManager/resourceManager.h"
@@ -8,39 +9,6 @@
 #include "raylib.h"
 #include <vector>
 
-
-struct Spell
-{
-    float cooldown;
-    float currentCooldown = 0.0f;
-    bool isActive = false;
-    std::function<void()> action;
-
-    void Update(float deltaTime)
-    {
-        if (isActive)
-        {
-            currentCooldown -= deltaTime;
-            if (currentCooldown <= 0.0f)
-            {
-                isActive = false;
-                currentCooldown = 0.0f;
-            }
-        }
-    }
-
-    bool Cast()
-    {
-        if (!isActive && action)
-        {
-            action();
-            currentCooldown = cooldown;
-            isActive = true;
-            return true;
-        }
-        return false;
-    }
-};
 
 class Player : public Entity
 {
@@ -59,6 +27,7 @@ class Player : public Entity
     void Attack();
     int m_currentAttackFrame = 0;
     bool m_isAttackAnimationPlaying = false;
+    void TakeDamage(float amount, bool isEnemyFacilingLeft) override;
 
   public:
     Player(TileMap &tilemap,
