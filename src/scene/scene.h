@@ -3,6 +3,8 @@
 #define SCENE_H
 class Game;
 #include "../imGuiManager/imGuiManager.h"
+
+
 class Scene
 {
   protected:

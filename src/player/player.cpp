@@ -6,18 +6,20 @@
 #include <memory>
 
 #include "../settings/settings.h"
-Player::Player(TileMap &tilemap,
+Player::Player(std::shared_ptr<TileMap> &tilemap,
                ObjectAttributes &&objectAttributes,
                FrameAtributes &&frameAtributes,
                float hitPoints,
                std::vector<std::shared_ptr<Ability>> &gameObjects,
-               Texture2D spellsTexture)
+               Texture2D spellsTexture,
+               float attackDamage)
     : Entity(std::move(objectAttributes),
              std::move(frameAtributes),
              hitPoints,
              tilemap,
              gameObjects),
-      m_spellsTexture(spellsTexture)
+      m_spellsTexture(spellsTexture),
+      m_attackDamage(attackDamage)
 {
 }
 
@@ -133,7 +135,7 @@ void Player::Attack()
     const Vector2 AttackVelocity = {0.0f, 0.0f};
 
     m_gameObjects.emplace_back(std::make_shared<DefaultAttack>(
-        AttackPosition, AttackVelocity, GetIsFacingLeft()));
+        AttackPosition, AttackVelocity, GetIsFacingLeft(), m_attackDamage));
 }
 
 void Player::addLevelBarWidth(int width)

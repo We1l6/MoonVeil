@@ -17,7 +17,7 @@ constexpr float INITIAL_HEALTH = 100;
 class FloralWretch final : public Enemy
 {
   public:
-    FloralWretch(TileMap &tilemap,
+    FloralWretch(std::shared_ptr<TileMap> &tilemap,
                  Vector2 position,
                  std::vector<std::shared_ptr<Ability>> &gameObjects,
                  std::shared_ptr<Player> &player);

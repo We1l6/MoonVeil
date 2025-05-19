@@ -1,7 +1,7 @@
 #include "steelBound.h"
 
 
-SteelBound::SteelBound(TileMap &tilemap,
+SteelBound::SteelBound(std::shared_ptr<TileMap> &tilemap,
                        Vector2 position,
                        std::vector<std::shared_ptr<Ability>> &gameObjects,
                        std::shared_ptr<Player> &player)

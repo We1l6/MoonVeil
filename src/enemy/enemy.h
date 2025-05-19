@@ -17,7 +17,7 @@ class Enemy : public Entity
     virtual void firstSpell() {}
 
   public:
-    Enemy(TileMap &tilemap,
+    Enemy(std::shared_ptr<TileMap> &tilemap,
           ObjectAttributes &&objectAttributes,
           FrameAtributes &&frameAtributes,
           float hitPoints,

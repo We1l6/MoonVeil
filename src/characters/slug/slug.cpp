@@ -1,7 +1,7 @@
 #include "slug.h"
 #include "../../abilities/fireBallMonster/fireBallMonster.h"
 
-Slug::Slug(TileMap &tilemap,
+Slug::Slug(std::shared_ptr<TileMap> &tilemap,
            Vector2 position,
            std::vector<std::shared_ptr<Ability>> &gameObjects,
            std::shared_ptr<Player> &player)

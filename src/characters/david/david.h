@@ -13,15 +13,6 @@
 
 #include <iterator>
 
-enum class AbilitySlot
-{
-    Primary,
-    Secondary,
-    Tertiary,
-    Quaternary,
-    Count
-};
-
 namespace DavidConstants
 {
 constexpr float INITIAL_POSITION_X = 155.0f;
@@ -49,7 +40,8 @@ class David final : public Player
 
 
   public:
-    David(TileMap &tilemap, std::vector<std::shared_ptr<Ability>> &gameObjects);
+    David(std::shared_ptr<TileMap> &tilemap,
+          std::vector<std::shared_ptr<Ability>> &gameObjects);
     ~David() = default;
 
 

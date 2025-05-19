@@ -1,7 +1,7 @@
 #include "bloodClaws.h"
 
 
-BloodClaws::BloodClaws(TileMap &tilemap,
+BloodClaws::BloodClaws(std::shared_ptr<TileMap> &tilemap,
                        Vector2 position,
                        std::vector<std::shared_ptr<Ability>> &gameObjects,
                        std::shared_ptr<Player> &player)

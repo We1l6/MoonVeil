@@ -10,7 +10,7 @@
 class TileMap
 {
   public:
-    TileMap();
+    TileMap(std::string mapPath);
     ~TileMap();
     [[nodiscard]] bool CheckCollisionWithObjects(const std::string &layer_name,
                                                  const Rectangle &object) const;
@@ -18,6 +18,7 @@ class TileMap
     void LoadTextures() const;
     void Draw() const;
 
+    TileMap();
 
   private:
     tmx_map *map = nullptr;

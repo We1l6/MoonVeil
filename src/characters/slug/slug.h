@@ -20,7 +20,7 @@ class Slug final : public Enemy
     void useAbilityOnDeath() override;
 
   public:
-    Slug(TileMap &tilemap,
+    Slug(std::shared_ptr<TileMap> &tilemap,
          Vector2 position,
          std::vector<std::shared_ptr<Ability>> &gameObjects,
          std::shared_ptr<Player> &player);

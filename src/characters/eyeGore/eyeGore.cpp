@@ -1,7 +1,7 @@
 #include "eyeGore.h"
 #include "../../abilities/fireBallMonster/fireBallMonster.h"
 
-EyeGore::EyeGore(TileMap &tilemap,
+EyeGore::EyeGore(std::shared_ptr<TileMap> &tilemap,
                  Vector2 position,
                  std::vector<std::shared_ptr<Ability>> &gameObjects,
                  std::shared_ptr<Player> &player)
