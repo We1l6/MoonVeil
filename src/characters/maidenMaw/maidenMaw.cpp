@@ -1,10 +1,12 @@
 #include "maidenMaw.h"
 
 
-MaidenMaw::MaidenMaw(TileMap &tilemap,
+MaidenMaw::MaidenMaw(std::shared_ptr<TileMap> &tilemap,
                      Vector2 position,
                      std::vector<std::shared_ptr<Ability>> &gameObjects,
-                     std::shared_ptr<Player> &player)
+                     std::shared_ptr<Player> &player,
+                     float attackDamage,
+                     float initialHealth)
     : Enemy(
           tilemap,
           ObjectAttributes{
@@ -64,8 +66,9 @@ MaidenMaw::MaidenMaw(TileMap &tilemap,
 
               .velocity = {100.0f, 0.0f}},
           FrameAtributes{.currentFrame = 0, .frameCounter = 0, .frameSpeed = 3},
-          MaidenMawConstants::INITIAL_HEALTH,
+          initialHealth,
           gameObjects,
-          player)
+          player,
+          attackDamage)
 {
 }

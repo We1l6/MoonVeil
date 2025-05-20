@@ -1,4 +1,5 @@
 #include "menuScene.h"
+#include "../mapSelectionScene/mapSelectionScene.h"
 #include "../settingsScene/settingsScene.h"
 #include "raylib.h"
 
@@ -6,11 +7,11 @@ void MenuScene::HandleInput(float deltaTime)
 {
     if (IsKeyPressed(KEY_ENTER))
     {
-        m_game->ChangeScene(new GameScene(m_game));
+        m_game->ChangeScene(new MapSelectionScene(m_game));
     }
     if (m_buttons[0].IsClicked())
     {
-        m_game->ChangeScene(new GameScene(m_game));
+        m_game->ChangeScene(new MapSelectionScene(m_game));
     }
     if (m_buttons[1].IsClicked())
     {
@@ -42,6 +43,7 @@ void MenuScene::Render()
 
 void MenuScene::Update(float deltaTime)
 {
+    UpdateMusicStream(music);
     for (auto &button : m_buttons)
     {
         button.Update();

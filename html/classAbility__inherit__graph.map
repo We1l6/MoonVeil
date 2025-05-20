@@ -1,0 +1,9 @@
+<map id="Ability" name="Ability">
+<area shape="rect" id="node1" title=" " alt="" coords="291,380,426,604"/>
+<area shape="rect" id="node3" href="$classDefaultAttack.html" title=" " alt="" coords="5,652,136,803"/>
+<area shape="rect" id="node4" href="$classFireBall.html" title=" " alt="" coords="160,652,264,803"/>
+<area shape="rect" id="node5" href="$classFireBallMonster.html" title=" " alt="" coords="288,652,429,803"/>
+<area shape="rect" id="node6" href="$classFireStorm.html" title=" " alt="" coords="453,652,560,803"/>
+<area shape="rect" id="node7" href="$classPoisonousGas.html" title=" " alt="" coords="585,652,719,803"/>
+<area shape="rect" id="node2" href="$classGameObject.html" title=" " alt="" coords="277,5,440,332"/>
+</map>

@@ -17,6 +17,8 @@ class Player : public Entity
     Spell m_secondSpell;
     Spell m_thirdSpell;
 
+    float m_attackDamage;
+
     virtual void firstSpell() = 0;
     virtual void secondSpell() = 0;
     virtual void thirdSpell() = 0;
@@ -29,13 +31,15 @@ class Player : public Entity
     bool m_isAttackAnimationPlaying = false;
     void TakeDamage(float amount, bool isEnemyFacilingLeft) override;
 
+
   public:
-    Player(TileMap &tilemap,
+    Player(std::shared_ptr<TileMap> &tilemap,
            ObjectAttributes &&objectAttributes,
            FrameAtributes &&frameAtributes,
            float hitPoints,
            std::vector<std::shared_ptr<Ability>> &gameObjects,
-           Texture2D spellsTexture);
+           Texture2D spellsTexture,
+           float attackDamage);
 
     Texture2D m_spellsTexture;
     virtual ~Player() = default;
@@ -58,6 +62,11 @@ class Player : public Entity
         return m_thirdSpell.currentCooldown;
     }
     void addLevelBarWidth(int width);
+    virtual void levelUp()
+    {
+        ++m_level;
+        m_levelBarWidth = 0;
+    }
 };
 
 

@@ -17,10 +17,12 @@ constexpr float INITIAL_HEALTH = 100;
 class SteelBound final : public Enemy
 {
   public:
-    SteelBound(TileMap &tilemap,
+    SteelBound(std::shared_ptr<TileMap> &tilemap,
                Vector2 position,
                std::vector<std::shared_ptr<Ability>> &gameObjects,
-               std::shared_ptr<Player> &player);
+               std::shared_ptr<Player> &player,
+               float attackDamage,
+               float initialHealth);
     ~SteelBound() = default;
 };
 

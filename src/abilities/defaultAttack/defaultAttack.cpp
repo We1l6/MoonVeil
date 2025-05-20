@@ -4,12 +4,13 @@
 
 DefaultAttack::DefaultAttack(Vector2 position,
                              Vector2 velocity,
-                             bool isFacingLeft)
+                             bool isFacingLeft,
+                             float damage)
     : Ability(
           AbilityAttribute{.abilityType = AbilityType::DestroyOnHit,
                            .name = "DefaultAttack",
                            .cooldown = DefaultAttackConstants::COOLDOWN,
-                           .damage = DefaultAttackConstants::DAMAGE,
+                           .damage = damage,
                            .currentCooldown = 0.0,
 
                            .isActive = true},
@@ -26,6 +27,7 @@ DefaultAttack::DefaultAttack(Vector2 position,
           FrameAtributes{
               .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
           0.2)
+
 {
 }
 

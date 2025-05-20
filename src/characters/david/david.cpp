@@ -2,13 +2,12 @@
 #include <iterator>
 
 
-David::David(TileMap &tilemap,
+David::David(std::shared_ptr<TileMap> &tilemap,
              std::vector<std::shared_ptr<Ability>> &gameObjects)
     : Player(tilemap,
              ObjectAttributes{
                  .objectType = ObjectType::Player,
-                 .velocity = {DavidConstants::INITIAL_POSITION_X,
-                              DavidConstants::INITIAL_POSITION_Y},
+                 .velocity = {155, 155},
                  .hitbox = {DavidConstants::DAVID_SPAWN_X,
                             DavidConstants::DAVID_SPAWN_Y,
                             .width = DavidConstants::DAVID_WIDTH,
@@ -60,9 +59,10 @@ David::David(TileMap &tilemap,
                      ResourceManager::GetTexture("resources/demon1.png")},
              FrameAtributes{
                  .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
-             DavidConstants::INITIAL_HEALTH,
+             500,
              gameObjects,
-             ResourceManager::GetTexture("resources/DavidSpells.png"))
+             ResourceManager::GetTexture("resources/DavidSpells.png"),
+             125.0f)
 {
     m_firstSpell = Spell{10.0f, 0.0f, false, [this]() { this->firstSpell(); }};
     m_secondSpell = Spell{5.0f, 0.0f, false, [this]() { this->secondSpell(); }};
@@ -80,7 +80,8 @@ void David::firstSpell()
         direction * (m_objectAttributes.velocity.x + VELOCITY_BOOST), 0.0f};
 
     m_gameObjects.emplace_back(std::make_shared<FireBall>(
-        fireballPosition, fireballVelocity, GetIsFacingLeft()));
+        fireballPosition, fireballVelocity, GetIsFacingLeft(),
+        "resources/acidBottle.png", 30.0f));
 }
 void David::secondSpell()
 {
@@ -111,4 +112,10 @@ void David::thirdSpell()
 
     m_gameObjects.emplace_back(
         std::make_shared<PoisonousGas>(fireballPosition, fireballVelocity));
+}
+
+void David::levelUp()
+{
+    Player::levelUp();
+    m_attackDamage += m_attackDamage * 0.05f;
 }

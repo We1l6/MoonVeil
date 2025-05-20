@@ -1,17 +1,19 @@
 #include "enemy.h"
 #include "raymath.h"
 
-Enemy::Enemy(TileMap &tilemap,
+Enemy::Enemy(std::shared_ptr<TileMap> &tilemap,
              ObjectAttributes &&objectAttributes,
              FrameAtributes &&frameAtributes,
              float hitPoints,
              std::vector<std::shared_ptr<Ability>> &gameObjects,
-             std::shared_ptr<Player> &player)
+             std::shared_ptr<Player> &player,
+             float attackDamage)
     : Entity(std::move(objectAttributes),
              std::move(frameAtributes),
              hitPoints,
              tilemap,
-             gameObjects),
+             gameObjects,
+             attackDamage),
       m_player(player)
 {
 }
@@ -25,7 +27,9 @@ void Enemy::Update(float deltaTime)
         m_objectAttributes.hitbox.x + m_objectAttributes.hitbox.width / 2 + 20,
         m_objectAttributes.hitbox.y + m_objectAttributes.hitbox.height / 2};
 
-    Vector2 dirToPlayer = Vector2Subtract(m_player->GetPosition(), enemyCenter);
+    Vector2 playerCenter = {m_player->GetPosition().x + 64,
+                            m_player->GetPosition().y + 64};
+    Vector2 dirToPlayer = Vector2Subtract(playerCenter, enemyCenter);
     float distance = Vector2Length(dirToPlayer);
 
     if (distance > 0.0f)

@@ -29,7 +29,7 @@ FireBallMonster::FireBallMonster(Vector2 position,
                   .hitbox = {position.x, position.y, 128, 128}},
               FrameAtributes{
                   .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
-              5.0f)
+              10.0f)
 {
 }
 

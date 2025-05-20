@@ -7,12 +7,14 @@
 Entity::Entity(ObjectAttributes &&objectAttributes,
                FrameAtributes &&frameAtributes,
                float hitPoints,
-               TileMap &tileMap,
-               std::vector<std::shared_ptr<Ability>> &gameObjects)
+               std::shared_ptr<TileMap> &tileMap,
+               std::vector<std::shared_ptr<Ability>> &gameObjects,
+               float attackDamage)
     : GameObject(std::move(objectAttributes), std::move(frameAtributes)),
       m_hitPoints(hitPoints),
       m_tilemap(tileMap),
-      m_gameObjects(gameObjects)
+      m_gameObjects(gameObjects),
+      m_attackDamage(attackDamage)
 {
 }
 
@@ -183,7 +185,7 @@ float Entity::GetHitEffectDuration() const { return hitData.hitEffectDuration; }
 
 bool Entity::CanMoveTo(float x, float y) const
 {
-    return !m_tilemap.CheckCollisionWithObjects(
+    return !m_tilemap->CheckCollisionWithObjects(
         "BarrierLayer",
         {x + (m_objectAttributes.hitbox.width / 4.0f), y,
          m_objectAttributes.hitbox.width, m_objectAttributes.hitbox.height});

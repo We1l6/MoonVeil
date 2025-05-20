@@ -1,0 +1,8 @@
+<map id="FireBall" name="FireBall">
+<area shape="rect" id="node1" title=" " alt="" coords="203,911,307,1061"/>
+<area shape="rect" id="node2" href="$classAbility.html" title=" " alt="" coords="193,652,317,861"/>
+<area shape="rect" id="node3" href="$classGameObject.html" title=" " alt="" coords="88,292,251,589"/>
+<area shape="rect" id="node4" href="$structObjectAttributes.html" title=" " alt="" coords="5,5,171,229"/>
+<area shape="rect" id="node5" href="$structFrameAtributes.html" title=" " alt="" coords="195,64,309,171"/>
+<area shape="rect" id="node6" href="$structAbilityAttribute.html" title=" " alt="" coords="275,365,407,516"/>
+</map>

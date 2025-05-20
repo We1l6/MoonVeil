@@ -1,12 +1,12 @@
 #include "tileMap.h"
 #include <string>
 
-TileMap::TileMap()
+TileMap::TileMap(std::string mapPath)
 {
-    map = LoadTMX("resources/dangeon.tmx");
+    map = LoadTMX(mapPath.c_str());
     if (!map)
     {
-        throw std::runtime_error("Failed to loadz TMX map");
+        throw std::runtime_error("Failed to load TMX map");
     }
 }
 

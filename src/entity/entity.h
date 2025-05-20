@@ -34,7 +34,7 @@ class Entity : public GameObject
 
 
     std::vector<std::shared_ptr<Ability>> &m_gameObjects;
-    TileMap &m_tilemap;
+    std::shared_ptr<TileMap> &m_tilemap;
     HitData hitData;
     float m_attackAnimationTime = 0.0f;
     bool m_isAttacking = false;
@@ -42,14 +42,17 @@ class Entity : public GameObject
     const int ATTACK_ANIMATION_FRAMES = 6;
 
   private:
+    float m_attackDamage;
+
   public:
     Entity(ObjectAttributes &&objectAttributes,
            FrameAtributes &&frameAtributes,
            float hitPoints,
-           TileMap &tileMap,
-           std::vector<std::shared_ptr<Ability>> &gameObjects);
+           std::shared_ptr<TileMap> &tileMap,
+           std::vector<std::shared_ptr<Ability>> &gameObjects,
+           float attackDamage);
     ~Entity();
-
+    float GetAttackDamage() const { return m_attackDamage; }
     virtual void Update(float deltaTime) override;
     virtual void Draw() const override;
     virtual void TakeDamage(float amount, bool isEnemyFacilingLeft);
