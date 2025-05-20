@@ -38,7 +38,8 @@ class Galmar final : public Player
     void thirdSpell() override;
     void FireballAction();
     void DashAction();
-
+    void levelUp() override;
+    float m_fireBallDamage = 30;
 
   public:
     Galmar(std::shared_ptr<TileMap> &tilemap,

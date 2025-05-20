@@ -42,14 +42,17 @@ class Entity : public GameObject
     const int ATTACK_ANIMATION_FRAMES = 6;
 
   private:
+    float m_attackDamage;
+
   public:
     Entity(ObjectAttributes &&objectAttributes,
            FrameAtributes &&frameAtributes,
            float hitPoints,
            std::shared_ptr<TileMap> &tileMap,
-           std::vector<std::shared_ptr<Ability>> &gameObjects);
+           std::vector<std::shared_ptr<Ability>> &gameObjects,
+           float attackDamage);
     ~Entity();
-
+    float GetAttackDamage() const { return m_attackDamage; }
     virtual void Update(float deltaTime) override;
     virtual void Draw() const override;
     virtual void TakeDamage(float amount, bool isEnemyFacilingLeft);

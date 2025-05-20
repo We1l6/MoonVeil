@@ -6,12 +6,14 @@ Enemy::Enemy(std::shared_ptr<TileMap> &tilemap,
              FrameAtributes &&frameAtributes,
              float hitPoints,
              std::vector<std::shared_ptr<Ability>> &gameObjects,
-             std::shared_ptr<Player> &player)
+             std::shared_ptr<Player> &player,
+             float attackDamage)
     : Entity(std::move(objectAttributes),
              std::move(frameAtributes),
              hitPoints,
              tilemap,
-             gameObjects),
+             gameObjects,
+             attackDamage),
       m_player(player)
 {
 }

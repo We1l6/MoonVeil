@@ -21,7 +21,9 @@ class BloodClaws final : public Enemy
     BloodClaws(std::shared_ptr<TileMap> &tilemap,
                Vector2 position,
                std::vector<std::shared_ptr<Ability>> &gameObjects,
-               std::shared_ptr<Player> &player);
+               std::shared_ptr<Player> &player,
+               float attackDamage,
+               float initialHealth);
     ~BloodClaws() = default;
 };
 

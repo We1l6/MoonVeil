@@ -6,6 +6,8 @@
 #include "raylib.h"
 #include <filesystem>
 #include <memory>
+
+#include "../congratulationsScene/congratulationsScene.h"
 GameScene::GameScene(Game *game, int mapIndex, int heroIndex)
     : Scene(game),
       cameraController(std::make_unique<CameraController>(GetScreenWidth(),
@@ -98,12 +100,19 @@ void GameScene::Update(float deltaTime)
     UpdateMusicStream(music);
     std::cout << "GameObjects size: " << gameObjects.size() << "\n";
     std::cout << "GameEntities size: " << gameEntities.size() << "\n";
-
     if (player->IsMarkedForDeletion())
     {
         m_game->ChangeScene(new DeathScene(m_game, m_mapIndex, m_heroIndex));
         return;
     }
+    if (m_spawner->AreAllWavesCompleted() && gameEntities.size() == 1)
+    {
+        m_game->ChangeScene(
+            new CongratulationsScene(m_game, m_mapIndex, m_heroIndex));
+        return;
+    }
+
+
     gameTimer->Update(deltaTime);
     cameraController->Update(deltaTime, player->GetPosition());
     CollisionSystem::CheckCollisions(gameEntities, gameObjects);

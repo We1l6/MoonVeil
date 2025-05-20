@@ -62,6 +62,11 @@ class Player : public Entity
         return m_thirdSpell.currentCooldown;
     }
     void addLevelBarWidth(int width);
+    virtual void levelUp()
+    {
+        ++m_level;
+        m_levelBarWidth = 0;
+    }
 };
 
 

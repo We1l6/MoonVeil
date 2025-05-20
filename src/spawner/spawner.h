@@ -22,6 +22,8 @@ class Spawner
     std::shared_ptr<Player> &m_player;
 
     std::shared_ptr<GameTimer> &m_gameTimer;
+    int getRandomDamage(int minDmg, int maxDmg);
+    bool m_allWavesCompleted = false;
 
   public:
     Spawner(std::shared_ptr<TileMap> &tileMap,
@@ -33,6 +35,7 @@ class Spawner
     void SetupForMap(int mapIndex);
     void SetupMap0();
     void SetupMap1();
+    bool AreAllWavesCompleted() const;
 };
 
 #endif // SPAWNER_H

@@ -38,6 +38,7 @@ class David final : public Player
     void FireballAction();
     void DashAction();
 
+    void levelUp() override;
 
   public:
     David(std::shared_ptr<TileMap> &tilemap,

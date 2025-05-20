@@ -59,10 +59,10 @@ David::David(std::shared_ptr<TileMap> &tilemap,
                      ResourceManager::GetTexture("resources/demon1.png")},
              FrameAtributes{
                  .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
-             DavidConstants::INITIAL_HEALTH,
+             500,
              gameObjects,
              ResourceManager::GetTexture("resources/DavidSpells.png"),
-             25.0f)
+             125.0f)
 {
     m_firstSpell = Spell{10.0f, 0.0f, false, [this]() { this->firstSpell(); }};
     m_secondSpell = Spell{5.0f, 0.0f, false, [this]() { this->secondSpell(); }};
@@ -81,7 +81,7 @@ void David::firstSpell()
 
     m_gameObjects.emplace_back(std::make_shared<FireBall>(
         fireballPosition, fireballVelocity, GetIsFacingLeft(),
-        "resources/acidBottle.png"));
+        "resources/acidBottle.png", 30.0f));
 }
 void David::secondSpell()
 {
@@ -112,4 +112,10 @@ void David::thirdSpell()
 
     m_gameObjects.emplace_back(
         std::make_shared<PoisonousGas>(fireballPosition, fireballVelocity));
+}
+
+void David::levelUp()
+{
+    Player::levelUp();
+    m_attackDamage += m_attackDamage * 0.05f;
 }

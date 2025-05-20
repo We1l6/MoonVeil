@@ -4,12 +4,13 @@
 FireBall::FireBall(Vector2 position,
                    Vector2 velocity,
                    bool isFacilingLeft,
-                   std::string textureSrc)
+                   std::string textureSrc,
+                   float fireBallDamage)
     : Ability(
           AbilityAttribute{.abilityType = AbilityType::DestroyOnHit,
                            .name = "FireBall",
                            .cooldown = 5,
-                           .damage = 20,
+                           .damage = fireBallDamage,
                            .currentCooldown = 0.0,
                            .isActive = true},
           ObjectAttributes{

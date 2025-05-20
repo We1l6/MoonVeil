@@ -16,11 +16,7 @@ struct HeroSelection
     Texture2D texturePath;
     Texture2D abilityPath;
     char *lore;
-    int deshDistance;
-    int attackDistance;
-    int attackDamage;
-    int fireballDamage;
-    int abilityInArea;
+    char *abilities;
 };
 
 class HeroSelectionScene final : public Scene
@@ -97,7 +93,12 @@ class HeroSelectionScene final : public Scene
           "their corruption. His axe cuts down flesh, and his acid bombs\n"
           "dissolve the remnants of their work. He seeks no gold or glory—only "
           "a\n"
-          "world cleansed of their poison.\n"}},
+          "world cleansed of their poison.\n"},
+         {"Attack: 20\nHealth: 100\nSpeed: 155\n\nFirst Spell -> Acid "
+          "Bottle\n-damage: 30\n-lifetime: 5\n-cooldown: 10\n\nSecond Spell "
+          "-> Dash\n-range: 75\n-cooldown: 5\n\nThird Spell -> Poisonous "
+          "Gas\n-damage: 10\n-lifetime: 3\n-cooldown: 10\n"
+          "Every Level Up -> +5% Attack Damage\n"}},
         {"resources/FloralWretchRUN.png",
          ResourceManager::GetSubTexture("resources/GalmarIDLE.png", 0, 0),
          ResourceManager::GetTexture("resources/GalmarSpells.png"),
@@ -121,7 +122,13 @@ class HeroSelectionScene final : public Scene
           "but where others rot, he burns. The heat keeps the decay at bay, "
           "though\n it consumes him slowly."
           "\nHe knows his time is limited—but until his final ember fades, he "
-          "will hunt those who\npoison the world."}}};
+          "will hunt those who\npoison the world."},
+         {"Attack: 20\nHealth: 100\nSpeed: 150\n\nFirst Spell -> FireBall"
+          "\n-damage: 30\n-lifetime: 5\n-cooldown: 8\n\nSecond Spell "
+          "-> Dash\n-range: 65\n-cooldown: 5\n\nThird Spell -> Fire "
+          "Storm\n-damage: 15\n-lifetime: 3\n-cooldown: 10\n"
+          "Every Level Up -> +5% FireBall Damage\n"}},
+    };
 
     std::vector<Button> m_buttons;
 };

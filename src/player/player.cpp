@@ -17,7 +17,8 @@ Player::Player(std::shared_ptr<TileMap> &tilemap,
              std::move(frameAtributes),
              hitPoints,
              tilemap,
-             gameObjects),
+             gameObjects,
+             attackDamage),
       m_spellsTexture(spellsTexture),
       m_attackDamage(attackDamage)
 {
@@ -143,8 +144,7 @@ void Player::addLevelBarWidth(int width)
     m_levelBarWidth += width;
     if (m_levelBarWidth >= 520)
     {
-        m_levelBarWidth = 0;
-        ++m_level;
+        levelUp();
     }
 }
 

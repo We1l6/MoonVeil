@@ -96,6 +96,8 @@ add_executable(moonVeilSrc
 
   "spawner/spawner.h"
   "spawner/spawner.cpp"
+  "scene/congratulationsScene/congratulationsScene.h"
+  "scene/congratulationsScene/congratulationsScene.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)

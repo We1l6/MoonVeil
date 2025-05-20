@@ -26,11 +26,8 @@ void HeroSelectionScene::Render()
 
     DrawText(heroSelections[m_currentHeroIndex].lore, 128 * scaler + 100, 80,
              16, WHITE);
-    DrawText("Attack: 20\nHealth: 100\nSpeed: 155\n\nFirst Spell -> Acid "
-             "Bottle\n-damage: 30\n-lifetime: 5\n-cooldown: 10\n\nSecond Spell "
-             "-> Dash\n-range: 75\n-cooldown: 5\n\nThird Spell -> Poisonous "
-             "Gas\n-damage: 10\n-lifetime: 3\n-cooldown: 10\n",
-             80, 128 * scaler + 250, 16, WHITE);
+    DrawText(heroSelections[m_currentHeroIndex].abilities, 80,
+             128 * scaler + 250, 16, WHITE);
 }
 
 

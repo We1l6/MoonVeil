@@ -13,7 +13,8 @@ class FireBall final : public Ability
     FireBall(Vector2 position,
              Vector2 velocity,
              bool isFacilingLeft,
-             std::string textureSrc);
+             std::string textureSrc,
+             float fireBallDamage);
     ~FireBall() = default;
 
     void Update(float deltaTime) override;

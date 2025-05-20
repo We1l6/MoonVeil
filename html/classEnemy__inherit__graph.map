@@ -1,0 +1,11 @@
+<map id="Enemy" name="Enemy">
+<area shape="rect" id="node1" title=" " alt="" coords="347,755,464,920"/>
+<area shape="rect" id="node4" href="$classBloodClaws.html" title=" " alt="" coords="5,975,125,1067"/>
+<area shape="rect" id="node5" href="$classEyeGore.html" title=" " alt="" coords="149,968,248,1075"/>
+<area shape="rect" id="node6" href="$classFloralWretch.html" title=" " alt="" coords="272,975,395,1067"/>
+<area shape="rect" id="node7" href="$classMaidenMaw.html" title=" " alt="" coords="419,975,539,1067"/>
+<area shape="rect" id="node8" href="$classSlug.html" title=" " alt="" coords="563,975,639,1067"/>
+<area shape="rect" id="node9" href="$classSteelBound.html" title=" " alt="" coords="664,975,781,1067"/>
+<area shape="rect" id="node2" href="$classEntity.html" title=" " alt="" coords="285,380,525,707"/>
+<area shape="rect" id="node3" href="$classGameObject.html" title=" " alt="" coords="324,5,487,332"/>
+</map>

@@ -8,11 +8,13 @@ Entity::Entity(ObjectAttributes &&objectAttributes,
                FrameAtributes &&frameAtributes,
                float hitPoints,
                std::shared_ptr<TileMap> &tileMap,
-               std::vector<std::shared_ptr<Ability>> &gameObjects)
+               std::vector<std::shared_ptr<Ability>> &gameObjects,
+               float attackDamage)
     : GameObject(std::move(objectAttributes), std::move(frameAtributes)),
       m_hitPoints(hitPoints),
       m_tilemap(tileMap),
-      m_gameObjects(gameObjects)
+      m_gameObjects(gameObjects),
+      m_attackDamage(attackDamage)
 {
 }
 

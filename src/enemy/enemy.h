@@ -22,8 +22,8 @@ class Enemy : public Entity
           FrameAtributes &&frameAtributes,
           float hitPoints,
           std::vector<std::shared_ptr<Ability>> &gameObjects,
-          std::shared_ptr<Player> &player);
-
+          std::shared_ptr<Player> &player,
+          float attackDamage);
     ~Enemy() = default;
     void TakeDamage(float amount, bool isEnemyFacilingLeft) override;
     void Update(float deltaTime);

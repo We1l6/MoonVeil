@@ -60,7 +60,8 @@ void CollisionSystem::CheckCollisions(
                             (typeA == ObjectType::Player) ? entityA : entityB;
                         auto enemy =
                             (typeA == ObjectType::Enemy) ? entityA : entityB;
-                        player->TakeDamage(5, enemy->GetIsFacingLeft());
+                        player->TakeDamage(enemy->GetAttackDamage(),
+                                           enemy->GetIsFacingLeft());
                     }
                     PushEntitiesApart(entityA, entityB);
                 }

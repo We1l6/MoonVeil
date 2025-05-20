@@ -4,7 +4,9 @@
 FloralWretch::FloralWretch(std::shared_ptr<TileMap> &tilemap,
                            Vector2 position,
                            std::vector<std::shared_ptr<Ability>> &gameObjects,
-                           std::shared_ptr<Player> &player)
+                           std::shared_ptr<Player> &player,
+                           float attackDamage,
+                           float initialHealth)
     : Enemy(
           tilemap,
           ObjectAttributes{
@@ -64,8 +66,9 @@ FloralWretch::FloralWretch(std::shared_ptr<TileMap> &tilemap,
 
               .velocity = {155.0f, 0.0f}},
           FrameAtributes{.currentFrame = 0, .frameCounter = 0, .frameSpeed = 3},
-          FloralWretchConstants::INITIAL_HEALTH,
+          initialHealth,
           gameObjects,
-          player)
+          player,
+          attackDamage)
 {
 }

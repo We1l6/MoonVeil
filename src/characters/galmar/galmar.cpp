@@ -81,7 +81,7 @@ void Galmar::firstSpell()
 
     m_gameObjects.emplace_back(std::make_shared<FireBall>(
         fireballPosition, fireballVelocity, GetIsFacingLeft(),
-        "resources/FireBall.png"));
+        "resources/FireBall.png", m_fireBallDamage));
 }
 void Galmar::secondSpell()
 {
@@ -112,4 +112,11 @@ void Galmar::thirdSpell()
 
     m_gameObjects.emplace_back(
         std::make_shared<FireStorm>(fireballPosition, fireballVelocity));
+}
+
+
+void Galmar::levelUp()
+{
+    Player::levelUp();
+    m_fireBallDamage += m_fireBallDamage * 0.05f;
 }
