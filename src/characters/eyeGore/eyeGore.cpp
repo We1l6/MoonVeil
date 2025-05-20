@@ -1,10 +1,11 @@
 #include "eyeGore.h"
 
-
-EyeGore::EyeGore(TileMap &tilemap,
+EyeGore::EyeGore(std::shared_ptr<TileMap> &tilemap,
                  Vector2 position,
                  std::vector<std::shared_ptr<Ability>> &gameObjects,
-                 std::shared_ptr<Player> &player)
+                 std::shared_ptr<Player> &player,
+                 float attackDamage,
+                 float initialHealth)
     : Enemy(
           tilemap,
           ObjectAttributes{
@@ -62,10 +63,26 @@ EyeGore::EyeGore(TileMap &tilemap,
                           EyeGoreConstants::TEXTURE_RUN_PATH, 0, 5),
                   },
 
-              .velocity = {0.0f, 0.0f}},
+              .velocity = {100.0f, 0.0f}},
           FrameAtributes{.currentFrame = 0, .frameCounter = 0, .frameSpeed = 3},
-          EyeGoreConstants::INITIAL_HEALTH,
+          initialHealth,
           gameObjects,
-          player)
+          player,
+          attackDamage)
 {
+    m_firstSpell = Spell{5.0f, 0.0f, false, [this]() { this->firstSpell(); }};
+}
+
+void EyeGore::firstSpell()
+{
+    constexpr Vector2 FIREBALL_OFFSET{0.0f, 0.0f};
+    constexpr float VELOCITY_BOOST = 100.0f;
+    const Vector2 fireballPosition = {GetPosition().x + FIREBALL_OFFSET.x,
+                                      GetPosition().y + FIREBALL_OFFSET.y};
+    const float direction = GetIsFacingLeft() ? -1.0f : 1.0f;
+    const Vector2 fireballVelocity = {
+        direction * (m_objectAttributes.velocity.x + VELOCITY_BOOST), 0.0f};
+
+    m_gameObjects.emplace_back(std::make_shared<FireBallMonster>(
+        fireballPosition, fireballVelocity, GetIsFacingLeft()));
 }

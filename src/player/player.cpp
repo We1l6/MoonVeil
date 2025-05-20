@@ -1,20 +1,20 @@
 #include "player.h"
-#include "raylib.h"
-#include "raymath.h"
-#include <cmath>
-#include <iostream>
 
-#include "../settings/settings.h"
-Player::Player(TileMap &tilemap,
+Player::Player(std::shared_ptr<TileMap> &tilemap,
                ObjectAttributes &&objectAttributes,
                FrameAtributes &&frameAtributes,
                float hitPoints,
-               std::vector<std::shared_ptr<Ability>> &gameObjects)
+               std::vector<std::shared_ptr<Ability>> &gameObjects,
+               Texture2D spellsTexture,
+               float attackDamage)
     : Entity(std::move(objectAttributes),
              std::move(frameAtributes),
              hitPoints,
              tilemap,
-             gameObjects)
+             gameObjects,
+             attackDamage),
+      m_spellsTexture(spellsTexture),
+      m_attackDamage(attackDamage)
 {
 }
 
@@ -39,7 +39,10 @@ void Player::HandleInput(float deltaTime)
     }
     if (IsKeyPressed(SettingsGlobal::g_controls.thirdSpell))
     {
-        m_thirdSpell.Cast();
+        if (m_remainingAbilitiesByArea > 0 && m_thirdSpell.Cast())
+        {
+            --m_remainingAbilitiesByArea;
+        }
     }
 
 
@@ -92,34 +95,7 @@ void Player::Update(float deltaTime)
 }
 
 
-void Player::Draw(const Camera2D &camera) const
-{
-    Entity::Draw();
-
-    Vector2 playerCenter = {
-        m_objectAttributes.hitbox.x + m_objectAttributes.hitbox.width / 2 + 20,
-        m_objectAttributes.hitbox.y + m_objectAttributes.hitbox.height / 2};
-
-
-    Vector2 mouseScreenPos = GetMousePosition();
-    Vector2 mouseWorldPos;
-    mouseWorldPos.x =
-        (mouseScreenPos.x - camera.offset.x) / camera.zoom + camera.target.x;
-    mouseWorldPos.y =
-        (mouseScreenPos.y - camera.offset.y) / camera.zoom + camera.target.y;
-
-    Vector2 dirToMouse = Vector2Subtract(mouseWorldPos, playerCenter);
-    float distance = Vector2Length(dirToMouse);
-
-    if (distance > 0.0f)
-    {
-        Vector2 normalizedDir = Vector2Normalize(dirToMouse);
-        Vector2 targetPos =
-            Vector2Add(playerCenter, Vector2Scale(normalizedDir, 100.0f));
-
-        DrawCircleV(targetPos, 10, RED);
-    }
-}
+void Player::Draw(const Camera2D &camera) const { Entity::Draw(); }
 
 void Player::Attack()
 {
@@ -153,6 +129,26 @@ void Player::Attack()
 
     const Vector2 AttackVelocity = {0.0f, 0.0f};
 
-    m_gameObjects.emplace_back(std::make_unique<DefaultAttack>(
-        AttackPosition, AttackVelocity, GetIsFacingLeft()));
+    m_gameObjects.emplace_back(std::make_shared<DefaultAttack>(
+        AttackPosition, AttackVelocity, GetIsFacingLeft(), m_attackDamage));
+}
+
+void Player::addLevelBarWidth(int width)
+{
+    m_levelBarWidth += width;
+    if (m_levelBarWidth >= 520)
+    {
+        levelUp();
+    }
+}
+
+void Player::TakeDamage(float amount, bool isEnemyFacilingLeft)
+{
+    Entity::TakeDamage(amount, isEnemyFacilingLeft);
+
+
+    if (m_hitPoints <= 0.0f)
+    {
+        m_markedForDeletion = true;
+    }
 }

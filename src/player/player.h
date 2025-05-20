@@ -1,43 +1,19 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "../abilities/abilities.h"
 #include "../abilities/defaultAttack/defaultAttack.h"
 #include "../entity/entity.h"
 #include "../resourceManager/resourceManager.h"
 #include "../tileMap/tileMap.h"
+#include "raylib.h"
+#include "raymath.h"
+#include <cmath>
+#include <iostream>
+#include <memory>
 #include <vector>
 
-
-struct Spell
-{
-    float cooldown;
-    float currentCooldown = 0.0f;
-    bool isActive = false;
-    std::function<void()> action;
-
-    void Update(float deltaTime)
-    {
-        if (isActive)
-        {
-            currentCooldown -= deltaTime;
-            if (currentCooldown <= 0.0f)
-            {
-                isActive = false;
-                currentCooldown = 0.0f;
-            }
-        }
-    }
-
-    void Cast()
-    {
-        if (!isActive && action)
-        {
-            action();
-            currentCooldown = cooldown;
-            isActive = true;
-        }
-    }
-};
+#include "../settings/settings.h"
 
 class Player : public Entity
 {
@@ -45,6 +21,8 @@ class Player : public Entity
     Spell m_firstSpell;
     Spell m_secondSpell;
     Spell m_thirdSpell;
+
+    float m_attackDamage;
 
     virtual void firstSpell() = 0;
     virtual void secondSpell() = 0;
@@ -56,18 +34,44 @@ class Player : public Entity
     void Attack();
     int m_currentAttackFrame = 0;
     bool m_isAttackAnimationPlaying = false;
+    void TakeDamage(float amount, bool isEnemyFacilingLeft) override;
+
 
   public:
-    Player(TileMap &tilemap,
+    Player(std::shared_ptr<TileMap> &tilemap,
            ObjectAttributes &&objectAttributes,
            FrameAtributes &&frameAtributes,
            float hitPoints,
-           std::vector<std::shared_ptr<Ability>> &gameObjects);
+           std::vector<std::shared_ptr<Ability>> &gameObjects,
+           Texture2D spellsTexture,
+           float attackDamage);
 
+    Texture2D m_spellsTexture;
     virtual ~Player() = default;
     virtual void HandleInput(float deltaTime);
     void Update(float deltaTime) override;
     void Draw(const Camera2D &camera) const;
+    int m_remainingAbilitiesByArea = 3;
+    int m_level = 1;
+    int m_levelBarWidth = 0;
+    float getFirstSpellСurrCooldown() const
+    {
+        return m_firstSpell.currentCooldown;
+    }
+    float getSecondSpellСurrCooldown() const
+    {
+        return m_secondSpell.currentCooldown;
+    }
+    float getThirdSpellСurrCooldown() const
+    {
+        return m_thirdSpell.currentCooldown;
+    }
+    void addLevelBarWidth(int width);
+    virtual void levelUp()
+    {
+        ++m_level;
+        m_levelBarWidth = 0;
+    }
 };
 
 

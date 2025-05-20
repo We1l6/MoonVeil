@@ -3,7 +3,8 @@
 
 
 #include "../../button/button.h"
-#include "../../game/game.h"
+
+class Game;
 #include "../gameScene/gameScene.h"
 #include "../scene.h"
 #include "raylib.h"

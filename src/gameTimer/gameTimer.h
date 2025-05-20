@@ -1,3 +1,8 @@
+
+#pragma once
+#ifndef GAMETIMER_H
+#define GAMETIMER_H
+
 #include <algorithm>
 #include <chrono>
 #include <functional>
@@ -31,3 +36,5 @@ class GameTimer
     bool m_running;
     std::vector<TimedEvent> m_events;
 };
+
+#endif // GAMETIMER_H

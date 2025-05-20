@@ -2,6 +2,7 @@
 #define SLUG_H
 
 
+#include "../../abilities/fireBallMonster/fireBallMonster.h"
 #include "../../enemy/enemy.h"
 #include "../../tileMap/tileMap.h"
 
@@ -16,11 +17,16 @@ constexpr float INITIAL_HEALTH = 100;
 
 class Slug final : public Enemy
 {
+  private:
+    void useAbilityOnDeath() override;
+
   public:
-    Slug(TileMap &tilemap,
+    Slug(std::shared_ptr<TileMap> &tilemap,
          Vector2 position,
          std::vector<std::shared_ptr<Ability>> &gameObjects,
-         std::shared_ptr<Player> &player);
+         std::shared_ptr<Player> &player,
+         float attackDamage,
+         float initialHealth);
     ~Slug() = default;
 };
 

@@ -24,8 +24,6 @@ add_executable(moonVeilSrc
   "scene/scene.h"
   "scene/menuScene/menuScene.h"
   "scene/menuScene/menuScene.cpp"
-  "scene/pauseScene/pauseScene.h"
-  "scene/pauseScene/pauseScene.cpp"
   "scene/gameScene/gameScene.h"
   "scene/gameScene/gameScene.cpp"
   "resourceManager/resourceManager.h"
@@ -34,6 +32,8 @@ add_executable(moonVeilSrc
   "entity/entity.cpp"
   "characters/david/david.h"
   "characters/david/david.cpp"
+  "characters/galmar/galmar.cpp"
+  "characters/galmar/galmar.h"
   "abilities/abilities.h"
   "abilities/abilities.cpp"
   "abilities/abilities.h"
@@ -78,10 +78,24 @@ add_executable(moonVeilSrc
   "scene/deathScene/deathScene.cpp"
   "scene/deathScene/deathScene.h"
 
+  "scene/heroSelectionScene/heroSelectionScene.cpp"
+  "scene/heroSelectionScene/heroSelectionScene.h"
+  "scene/mapSelectionScene/mapSelectionScene.h"
+  "scene/mapSelectionScene/mapSelectionScene.cpp"
+
   "../external/simpleini/SimpleIni.h"
 
   "settings/settings.h"
   "settings/settings.cpp"
+  "abilities/fireBallMonster/fireBallMonster.h"
+  "abilities/fireBallMonster/fireBallMonster.cpp"
+  "abilities/fireStorm/fireStorm.cpp"
+  "abilities/fireStorm/fireStorm.h"
+
+  "spawner/spawner.h"
+  "spawner/spawner.cpp"
+  "scene/congratulationsScene/congratulationsScene.h"
+  "scene/congratulationsScene/congratulationsScene.cpp"
 )
 
 target_link_libraries(moonVeilSrc PRIVATE spdlog::spdlog)

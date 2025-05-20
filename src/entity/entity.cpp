@@ -7,12 +7,14 @@
 Entity::Entity(ObjectAttributes &&objectAttributes,
                FrameAtributes &&frameAtributes,
                float hitPoints,
-               TileMap &tileMap,
-               std::vector<std::shared_ptr<Ability>> &gameObjects)
+               std::shared_ptr<TileMap> &tileMap,
+               std::vector<std::shared_ptr<Ability>> &gameObjects,
+               float attackDamage)
     : GameObject(std::move(objectAttributes), std::move(frameAtributes)),
       m_hitPoints(hitPoints),
       m_tilemap(tileMap),
-      m_gameObjects(gameObjects)
+      m_gameObjects(gameObjects),
+      m_attackDamage(attackDamage)
 {
 }
 
@@ -140,21 +142,6 @@ void Entity::Draw() const
         DrawTexturePro(currentTexture, sourceRec, destRec, origin, 0.0f,
                        RAYWHITE);
     }
-
-    const int barWidth = 109;
-    const int barHeight = 5;
-    const int x = m_objectAttributes.hitbox.x;
-    const int y = m_objectAttributes.hitbox.y + 148;
-
-    float hpPercent = m_hitPoints / 100.0f;
-    int currentWidth = static_cast<int>(barWidth * hpPercent);
-
-    DrawRectangle(x + 16, y + 3, barWidth, barHeight, GRAY);
-    DrawRectangle(x + 16, y + 3, currentWidth, barHeight, RED);
-    DrawRectangleLines(x + 16, y + 3, barWidth, barHeight, BLACK);
-
-    DrawTexture(ResourceManager::GetTexture("resources/HPBAR.png"), x, y - 54,
-                WHITE);
 }
 
 
@@ -168,11 +155,6 @@ void Entity::TakeDamage(float amount, bool isEnemyFacilingLeft)
     m_hitPoints = std::max(m_hitPoints, 0.0f);
     hitData.isHit = true;
     hitData.hitTimer = hitData.hitEffectDuration;
-
-    if (m_hitPoints == 0.0f)
-    {
-        MarkForDeletion();
-    }
 
     if (isEnemyFacilingLeft)
     {
@@ -203,7 +185,7 @@ float Entity::GetHitEffectDuration() const { return hitData.hitEffectDuration; }
 
 bool Entity::CanMoveTo(float x, float y) const
 {
-    return !m_tilemap.CheckCollisionWithObjects(
+    return !m_tilemap->CheckCollisionWithObjects(
         "BarrierLayer",
         {x + (m_objectAttributes.hitbox.width / 4.0f), y,
          m_objectAttributes.hitbox.width, m_objectAttributes.hitbox.height});

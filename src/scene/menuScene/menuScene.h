@@ -8,7 +8,9 @@
 #include "../../button/button.h"
 #include "../../game/game.h"
 #include "../gameScene/gameScene.h"
+#include "../mapSelectionScene/mapSelectionScene.h"
 #include "../scene.h"
+#include "../settingsScene/settingsScene.h"
 #include "raylib.h"
 
 class MenuScene final : public Scene
@@ -16,6 +18,11 @@ class MenuScene final : public Scene
   public:
     explicit MenuScene(Game *game) : Scene(game)
     {
+        InitAudioDevice();
+        music = LoadMusicStream("resources/sound/Prologue.mp3");
+        SetMusicVolume(music, SettingsGlobal::g_volume / 100.0f);
+
+        PlayMusicStream(music);
         float buttonWidth = 200;
         float buttonHeight = 40;
         float startY = GetScreenHeight() / 2 - buttonHeight;
@@ -40,11 +47,17 @@ class MenuScene final : public Scene
                                WHITE);
         SettingsGlobal::LoadInputSettings();
     }
+    ~MenuScene()
+    {
+        UnloadMusicStream(music);
+        CloseAudioDevice();
+    }
     void HandleInput(float deltaTime) override;
     void Update(float deltaTime) override;
     void Render() override;
 
   private:
+    Music music;
     Texture2D m_bgTexture = LoadTexture("resources/MenuScene.png");
     std::vector<Button> m_buttons;
 };
