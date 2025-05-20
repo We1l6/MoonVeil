@@ -18,10 +18,8 @@ void CameraController::Update(const float deltaTime,
     constexpr float SMOOTHNESS = 5.0f;
     constexpr Vector2 TARGET_OFFSET{70.0f, 64.0f};
 
-    camera.zoom =
-        std::clamp(camera.zoom + (GetMouseWheelMove() * ZOOM_SENSITIVITY),
-                   0.5f,  // min zoom
-                   3.0f); // max zoom
+    camera.zoom = std::clamp(
+        camera.zoom + (GetMouseWheelMove() * ZOOM_SENSITIVITY), 0.5f, 3.0f);
 
     const Vector2 targetWithOffset = targetPosition + TARGET_OFFSET;
     camera.target = {

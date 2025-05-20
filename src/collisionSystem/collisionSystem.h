@@ -10,6 +10,14 @@
 
 class CollisionSystem
 {
+  private:
+    static void
+    HandleEntityEntityCollision(const std::shared_ptr<Entity> &entityA,
+                                const std::shared_ptr<Entity> &entityB);
+    static void
+    HandleAbilityEntityCollision(const std::shared_ptr<Entity> &entity,
+                                 const std::shared_ptr<Ability> &object);
+
   public:
     static void
     CheckCollisions(const std::vector<std::shared_ptr<Entity>> &entities,

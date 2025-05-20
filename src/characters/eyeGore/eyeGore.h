@@ -2,6 +2,7 @@
 #define EYEGORE_H
 
 
+#include "../../abilities/fireBallMonster/fireBallMonster.h"
 #include "../../enemy/enemy.h"
 #include "../../tileMap/tileMap.h"
 

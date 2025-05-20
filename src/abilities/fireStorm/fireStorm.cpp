@@ -1,12 +1,11 @@
 #include "fireStorm.h"
-#include "raylib.h"
-#include <iostream>
+
 
 FireStorm::FireStorm(Vector2 position, Vector2 velocity)
     : Ability(AbilityAttribute{.name = "FireStorm",
                                .abilityType = AbilityType::DestroyOnTimeout,
                                .cooldown = FireStormConstants::COOLDOWN,
-                               .damage = 15.0f,
+                               .damage = FireStormConstants::DAMAGE,
                                .currentCooldown = 0.0,
                                .isActive = true},
               ObjectAttributes{
@@ -24,10 +23,13 @@ FireStorm::FireStorm(Vector2 position, Vector2 velocity)
                                        "resources/FireStorm.png", 0, 4),
                                    ResourceManager::GetSubTexture(
                                        "resources/FireStorm.png", 0, 5)},
-                  .hitbox = {position.x - 128 / 2, position.y, 128, 128}},
-              FrameAtributes{
-                  .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
-              3.0f)
+                  .hitbox = {position.x - FireStormConstants::OFFSET_X,
+                             position.y, FireStormConstants::WIDTH,
+                             FireStormConstants::HEIGHT}},
+              FrameAtributes{.currentFrame = 0,
+                             .frameCounter = 0,
+                             .frameSpeed = FireStormConstants::FRAME_SPEED},
+              FireStormConstants::DURATION)
 {
 }
 

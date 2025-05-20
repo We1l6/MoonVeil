@@ -1,7 +1,5 @@
 #include "gameObject.h"
 
-#include "raylib.h"
-#include <utility>
 
 GameObject::GameObject(ObjectAttributes objectAttributes,
                        FrameAtributes frameAtributes)

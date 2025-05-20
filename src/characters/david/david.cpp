@@ -1,5 +1,4 @@
 #include "david.h"
-#include <iterator>
 
 
 David::David(std::shared_ptr<TileMap> &tilemap,

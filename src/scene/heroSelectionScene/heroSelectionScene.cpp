@@ -1,6 +1,5 @@
 #include "heroSelectionScene.h"
-#include "../mapSelectionScene/mapSelectionScene.h"
-#include "raylib.h"
+
 
 void HeroSelectionScene::Render()
 {

@@ -24,8 +24,6 @@ add_executable(moonVeilSrc
   "scene/scene.h"
   "scene/menuScene/menuScene.h"
   "scene/menuScene/menuScene.cpp"
-  "scene/pauseScene/pauseScene.h"
-  "scene/pauseScene/pauseScene.cpp"
   "scene/gameScene/gameScene.h"
   "scene/gameScene/gameScene.cpp"
   "resourceManager/resourceManager.h"

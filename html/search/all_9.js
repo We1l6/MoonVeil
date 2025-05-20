@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['loggermanager_28',['LoggerManager',['../classLoggerManager.html',1,'']]],
-  ['loggerwindow_29',['LoggerWindow',['../classLoggerWindow.html',1,'']]]
+  ['loggermanager_29',['LoggerManager',['../classLoggerManager.html',1,'']]],
+  ['loggerwindow_30',['LoggerWindow',['../classLoggerWindow.html',1,'']]]
 ];

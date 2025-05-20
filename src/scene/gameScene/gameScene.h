@@ -16,6 +16,13 @@
 #include "raylib.h"
 #include <execution>
 #include <memory>
+
+#include "../../characters/galmar/galmar.h"
+
+#include "../../enemy/enemy.h"
+#include <filesystem>
+
+#include "../congratulationsScene/congratulationsScene.h"
 class GameScene final : public Scene
 {
   private:

@@ -5,11 +5,11 @@
 
 #include "../../button/button.h"
 #include "../../game/game.h"
+#include "../heroSelectionScene/heroSelectionScene.h"
 #include "../scene.h"
 #include "raylib.h"
 #include <string>
 #include <vector>
-
 class MapSelectionScene final : public Scene
 {
   public:

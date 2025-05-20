@@ -1,6 +1,5 @@
 #include "mapSelectionScene.h"
-#include "../heroSelectionScene/heroSelectionScene.h"
-#include "raylib.h"
+
 void MapSelectionScene::Render()
 {
     float scale = fmaxf((float)GetScreenWidth() / m_bgTexture.width,

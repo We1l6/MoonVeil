@@ -7,8 +7,13 @@
 #include "../resourceManager/resourceManager.h"
 #include "../tileMap/tileMap.h"
 #include "raylib.h"
+#include "raymath.h"
+#include <cmath>
+#include <iostream>
+#include <memory>
 #include <vector>
 
+#include "../settings/settings.h"
 
 class Player : public Entity
 {

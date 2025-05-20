@@ -1,7 +1,5 @@
 #include "menuScene.h"
-#include "../mapSelectionScene/mapSelectionScene.h"
-#include "../settingsScene/settingsScene.h"
-#include "raylib.h"
+
 
 void MenuScene::HandleInput(float deltaTime)
 {

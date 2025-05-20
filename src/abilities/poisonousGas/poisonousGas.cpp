@@ -1,13 +1,11 @@
 #include "poisonousGas.h"
-#include "raylib.h"
-#include <iostream>
 
 PoisonousGas::PoisonousGas(Vector2 position, Vector2 velocity)
     : Ability(
           AbilityAttribute{.name = "PoisonousGas",
                            .abilityType = AbilityType::DestroyOnTimeout,
                            .cooldown = PoisonousGasConstants::COOLDOWN,
-                           .damage = PoisonousGasConstants::DAMAGE,
+                           .damage = PoisonousGasConstants::DAMAGE_PER_SECOND,
                            .currentCooldown = 0.0,
                            .isActive = true},
           ObjectAttributes{
@@ -20,10 +18,13 @@ PoisonousGas::PoisonousGas(Vector2 position, Vector2 velocity)
                    ResourceManager::GetSubTexture("resources/Acid.png", 0, 3),
                    ResourceManager::GetSubTexture("resources/Acid.png", 0, 4),
                    ResourceManager::GetSubTexture("resources/Acid.png", 0, 5)},
-              .hitbox = {position.x - 128 / 2, position.y, 128, 128}},
-          FrameAtributes{
-              .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
-          3.0f)
+              .hitbox = {position.x - PoisonousGasConstants::OFFSET_X,
+                         position.y, PoisonousGasConstants::WIDTH,
+                         PoisonousGasConstants::HEIGHT}},
+          FrameAtributes{.currentFrame = 0,
+                         .frameCounter = 0,
+                         .frameSpeed = PoisonousGasConstants::FRAME_SPEED},
+          PoisonousGasConstants::DURATION)
 {
 }
 

@@ -2,16 +2,15 @@
 #define DAVID_H
 
 
+#include "../../abilities/fireBall/fireBall.h"
+#include "../../abilities/poisonousGas/poisonousGas.h"
 #include "../../player/player.h"
 #include <iostream>
+#include <iterator>
 #include <memory>
 #include <string_view>
 #include <vector>
 
-#include "../../abilities/fireBall/fireBall.h"
-#include "../../abilities/poisonousGas/poisonousGas.h"
-
-#include <iterator>
 
 namespace DavidConstants
 {

@@ -1,6 +1,5 @@
 #include "galmar.h"
-#include "../../abilities/fireStorm/fireStorm.h"
-#include <iterator>
+
 
 Galmar::Galmar(std::shared_ptr<TileMap> &tilemap,
                std::vector<std::shared_ptr<Ability>> &gameObjects)

@@ -1,5 +1,4 @@
 #include "defaultAttack.h"
-#include "raylib.h"
 
 
 DefaultAttack::DefaultAttack(Vector2 position,
@@ -14,19 +13,21 @@ DefaultAttack::DefaultAttack(Vector2 position,
                            .currentCooldown = 0.0,
 
                            .isActive = true},
-          ObjectAttributes{.objectType = ObjectType::PlayerAttack,
-                           .velocity = velocity,
-                           .isFacingLeft = isFacingLeft,
-                           .moveTextures = {ResourceManager::GetSubTexture(
-                                                "resources/demon4.png", 0, 0),
-                                            ResourceManager::GetSubTexture(
-                                                "resources/demon4.png", 0, 1),
-                                            ResourceManager::GetSubTexture(
-                                                "resources/demon4.png", 0, 2)},
-                           .hitbox = {position.x, position.y, 128, 128}},
-          FrameAtributes{
-              .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
-          0.2)
+          ObjectAttributes{
+              .objectType = ObjectType::PlayerAttack,
+              .velocity = velocity,
+              .isFacingLeft = isFacingLeft,
+              .moveTextures =
+                  {ResourceManager::GetSubTexture("resources/demon4.png", 0, 0),
+                   ResourceManager::GetSubTexture("resources/demon4.png", 0, 1),
+                   ResourceManager::GetSubTexture(
+                       "resources/demon4.png", 0, 2)},
+              .hitbox = {position.x, position.y, DefaultAttackConstants::WIDTH,
+                         DefaultAttackConstants::HEIGHT}},
+          FrameAtributes{.currentFrame = 0,
+                         .frameCounter = 0,
+                         .frameSpeed = DefaultAttackConstants::FRAME_SPEED},
+          DefaultAttackConstants::DURATION)
 
 {
 }

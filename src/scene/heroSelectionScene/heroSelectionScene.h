@@ -6,6 +6,7 @@
 
 #include "../../button/button.h"
 #include "../../game/game.h"
+#include "../mapSelectionScene/mapSelectionScene.h"
 #include "../scene.h"
 #include "raylib.h"
 

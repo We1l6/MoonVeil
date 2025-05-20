@@ -1,5 +1,4 @@
 #include "slug.h"
-#include "../../abilities/fireBallMonster/fireBallMonster.h"
 
 Slug::Slug(std::shared_ptr<TileMap> &tilemap,
            Vector2 position,

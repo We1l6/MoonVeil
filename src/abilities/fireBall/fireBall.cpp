@@ -1,5 +1,4 @@
 #include "fireBall.h"
-#include <iostream>
 
 FireBall::FireBall(Vector2 position,
                    Vector2 velocity,
@@ -9,7 +8,7 @@ FireBall::FireBall(Vector2 position,
     : Ability(
           AbilityAttribute{.abilityType = AbilityType::DestroyOnHit,
                            .name = "FireBall",
-                           .cooldown = 5,
+                           .cooldown = FireBallConstants::COOLDOWN,
                            .damage = fireBallDamage,
                            .currentCooldown = 0.0,
                            .isActive = true},
@@ -26,9 +25,10 @@ FireBall::FireBall(Vector2 position,
                                ResourceManager::GetSubTexture(
                                    textureSrc, 0, 5)},
           },
-          FrameAtributes{
-              .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
-          5.0f)
+          FrameAtributes{.currentFrame = 0,
+                         .frameCounter = 0,
+                         .frameSpeed = FireBallConstants::FRAME_SPEED},
+          FireBallConstants::DURATION)
 {
 }
 

@@ -1,9 +1,10 @@
 <map id="Scene" name="Scene">
-<area shape="rect" id="node1" title=" " alt="" coords="417,5,529,141"/>
-<area shape="rect" id="node2" href="$classDeathScene.html" title=" " alt="" coords="5,197,128,333"/>
-<area shape="rect" id="node3" href="$classGameScene.html" title=" " alt="" coords="152,204,275,325"/>
-<area shape="rect" id="node4" href="$classHeroSelectionScene.html" title=" " alt="" coords="299,204,461,325"/>
-<area shape="rect" id="node5" href="$classMapSelectionScene.html" title=" " alt="" coords="485,189,651,340"/>
-<area shape="rect" id="node6" href="$classMenuScene.html" title=" " alt="" coords="675,197,794,333"/>
-<area shape="rect" id="node7" href="$classSettingsScene.html" title=" " alt="" coords="818,204,945,325"/>
+<area shape="rect" id="node1" title=" " alt="" coords="527,5,639,141"/>
+<area shape="rect" id="node2" href="$classCongratulationsScene.html" title=" " alt="" coords="5,197,184,333"/>
+<area shape="rect" id="node3" href="$classDeathScene.html" title=" " alt="" coords="208,197,331,333"/>
+<area shape="rect" id="node4" href="$classGameScene.html" title=" " alt="" coords="355,204,477,325"/>
+<area shape="rect" id="node5" href="$classHeroSelectionScene.html" title=" " alt="" coords="502,204,663,325"/>
+<area shape="rect" id="node6" href="$classMapSelectionScene.html" title=" " alt="" coords="687,189,854,340"/>
+<area shape="rect" id="node7" href="$classMenuScene.html" title=" " alt="" coords="878,197,997,333"/>
+<area shape="rect" id="node8" href="$classSettingsScene.html" title=" " alt="" coords="1021,204,1147,325"/>
 </map>

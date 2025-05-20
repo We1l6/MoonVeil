@@ -6,7 +6,7 @@
 #include "raylib-tmx.h"
 #include "raylib.h"
 #include <cstring>
-
+#include <string>
 class TileMap
 {
   public:

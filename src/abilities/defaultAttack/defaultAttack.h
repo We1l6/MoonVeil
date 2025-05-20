@@ -9,8 +9,11 @@
 
 namespace DefaultAttackConstants
 {
-constexpr int DAMAGE = 10;
-constexpr double COOLDOWN = 1.0;
+constexpr float COOLDOWN = 0.5f;
+constexpr float WIDTH = 128.0f;
+constexpr float HEIGHT = 128.0f;
+constexpr float FRAME_SPEED = 2.0f;
+constexpr float DURATION = 0.2f;
 } // namespace DefaultAttackConstants
 
 

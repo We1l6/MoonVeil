@@ -3,8 +3,8 @@
 
 #include "../entity/entity.h"
 #include "../player/player.h"
+#include "raymath.h"
 #include <memory>
-
 
 class Enemy : public Entity
 {

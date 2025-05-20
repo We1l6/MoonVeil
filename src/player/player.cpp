@@ -1,11 +1,5 @@
 #include "player.h"
-#include "raylib.h"
-#include "raymath.h"
-#include <cmath>
-#include <iostream>
-#include <memory>
 
-#include "../settings/settings.h"
 Player::Player(std::shared_ptr<TileMap> &tilemap,
                ObjectAttributes &&objectAttributes,
                FrameAtributes &&frameAtributes,

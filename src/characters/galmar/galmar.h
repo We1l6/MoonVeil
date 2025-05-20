@@ -11,8 +11,8 @@
 #include "../../abilities/fireBall/fireBall.h"
 #include "../../abilities/poisonousGas/poisonousGas.h"
 
+#include "../../abilities/fireStorm/fireStorm.h"
 #include <iterator>
-
 
 namespace GalmarConstants
 {

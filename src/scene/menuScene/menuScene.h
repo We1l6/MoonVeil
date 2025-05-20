@@ -8,7 +8,9 @@
 #include "../../button/button.h"
 #include "../../game/game.h"
 #include "../gameScene/gameScene.h"
+#include "../mapSelectionScene/mapSelectionScene.h"
 #include "../scene.h"
+#include "../settingsScene/settingsScene.h"
 #include "raylib.h"
 
 class MenuScene final : public Scene
