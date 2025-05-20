@@ -47,7 +47,7 @@ void Spawner::SetupMap0()
     const float spawnOffset = 100.0f;
 
 
-    const float maxSpawnTime = 300.0f; // 300.0
+    const float maxSpawnTime = 300.0f;
 
     auto getRandomSpawnPosition = [mapWidth, mapHeight,
                                    spawnOffset]() -> Vector2
@@ -156,7 +156,7 @@ void Spawner::SetupMap1()
     const float spawnOffset = 100.0f;
 
 
-    const float maxSpawnTime = 10.0f;
+    const float maxSpawnTime = 300.0f;
 
     auto getRandomSpawnPosition = [mapWidth, mapHeight,
                                    spawnOffset]() -> Vector2

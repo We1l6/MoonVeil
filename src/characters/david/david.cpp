@@ -58,10 +58,10 @@ David::David(std::shared_ptr<TileMap> &tilemap,
                      ResourceManager::GetTexture("resources/demon1.png")},
              FrameAtributes{
                  .currentFrame = 0, .frameCounter = 0, .frameSpeed = 2.0f},
-             500,
+             100.0f,
              gameObjects,
              ResourceManager::GetTexture("resources/DavidSpells.png"),
-             125.0f)
+             25.0f)
 {
     m_firstSpell = Spell{10.0f, 0.0f, false, [this]() { this->firstSpell(); }};
     m_secondSpell = Spell{5.0f, 0.0f, false, [this]() { this->secondSpell(); }};
