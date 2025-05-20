@@ -18,20 +18,17 @@ void CongratulationsScene::Render()
         button.Draw();
     }
     const char *text = "CONGRATULATIONS";
-    int fontSize = 60;      // Размер шрифта
-    Color textColor = GOLD; // Цвет текста (можно изменить)
+    int fontSize = 60;
+    Color textColor = GOLD;
 
-    // Получаем размер текста
+
     Vector2 textSize = MeasureTextEx(GetFontDefault(), text, fontSize, 2);
 
-    // Вычисляем позицию для центрирования
-    Vector2 textPos = {
-        (GetScreenWidth() - textSize.x) * 0.5f,
-        (GetScreenHeight() * 0.33f) - textSize.y * 0.5f // 1/3 высоты экрана
-    };
 
-    DrawTextEx(GetFontDefault(), text, textPos, fontSize, 2,
-               textColor); // Основной текст
+    Vector2 textPos = {(GetScreenWidth() - textSize.x) * 0.5f,
+                       (GetScreenHeight() * 0.33f) - textSize.y * 0.5f};
+
+    DrawTextEx(GetFontDefault(), text, textPos, fontSize, 2, textColor);
 }
 void CongratulationsScene::Update(float deltaTime)
 {
