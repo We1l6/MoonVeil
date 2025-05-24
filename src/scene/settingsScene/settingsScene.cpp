@@ -5,6 +5,24 @@
 
 void SettingsScene::HandleInput(float deltaTime) {}
 
+bool SettingsScene::IsKeyUsedElsewhere(int key, int *currentKey)
+{
+    if (key == KEY_NULL)
+        return false;
+
+    const auto &c = SettingsGlobal::g_controls;
+    const int *allKeys[] = {&c.moveLeft, &c.moveRight, &c.moveUp,
+                            &c.moveDown, &c.dash,      &c.thirdSpell};
+
+    for (const int *k : allKeys)
+    {
+        if (k == currentKey)
+            continue;
+        if (*k == key)
+            return true;
+    }
+    return false;
+}
 
 void SettingsScene::Render()
 {
@@ -15,8 +33,10 @@ void SettingsScene::Render()
         (GetScreenHeight() - (m_backgroundTexture.height * scale)) * 0.5f};
     DrawTextureEx(m_backgroundTexture, backgroundPos, 0.0f, scale, WHITE);
 
+
     DrawText("Settings", Settings::START_X, Settings::START_Y,
              Settings::TITLE_FONT_SIZE, WHITE);
+
 
     Rectangle sliderBounds = {Settings::START_X, Settings::SLIDER_Y,
                               Settings::SLIDER_WIDTH, Settings::SLIDER_HEIGHT};
@@ -27,6 +47,7 @@ void SettingsScene::Render()
     DrawText(volumeText, sliderBounds.x,
              sliderBounds.y - Settings::SLIDER_HEIGHT,
              Settings::CONTROL_FONT_SIZE, WHITE);
+
 
     float controlsY = Settings::CONTROLS_START_Y;
     DrawText("Controls:", Settings::START_X, controlsY,
@@ -52,7 +73,14 @@ void SettingsScene::Render()
             }
             else if (name != nullptr)
             {
-                strcpy(keyName, name);
+                if (IsKeyUsedElsewhere(key, &key))
+                {
+                    snprintf(keyName, sizeof(keyName), "[USED] %s", name);
+                }
+                else
+                {
+                    strcpy(keyName, name);
+                }
             }
             else
             {
@@ -86,9 +114,37 @@ void SettingsScene::Render()
     Rectangle backButton = {Settings::START_X + buttonWidth + spacing, buttonY,
                             buttonWidth, buttonHeight};
 
+    bool hasDuplicates = false;
+    const auto &c = SettingsGlobal::g_controls;
+    int keys[] = {c.moveLeft, c.moveRight, c.moveUp,
+                  c.moveDown, c.dash,      c.thirdSpell};
+
+    for (size_t i = 0; i < sizeof(keys) / sizeof(keys[0]); i++)
+    {
+        for (size_t j = i + 1; j < sizeof(keys) / sizeof(keys[0]); j++)
+        {
+            if (keys[i] != KEY_NULL && keys[i] == keys[j])
+            {
+                hasDuplicates = true;
+                break;
+            }
+        }
+        if (hasDuplicates)
+            break;
+    }
+
     if (GuiButton(saveButton, "Save"))
     {
-        SettingsGlobal::SaveInputSettings();
+        if (!hasDuplicates)
+        {
+            SettingsGlobal::SaveInputSettings();
+        }
+    }
+
+    if (hasDuplicates)
+    {
+        DrawText("Error: Duplicate keys detected!", Settings::START_X,
+                 buttonY - 30, 20, RED);
     }
 
     if (GuiButton(backButton, "Back"))
@@ -96,7 +152,6 @@ void SettingsScene::Render()
         m_game->ChangeScene(new MenuScene(m_game));
     }
 }
-
 
 void SettingsScene::Update(float deltaTime)
 {
@@ -106,8 +161,11 @@ void SettingsScene::Update(float deltaTime)
         {
             if (IsKeyPressed(key))
             {
-                *currentlyChangingKey = key;
-                currentlyChangingKey = nullptr;
+                if (!IsKeyUsedElsewhere(key, currentlyChangingKey))
+                {
+                    *currentlyChangingKey = key;
+                    currentlyChangingKey = nullptr;
+                }
                 break;
             }
         }

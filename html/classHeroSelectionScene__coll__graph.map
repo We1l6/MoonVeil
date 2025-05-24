@@ -1,5 +1,0 @@
-<map id="HeroSelectionScene" name="HeroSelectionScene">
-<area shape="rect" id="node1" title=" " alt="" coords="5,375,167,496"/>
-<area shape="rect" id="node2" href="$classScene.html" title=" " alt="" coords="30,189,142,325"/>
-<area shape="rect" id="node3" href="$classGame.html" title=" " alt="" coords="24,5,148,127"/>
-</map>

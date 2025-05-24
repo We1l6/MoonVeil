@@ -1,6 +1,0 @@
-<map id="Slug" name="Slug">
-<area shape="rect" id="node1" title=" " alt="" coords="87,968,163,1060"/>
-<area shape="rect" id="node2" href="$classEnemy.html" title=" " alt="" coords="67,755,184,920"/>
-<area shape="rect" id="node3" href="$classEntity.html" title=" " alt="" coords="5,380,245,707"/>
-<area shape="rect" id="node4" href="$classGameObject.html" title=" " alt="" coords="44,5,207,332"/>
-</map>

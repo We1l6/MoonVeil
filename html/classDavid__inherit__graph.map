@@ -1,6 +1,0 @@
-<map id="David" name="David">
-<area shape="rect" id="node1" title=" " alt="" coords="84,1159,167,1251"/>
-<area shape="rect" id="node2" href="$classPlayer.html" title=" " alt="" coords="17,755,233,1111"/>
-<area shape="rect" id="node3" href="$classEntity.html" title=" " alt="" coords="5,380,245,707"/>
-<area shape="rect" id="node4" href="$classGameObject.html" title=" " alt="" coords="44,5,207,332"/>
-</map>

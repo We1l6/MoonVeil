@@ -43,6 +43,7 @@ class SettingsScene final : public Scene
     void Render() override;
 
   private:
+    bool IsKeyUsedElsewhere(int key, int *currentKey);
     Texture2D m_backgroundTexture;
     int *currentlyChangingKey = nullptr;
 };

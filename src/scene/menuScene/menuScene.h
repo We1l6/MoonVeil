@@ -18,6 +18,7 @@ class MenuScene final : public Scene
   public:
     explicit MenuScene(Game *game) : Scene(game)
     {
+        SettingsGlobal::LoadInputSettings();
         InitAudioDevice();
         music = LoadMusicStream("resources/sound/Prologue.mp3");
         SetMusicVolume(music, SettingsGlobal::g_volume / 100.0f);
@@ -45,7 +46,6 @@ class MenuScene final : public Scene
                                          buttonWidth, buttonHeight},
                                Color{17, 27, 29, 255}, Color{57, 75, 76, 255},
                                WHITE);
-        SettingsGlobal::LoadInputSettings();
     }
     ~MenuScene()
     {

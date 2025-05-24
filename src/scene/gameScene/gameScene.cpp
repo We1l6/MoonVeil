@@ -37,7 +37,7 @@ GameScene::GameScene(Game *game, int mapIndex, int heroIndex)
         gameTimer->Start();
         m_spawner = std::make_unique<Spawner>(tileMap, gameEntities,
                                               gameObjects, player, gameTimer);
-        m_spawner->SetupForMap(1);
+        m_spawner->SetupForMap(mapIndex);
         SetMusicVolume(music, SettingsGlobal::g_volume / 100.0f);
         PlayMusicStream(music);
     }
