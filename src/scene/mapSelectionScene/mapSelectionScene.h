@@ -16,7 +16,32 @@ class MapSelectionScene final : public Scene
     explicit MapSelectionScene(Game *game) : Scene(game)
     {
         // Initialize available maps
-        m_availableMaps = {"Map1", "Map2"};
+        m_availableMaps = {
+            {"Once, Alcastr was a great city-laboratory, \nwhere the kingdom's "
+             "alchemists conducted their experiments \nin search of eternal "
+             "life and absolute power. \nBut their pride led to catastrophe. "
+             "\nOne of the experiments spiraled out of control, \nand within "
+             "hours, a poisonous mist engulfed the city, \nturning its "
+             "inhabitants into monsters \nand its walls into ruins soaked in "
+             "alchemical filth. \n\nNow, Alcastr is a sinister arena \nwhere "
+             "darkness and poison clash with fire and steel. \nThe air here is "
+             "thick and bitter, \nand the ground is covered in a gray film of "
+             "congealed reagents. \nThe shattered towers loom over the "
+             "battlefield \nlike the skeletons of ancient giants, \nwhile "
+             "underfoot, the shards of alchemical flasks \ncrunch like "
+             "remnants of bygone experiments. \n"},
+            "The scorched, towering walls of Mordheim Citadel \nrise above the "
+            "burnt plains \nlike the gnashing teeth of a dead giant. \nOnce, "
+            "this was an impregnable fortress of the kingdom, \nbut traitor "
+            "alchemists opened its gates to the darkness— \nand now the "
+            "Citadel has become a nest of the most horrific experiments. \nIts "
+            "towers spew poisonous smoke, \nand in its dungeons, monsters are "
+            "born \nthat no living man should ever lay eyes upon. \n\nNow, "
+            "those who come here seek either \nto purge the corruption once "
+            "and for all… \nor to seize its power for themselves. \nDavid, "
+            "with his hatred for alchemy, \nand Galmar, whose flames can "
+            "purify even this carrion, \nare but the first in a long line of "
+            "madmen \nwho dared to storm these cursed walls. \n"};
         m_currentMapIndex = 0;
 
         float buttonWidth = 80;

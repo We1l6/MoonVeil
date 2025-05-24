@@ -17,7 +17,7 @@ void MapSelectionScene::Render()
 
     // Draw current map
     const char *currentMap = m_availableMaps[m_currentMapIndex].c_str();
-    int fontSize = 30;
+    int fontSize = 14;
     Vector2 textSize = MeasureTextEx(GetFontDefault(), currentMap, fontSize, 1);
 
     float textureScale = 0.5f;
@@ -31,8 +31,7 @@ void MapSelectionScene::Render()
     DrawTextureEx(textures[m_currentMapIndex], texturePos, 0.0f, textureScale,
                   WHITE);
 
-    DrawText(currentMap, GetScreenWidth() / 2 - textSize.x / 2,
-             GetScreenHeight() / 2 - 50, fontSize, WHITE);
+    DrawText(currentMap, 50, GetScreenHeight() - 330, fontSize, WHITE);
 }
 
 void MapSelectionScene::Update(float deltaTime)
