@@ -59,12 +59,11 @@ void CollisionSystem::HandleAbilityEntityCollision(
     else if (entityType == ObjectType::Enemy &&
              objectType == ObjectType::PlayerAttack)
     {
-        entity->TakeDamage(object->getDamage(), object->GetIsFacingLeft());
-
         if (object->getAbilityType() == AbilityType::DestroyOnHit)
         {
             object->MarkForDeletion();
         }
+        entity->TakeDamage(object->getDamage(), object->GetIsFacingLeft());
     }
 }
 

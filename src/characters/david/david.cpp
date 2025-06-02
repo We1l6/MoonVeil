@@ -61,7 +61,7 @@ David::David(std::shared_ptr<TileMap> &tilemap,
              100.0f,
              gameObjects,
              ResourceManager::GetTexture("resources/DavidSpells.png"),
-             125.0f)
+             25.0f)
 {
     m_firstSpell = Spell{10.0f, 0.0f, false, [this]() { this->firstSpell(); }};
     m_secondSpell = Spell{5.0f, 0.0f, false, [this]() { this->secondSpell(); }};
