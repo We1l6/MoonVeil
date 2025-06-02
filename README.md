@@ -15,10 +15,13 @@ It provides a component-based architecture to build dynamic, interactive gamepla
 - HUD and game timer system
 - Audio and background music support (via Raylib)
 
-## 🛠 Technologies
+## 🛠 Technologies & Dependencies
 
 - C++17 / C++20
-- [Raylib](https://www.raylib.com/) for rendering, input, audio
+- [Raylib](https://www.raylib.com/) — graphics, audio, input
+- [Raygui](https://github.com/raysan5/raygui) — immediate-mode GUI for raylib
+- [Raylib-TMX](https://github.com/RobLoach/raylib-tmx) — TMX tile map loader
+- [SimpleINI](https://github.com/brofield/simpleini) — INI file parser for configuration
 - CMake for build system
 - STL and standard parallel algorithms
 - Doxygen for documentation
